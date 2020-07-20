@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_left_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_mid_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="1" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clInterest"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="@dimen/match_constraints"
+            android:padding="@dimen/padding_mini"
+            app:layout_constraintDimensionRatio="2.5:1"
+            app:layout_constraintLeft_toLeftOf="@+id/vertical_left_guideline"
+            app:layout_constraintRight_toRightOf="@+id/vertical_mid_guideline"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_rounded_corner_transparent_outlined"
+                app:cardCornerRadius="@dimen/radius_20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgInterest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/black_overlay_capture_interests" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+             style="@style/Body3BoldWhiteCenter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:elevation="@dimen/elevation_2"
+            android:text="@{data}"
+            app:layout_constraintCircle="@id/clInterest"
+            app:layout_constraintStart_toStartOf="@id/clInterest"
+            app:layout_constraintTop_toTopOf="@id/clInterest"
+            app:srcCompat="@drawable/check_circle_black" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

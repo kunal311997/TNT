@@ -1,0 +1,102 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/back_arrow_size"
+            android:layout_height="@dimen/back_arrow_size"
+            android:layout_marginStart="@dimen/margin_semi_medium"
+            android:layout_marginLeft="@dimen/margin_semi_medium"
+            android:layout_marginTop="@dimen/margin_large_medium"
+            android:padding="@dimen/padding_mini"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_white" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSkip"
+            style="@style/TextLink1ActiveRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_semi_medium"
+            android:layout_marginRight="@dimen/margin_semi_medium"
+            android:padding="@dimen/padding_small"
+            android:text="@string/skip"
+            app:layout_constraintBottom_toBottomOf="@id/imgBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintTop_toTopOf="@+id/imgBack" />
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/HomeTemplate3BoldWhite20sp"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_semi_medium"
+            android:layout_marginTop="@dimen/margin_semi_medium"
+            android:layout_marginRight="@dimen/margin_semi_medium"
+            android:text="Please tell us what you’re interested in,"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgBack" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvInterests"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/match_constraints"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_semi_medium"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_semi_medium"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/btnContinue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+            app:layout_constraintVertical_bias="1.0"
+            app:spanCount="@integer/interest_grid_span_count"
+            tools:listitem="@layout/item_select_interests" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/margin_semi_medium"
+            android:layout_marginBottom="@dimen/margin_medium_large"
+            android:background="@drawable/bg_login_purple_rounded"
+            android:fontFamily="@font/avenirltstd_medium"
+            android:gravity="center"
+            android:text="Continue"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_18"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1"
+            android:layout_marginEnd="@dimen/margin_semi_medium"
+            android:layout_marginStart="@dimen/margin_semi_medium"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

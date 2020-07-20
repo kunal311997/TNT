@@ -9,13 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".enroll.ui.SelectInterestsActivity" />
+        <activity android:name=".SplashActivity">
+
+        </activity>
+        <activity
+            android:name=".enroll.ui.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".enroll.ui.SignUpActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>

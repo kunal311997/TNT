@@ -3,4 +3,11 @@
     <color name="colorPrimary">#1e1e1e</color>
     <color name="colorPrimaryDark">#1e1e1e</color>
     <color name="colorAccent">#a990d0</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="opaque_white">#7CFFFFFF</color>
+    <color name="black_overlay_capture_interests">#33000000</color>
+    <color name="dark_grey">#272727</color>
+
 </resources>

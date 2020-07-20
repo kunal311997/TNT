@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="padding_medium_large">12dp</dimen>
+    <dimen name="padding_mini">2dp</dimen>
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding_medium_10">10dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+    <dimen name="padding_large_medium">24dp</dimen>
+    <dimen name="padding_xlarge">32dp</dimen>
+    <dimen name="padding_xxlarge">40dp</dimen>
+
+    <dimen name="margin_mini">2dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="margin_medium_large">12dp</dimen>
+    <dimen name="margin_medium_large_16">16dp</dimen>
+    <dimen name="margin_semi_medium">20dp</dimen>
+    <dimen name="margin_large_medium">24dp</dimen>
+    <dimen name="margin_xlarge">30dp</dimen>
+    <dimen name="margin_xxlarge">40dp</dimen>
+
+
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_14">14dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_17">17dp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_22">22dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
+    <dimen name="margin_27">27dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_48">48dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_60">60dp</dimen>
+    <dimen name="margin_64">64dp</dimen>
+    <dimen name="margin_70">70dp</dimen>
+    <dimen name="margin_74">74dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
+    <dimen name="margin_132">132dp</dimen>
+    <dimen name="margin_154">154dp</dimen>
+    <dimen name="font_size_2">2sp</dimen>
+    <dimen name="font_size_4">4sp</dimen>
+    <dimen name="font_size_5">5sp</dimen>
+    <dimen name="font_size_6">6sp</dimen>
+    <dimen name="font_size_10">10sp</dimen>
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_17">17sp</dimen>
+    <dimen name="font_size_15">15sp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_21">21sp</dimen>
+    <dimen name="font_size_24">24sp</dimen>
+    <dimen name="font_size_30">30sp</dimen>
+    <dimen name="font_size_72">72sp</dimen>
+    <dimen name="edit_text_height">55dp</dimen>
+    <dimen name="button_height">60dp</dimen>
+    <dimen name="line_height">2dp</dimen>
+    <dimen name="radius_10">10dp</dimen>
+    <dimen name="radius_4">4dp</dimen>
+    <dimen name="match_constraints">0dp</dimen>
+    <dimen name="back_arrow_size">30dp</dimen>
+    <dimen name="radius_20dp">20dp</dimen>
+    <dimen name="elevation_2">2dp</dimen>
+    <dimen name="check_logo_width">40dp</dimen>
+    <dimen name="btn_border_stroke">2dp</dimen>
+    <dimen name="button_radius_20">20dp</dimen>
+    <dimen name="feed_image_height">150dp</dimen>
+
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/margin_semi_medium"
+            android:layout_marginTop="@dimen/margin_medium_large"
+            android:layout_marginBottom="@dimen/margin_medium_large"
+            android:fontFamily="@font/avenirltstd_medium"
+            android:gravity="center_vertical"
+            android:text="@string/title_home"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/font_size_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_medium_large"
+            android:padding="@dimen/padding_small"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCompare"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgCompare"
+            app:srcCompat="@drawable/filter" />
+
+        <ImageView
+            android:id="@+id/imgCompare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_medium_large"
+            android:padding="@dimen/padding_small"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/txtHeading"
+            app:layout_constraintEnd_toStartOf="@+id/imgFilter"
+            app:layout_constraintTop_toTopOf="@+id/txtHeading"
+            app:srcCompat="@drawable/campare" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/match_constraints"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_daily_feed"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
