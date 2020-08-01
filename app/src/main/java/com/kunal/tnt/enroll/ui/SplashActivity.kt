@@ -1,11 +1,11 @@
-package com.kunal.tnt
+package com.kunal.tnt.enroll.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.kunal.tnt.enroll.ui.LoginActivity
-import com.kunal.tnt.util.AppConstants
+import com.kunal.tnt.R
+import com.kunal.tnt.common.uils.Constant
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,6 +17,6 @@ class SplashActivity : AppCompatActivity() {
             val i = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(i)
             finish()
-        }, AppConstants.SPLASH_SCREEN_TIMEOUT)
+        }, Constant.SPLASH_SCREEN_TIMEOUT)
     }
 }

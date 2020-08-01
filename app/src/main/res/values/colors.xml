@@ -9,5 +9,8 @@
     <color name="opaque_white">#7CFFFFFF</color>
     <color name="black_overlay_capture_interests">#33000000</color>
     <color name="dark_grey">#272727</color>
+    <color name="black_overlay">#51000000</color>
+    <color name="grey_text_color">#6a6a6a</color>
+
 
 </resources>
