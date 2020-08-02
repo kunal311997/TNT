@@ -7,116 +7,166 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/dark_grey"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/dark_grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txtHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="@dimen/margin_semi_medium"
+                    android:layout_marginTop="@dimen/margin_medium_large"
+                    android:layout_marginBottom="@dimen/margin_medium_large"
+                    android:fontFamily="@font/avenirltstd_medium"
+                    android:gravity="center_vertical"
+                    android:text="Create feed"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/font_size_30"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/btnSave"
+                    style="@style/Body1MediumWhiteCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_semi_medium"
+                    android:padding="@dimen/padding_medium"
+                    android:text="Save"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/margin_semi_medium" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/margin_semi_medium" />
 
             <TextView
-                android:id="@+id/txtHeading"
+                android:id="@+id/txtTitle"
+                style="@style/Body4BoldWhiteCenter"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginLeft="@dimen/margin_semi_medium"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_semi_medium"
+                android:text="Title"
+                app:layout_constraintStart_toEndOf="@+id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/clHeader" />
+
+            <EditText
+                android:id="@+id/edtTitle"
+                style="@style/Body3MediumWhiteLeft"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="Enter your title here"
+                android:inputType="textPersonName"
+                android:textColor="@color/grey_text_color"
+                android:textColorHint="@color/grey_text_color"
+                app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+                app:layout_constraintStart_toEndOf="@+id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+            <TextView
+                android:id="@+id/lblSelectImage"
+                style="@style/Body4BoldWhiteCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_semi_medium"
+                android:text="Select Keywords"
+                app:layout_constraintStart_toEndOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/edtTitle" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvKeywords"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+                app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+                app:layout_constraintStart_toEndOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/lblSelectImage"
+                tools:listitem="@layout/item_keywords" />
+
+            <TextView
+                android:id="@+id/txtDesc"
+                style="@style/Body4BoldWhiteCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_semi_medium"
+                android:text="Description"
+                app:layout_constraintStart_toEndOf="@+id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/rvKeywords" />
+
+            <EditText
+                android:id="@+id/edtDesc"
+                style="@style/Body3MediumWhiteLeft"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/edit_text_dec_height"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="Enter your description here"
+                android:inputType="textPersonName"
+                android:textColor="@color/grey_text_color"
+                android:textColorHint="@color/grey_text_color"
+                app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+                app:layout_constraintStart_toEndOf="@+id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
+
+            <TextView
+                android:id="@+id/txtImage"
+                style="@style/Body4BoldWhiteCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_semi_medium"
+                android:text="Select Background Image"
+                app:layout_constraintStart_toEndOf="@+id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/edtDesc" />
+
+            <ImageView
+                android:id="@+id/imgFeed"
+                android:layout_width="@dimen/feed_image_width"
+                android:layout_height="@dimen/feed_image_height"
                 android:layout_marginTop="@dimen/margin_medium_large"
-                android:layout_marginBottom="@dimen/margin_medium_large"
-                android:fontFamily="@font/avenirltstd_medium"
-                android:gravity="center_vertical"
-                android:text="Create your feed"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/font_size_30"
+                android:src="@drawable/placeholder"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                android:layout_marginBottom="@dimen/margin_semi_medium"
+                app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+                app:layout_constraintStart_toEndOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/txtImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/margin_semi_medium" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/margin_semi_medium" />
-
-        <TextView
-            android:id="@+id/lblDesc"
-            style="@style/Body3MediumWhiteLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_semi_medium"
-            android:text="Title"
-            app:layout_constraintStart_toEndOf="@+id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/clHeader" />
-
-        <EditText
-            android:id="@+id/edtDesc"
-            style="@style/Body3MediumWhiteLeft"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:gravity="top"
-            android:hint="Enter your title here"
-            android:inputType="textPersonName"
-            android:textColor="@color/white"
-            android:textColorHint="@color/grey_text_color"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@+id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/lblDesc" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnDone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="Done"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/lblSelectImage"
-            style="@style/Body3MediumWhiteLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_semi_medium"
-            android:text="Select Keywords"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/edtDesc" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvKeywords"
-            tools:listitem="@layout/item_keywords"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/lblSelectImage" />
-
-        <ImageView
-            android:id="@+id/imgFeed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblSelectImage" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

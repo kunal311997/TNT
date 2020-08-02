@@ -9,26 +9,23 @@
             type="String" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:background="@color/colorPrimary">
+        android:layout_margin="@dimen/margin_small"
+        android:background="@drawable/bg_white_rounded_transparent"
+        android:padding="@dimen/padding_medium_10"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:flexWrap="wrap"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/txtKeyword"
+            style="@style/Body1MediumWhiteCenter"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_white_rounded_transparent"
-            android:padding="@dimen/padding_medium_10"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/txtKeyword"
-                style="@style/Body1MediumWhiteCenter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{keyword}" />
-        </com.google.android.flexbox.FlexboxLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:text="@{keyword}" />
+    </com.google.android.flexbox.FlexboxLayout>
 </layout>

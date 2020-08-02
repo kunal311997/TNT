@@ -19,6 +19,7 @@ public class FeedFragmentModule {
     FeedAdapter provideFeedAdapter() {
         return new FeedAdapter();
     }
+
     @Provides
     static CreateFeedApi provideCreateFeedApi(Retrofit retrofit) {
         return retrofit.create(CreateFeedApi.class);

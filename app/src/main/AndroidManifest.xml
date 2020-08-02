@@ -3,6 +3,8 @@
     package="com.kunal.tnt">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 
     <application
@@ -12,6 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".home.HomeActivity">
@@ -19,11 +22,7 @@
         </activity>
         <activity android:name=".enroll.ui.SelectInterestsActivity" />
         <activity android:name=".enroll.ui.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".enroll.ui.LoginActivity"
@@ -35,6 +34,17 @@
             android:launchMode="singleTask"
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".createfeed.ui.CreateFeedActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="stateHidden|adjustPan" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

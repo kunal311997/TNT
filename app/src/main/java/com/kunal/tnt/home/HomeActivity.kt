@@ -1,5 +1,6 @@
 package com.kunal.tnt.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -8,12 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kunal.tnt.R
+import com.kunal.tnt.createfeed.ui.CreateFeedActivity
 import com.tenclouds.fluidbottomnavigation.FluidBottomNavigationItem
 import com.tenclouds.fluidbottomnavigation.listener.OnTabSelectedListener
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 
-class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : DaggerAppCompatActivity(),
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
     lateinit var headingList: List<String>
 
@@ -27,6 +31,10 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         bottom_navigation.setOnNavigationItemSelectedListener(this)
         loadFragment(HomeFragment())
+
+        imgCreateFeed.setOnClickListener {
+            startActivity(Intent(this, CreateFeedActivity::class.java))
+        }
     }
 
 

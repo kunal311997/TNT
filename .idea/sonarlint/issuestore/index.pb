@@ -1,8 +1,4 @@
 
-d
-4app/src/main/java/com/kunal/tnt/util/AppConstants.kt,5/3/5309934528e6dcf21e707dca13df394f611769f6
-a
-1app/src/main/java/com/kunal/tnt/SplashActivity.kt,7/8/783c061ff566ad407fed69b532d9820514163e08
 j
 :app/src/main/java/com/kunal/tnt/enroll/ui/LoginActivity.kt,4/4/44c5f6adb388518855d55c5f98b0ef74cd9a62f3
 y

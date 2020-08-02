@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/fragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../Real Deal/app/src/main/res/layout/activity_home.xml">
           <value>
             <set />
@@ -134,6 +139,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/createfeed/ui/CreateFeedActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/createfeed/utils/FeedConstants.kt">
           <value>
             <set />
           </value>

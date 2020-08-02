@@ -38,12 +38,6 @@ class SelectInterestsAdapter(
 
             binding.data = rentalsList[pos]
 
-            /* binding.cvItemRental.setOnClickListener {
-                 val intent = Intent(context, RentalDetailsActivity::class.java)
-                 intent.putExtra(AppConstants.RENTAL_IMAGE_EXTRA, rentalsList[pos].image)
-                 intent.putExtra(AppConstants.RENTAL_ID_EXTRA, rentalsList[pos].id.toString())
-                 context.startActivity(intent)
-             }*/
         }
     }
 
