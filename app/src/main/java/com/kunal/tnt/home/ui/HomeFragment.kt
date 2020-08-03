@@ -73,11 +73,12 @@ class HomeFragment : DaggerFragment() {
                 }
             }
         })
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        viewModel.getFeed()
+        viewModel.isRefreshFeed().observe(requireActivity(), Observer {
+            if (it) {
+                viewModel.getFeed()
+                viewModel.refreshFeed(false)
+            }
+        })
     }
 
     companion object {
@@ -85,7 +86,6 @@ class HomeFragment : DaggerFragment() {
         fun getInstance(): HomeFragment? {
             if (fragment == null)
                 fragment = HomeFragment()
-
             /*val args = Bundle()
             args.putInt("someInt", someInt)
             fragment!!.arguments = args*/

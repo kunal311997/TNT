@@ -2,7 +2,6 @@ package com.kunal.tnt.home.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +9,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kunal.tnt.R
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.ui.CreateFeedActivity
-import com.kunal.tnt.databinding.FragmentHomeBinding
 import com.kunal.tnt.home.utils.HomeConstants
 import com.kunal.tnt.home.viewmodel.HomeViewModel
 import dagger.android.support.DaggerAppCompatActivity
@@ -34,9 +32,6 @@ class HomeActivity : DaggerAppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // headingList = listOf("Home","flip","flip","flip","flip")
-        //setBottomNavigation()
-
         bottom_navigation.setOnNavigationItemSelectedListener(this)
         loadFragment(HomeFragment())
 
@@ -50,7 +45,8 @@ class HomeActivity : DaggerAppCompatActivity(),
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        HomeFragment()?.onActivityResult(requestCode, resultCode, data)
+        viewModel.refreshFeed(true)
+        //HomeFragment()?.onActivityResult(requestCode, resultCode, data)
 
     }
 
@@ -65,49 +61,6 @@ class HomeActivity : DaggerAppCompatActivity(),
         }
         return false
     }
-
-/*    private fun setBottomNavigation() {
-        fluidBottomNavigation.items = listOf(
-            FluidBottomNavigationItem("Home",
-                ContextCompat.getDrawable(this, R.drawable.rental)),
-            FluidBottomNavigationItem("flip",
-                ContextCompat.getDrawable(this, R.drawable.flip)),
-            FluidBottomNavigationItem("flip",
-                ContextCompat.getDrawable(this, R.drawable.plus)),
-            FluidBottomNavigationItem("flip",
-                ContextCompat.getDrawable(this, R.drawable.search)),
-            FluidBottomNavigationItem("flip",
-                ContextCompat.getDrawable(this, R.drawable.more))
-        )
-
-        viewpager.adapter = HomePagerAdapter(supportFragmentManager)
-        viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
-            }
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            }
-
-            override fun onPageSelected(position: Int) {
-                fluidBottomNavigation.selectTab(position)
-                //txtHeading.text = headingList[position]
-            }
-        })
-
-        fluidBottomNavigation.onTabSelectedListener = object : OnTabSelectedListener {
-            override fun onTabSelected(position: Int) {
-                //txtHeading.text = headingList[position]
-                *//*if (position == 2) {
-                    groupFloating.visible()
-                    translucentBack.visible()
-                } else {
-                    viewpager.currentItem = position
-                    groupFloating.gone()
-                    translucentBack.gone()
-                }*//*
-            }
-        }
-    }*/
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment: Fragment? = null

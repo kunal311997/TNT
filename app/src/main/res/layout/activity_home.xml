@@ -12,30 +12,6 @@
         android:background="@color/colorPrimary"
         tools:context=".home.ui.HomeActivity">
 
-        <!--<androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:paddingBottom="@dimen/padding_xxlarge"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </androidx.viewpager.widget.ViewPager>
-
-        <com.tenclouds.fluidbottomnavigation.FluidBottomNavigation
-            android:id="@+id/fluidBottomNavigation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:accentColor="@color/colorAccent"
-            app:backColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:textColor="@color/colorPrimary" />-->
-
-
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"

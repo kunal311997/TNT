@@ -5,13 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kunal.tnt.common.data.Resource
-import com.kunal.tnt.createfeed.data.CreateFeedResponse
 import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.repository.HomeRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.File
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -25,6 +23,16 @@ class HomeViewModel @Inject constructor(
 
     fun getFeedLiveData(): LiveData<Resource<List<Feed>>> {
         return feedLiveData
+    }
+
+    private val refreshFeed = MutableLiveData<Boolean>(false)
+
+    fun refreshFeed(b: Boolean) {
+        refreshFeed.value = b
+    }
+
+    fun isRefreshFeed(): LiveData<Boolean> {
+        return refreshFeed
     }
 
     fun getFeed() {
