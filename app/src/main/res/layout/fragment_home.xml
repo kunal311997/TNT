@@ -81,6 +81,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clDaily"
+                android:visibility="gone"
                 android:layout_width="@dimen/match_constraints"
                 android:layout_height="200dp"
                 android:layout_marginTop="@dimen/margin_semi_medium"

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kunal.tnt.R
+import com.kunal.tnt.common.uils.Utilities.formatDate
 import com.kunal.tnt.databinding.ItemDailyFeedBinding
 import com.kunal.tnt.home.data.Feed
 
@@ -50,6 +51,7 @@ class FeedsAdapter(
         ) {
 
             binding.feed = feedsList[pos]
+            binding.txtDate.text = formatDate(feedsList[pos].createdAt)
             binding.root.setOnClickListener {
                 listener?.invoke(binding.root, feedsList[pos], pos)
             }

@@ -5,12 +5,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kunal.tnt.R
+import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.ui.CreateFeedActivity
+import com.kunal.tnt.databinding.FragmentHomeBinding
 import com.kunal.tnt.home.utils.HomeConstants
+import com.kunal.tnt.home.viewmodel.HomeViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
+import javax.inject.Inject
 
 
 class HomeActivity : DaggerAppCompatActivity(),
@@ -18,6 +23,12 @@ class HomeActivity : DaggerAppCompatActivity(),
 
     lateinit var headingList: List<String>
 
+    @Inject
+    lateinit var viewModelProvidersFactory: ViewModelProvidersFactory
+
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelProvidersFactory)[HomeViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +38,7 @@ class HomeActivity : DaggerAppCompatActivity(),
         //setBottomNavigation()
 
         bottom_navigation.setOnNavigationItemSelectedListener(this)
-        loadFragment(HomeFragment.getInstance())
+        loadFragment(HomeFragment())
 
         imgCreateFeed.setOnClickListener {
             startActivityForResult(
@@ -39,7 +50,7 @@ class HomeActivity : DaggerAppCompatActivity(),
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        HomeFragment.getInstance()?.onActivityResult(requestCode, resultCode, data)
+        HomeFragment()?.onActivityResult(requestCode, resultCode, data)
 
     }
 
@@ -101,14 +112,10 @@ class HomeActivity : DaggerAppCompatActivity(),
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment: Fragment? = null
         when (item.itemId) {
-            R.id.navigation_home -> fragment =
-                HomeFragment.getInstance()
-            R.id.navigation_dashboard -> fragment =
-                HomeFragment()
-            R.id.navigation_notifications -> fragment =
-                HomeFragment()
-            R.id.navigation_profile -> fragment =
-                SettingsFragment()
+            R.id.navigation_home -> fragment = HomeFragment()
+            R.id.navigation_dashboard -> fragment = HomeFragment()
+            R.id.navigation_notifications -> fragment = HomeFragment()
+            R.id.navigation_profile -> fragment = SettingsFragment()
         }
         return loadFragment(fragment)
     }

@@ -1,6 +1,7 @@
 package com.kunal.tnt.common.uils
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
@@ -16,6 +17,7 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
+import java.text.SimpleDateFormat
 
 
 object Utilities {
@@ -67,6 +69,13 @@ object Utilities {
             return false
         }
         return true
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun formatDate(serverDate: String): String {
+        val formatter = SimpleDateFormat(Constant.SERVER_FORMAT)
+        val date = formatter.parse(serverDate)
+        return SimpleDateFormat(Constant.DATE_FORMAT).format(date)
     }
 
 }
