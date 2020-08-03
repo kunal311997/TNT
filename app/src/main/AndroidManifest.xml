@@ -17,8 +17,12 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".home.HomeActivity">
+        <activity android:name=".home.ui.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".enroll.ui.SelectInterestsActivity" />
         <activity android:name=".enroll.ui.SplashActivity">
@@ -39,11 +43,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="stateHidden|adjustPan" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

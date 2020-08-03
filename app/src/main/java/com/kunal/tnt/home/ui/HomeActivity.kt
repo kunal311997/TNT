@@ -1,17 +1,12 @@
-package com.kunal.tnt.home
+package com.kunal.tnt.home.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kunal.tnt.R
 import com.kunal.tnt.createfeed.ui.CreateFeedActivity
-import com.tenclouds.fluidbottomnavigation.FluidBottomNavigationItem
-import com.tenclouds.fluidbottomnavigation.listener.OnTabSelectedListener
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -96,10 +91,14 @@ class HomeActivity : DaggerAppCompatActivity(),
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment: Fragment? = null
         when (item.itemId) {
-            R.id.navigation_home -> fragment = HomeFragment()
-            R.id.navigation_dashboard -> fragment = HomeFragment()
-            R.id.navigation_notifications -> fragment = HomeFragment()
-            R.id.navigation_profile -> fragment = SettingsFragment()
+            R.id.navigation_home -> fragment =
+                HomeFragment()
+            R.id.navigation_dashboard -> fragment =
+                HomeFragment()
+            R.id.navigation_notifications -> fragment =
+                HomeFragment()
+            R.id.navigation_profile -> fragment =
+                SettingsFragment()
         }
         return loadFragment(fragment)
     }

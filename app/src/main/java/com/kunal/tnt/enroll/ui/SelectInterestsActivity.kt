@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kunal.tnt.R
 import com.kunal.tnt.enroll.adapters.SelectInterestsAdapter
-import com.kunal.tnt.home.HomeActivity
+import com.kunal.tnt.home.ui.HomeActivity
 import kotlinx.android.synthetic.main.activity_select_interests.*
 
 class SelectInterestsActivity : AppCompatActivity() {

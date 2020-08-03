@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kunal.tnt.common.data.Resource
-import com.kunal.tnt.enroll.AuthRepository
+import com.kunal.tnt.enroll.repository.AuthRepository
 import com.kunal.tnt.enroll.models.LoginResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch

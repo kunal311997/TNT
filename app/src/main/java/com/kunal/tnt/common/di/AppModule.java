@@ -8,10 +8,13 @@ import com.google.gson.GsonBuilder;
 import com.kunal.tnt.common.uils.Constant;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import kotlinx.coroutines.CoroutineDispatcher;
+import kotlinx.coroutines.Dispatchers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -59,4 +62,16 @@ public class AppModule {
     static OkHttp3Downloader getOkHttp3Downloader(OkHttpClient okHttpClient) {
         return new OkHttp3Downloader(okHttpClient);
     }*/
+
+    @Provides
+    @Named("IO")
+    static public CoroutineDispatcher provideIOCoroutineDispatcher() {
+        return Dispatchers.getIO();
+    }
+
+    @Provides
+    @Named("MAIN")
+    static public CoroutineDispatcher provideMainCoroutineDispatcher() {
+        return Dispatchers.getMain();
+    }
 }

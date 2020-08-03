@@ -1,11 +1,11 @@
 package com.kunal.tnt.home.network
 
-import com.kunal.tnt.feed.data.FeedResponse
+ import com.kunal.tnt.home.data.Feed
 import retrofit2.http.GET
 
 interface HomeApi {
 
-    @GET("feed.php")
-    suspend fun callFeedApi(): FeedResponse
+    @GET("feed/getFeed")
+    suspend fun callFeedApi(): List<Feed>
 
 }

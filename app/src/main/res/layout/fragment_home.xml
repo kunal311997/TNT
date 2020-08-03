@@ -1,149 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clHeader"
+    <data>
+
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/dark_grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="@dimen/margin_semi_medium"
-            android:layout_marginTop="@dimen/margin_medium_large"
-            android:layout_marginBottom="@dimen/margin_medium_large"
-            android:fontFamily="@font/avenirltstd_medium"
-            android:gravity="center_vertical"
-            android:text="@string/title_home"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/font_size_30"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imgFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_medium_large"
-            android:padding="@dimen/padding_small"
-            android:tint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/imgCompare"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgCompare"
-            app:srcCompat="@drawable/filter" />
-
-        <ImageView
-            android:id="@+id/imgCompare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_medium_large"
-            android:padding="@dimen/padding_small"
-            android:tint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/txtHeading"
-            app:layout_constraintEnd_toStartOf="@+id/imgFilter"
-            app:layout_constraintTop_toTopOf="@+id/txtHeading"
-            app:srcCompat="@drawable/campare" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/margin_semi_medium" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/margin_semi_medium" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clDaily"
-        android:layout_width="@dimen/match_constraints"
-        android:layout_height="200dp"
-        android:layout_marginTop="@dimen/margin_semi_medium"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintStart_toEndOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/clHeader">
-
-        <ImageView
-            android:id="@+id/imageView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/placeholder" />
+            android:background="@color/colorPrimary">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/black_overlay" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/dark_grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/txtTitle"
-            style="@style/Body2MediumWhiteLeft"
-            android:layout_width="@dimen/match_constraints"
+                <TextView
+                    android:id="@+id/txtHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="@dimen/margin_semi_medium"
+                    android:layout_marginTop="@dimen/margin_medium_large"
+                    android:layout_marginBottom="@dimen/margin_medium_large"
+                    android:fontFamily="@font/avenirltstd_medium"
+                    android:gravity="center_vertical"
+                    android:text="@string/title_home"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/font_size_30"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imgFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_medium_large"
+                    android:padding="@dimen/padding_small"
+                    android:tint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgCompare"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imgCompare"
+                    app:srcCompat="@drawable/filter" />
+
+                <ImageView
+                    android:id="@+id/imgCompare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_medium_large"
+                    android:padding="@dimen/padding_small"
+                    android:tint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtHeading"
+                    app:layout_constraintEnd_toStartOf="@+id/imgFilter"
+                    app:layout_constraintTop_toTopOf="@+id/txtHeading"
+                    app:srcCompat="@drawable/campare" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/margin_semi_medium" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/margin_semi_medium" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clDaily"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/margin_semi_medium"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+                app:layout_constraintStart_toEndOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/clHeader">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/placeholder" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/black_overlay" />
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    style="@style/Body2MediumWhiteLeft"
+                    android:layout_width="@dimen/match_constraints"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:text="This is Title"
+                    app:layout_constraintBottom_toTopOf="@+id/txtDesc"
+                    app:layout_constraintEnd_toStartOf="@+id/imgReadMore"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtDesc"
+                    style="@style/Body1MediumWhiteLeft"
+                    android:layout_width="@dimen/match_constraints"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:text="This is Description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imgReadMore"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imgReadMore"
+                    android:layout_width="@dimen/image_size"
+                    android:layout_height="@dimen/image_size"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:src="@drawable/read_more"
+                    android:tint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/txtDesc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txtTitle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txtTrending"
+                style="@style/Body3BoldWhiteCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_semi_medium"
+                android:text="Latest Feed"
+                app:layout_constraintStart_toEndOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/clDaily" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFeeds"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="@dimen/match_constraints"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+                app:layout_constraintStart_toEndOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/txtTrending"
+                app:spanCount="2"
+                tools:listitem="@layout/item_daily_feed" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginBottom="@dimen/margin_medium"
-            android:text="This is Title"
-            app:layout_constraintBottom_toTopOf="@+id/txtDesc"
-            app:layout_constraintEnd_toStartOf="@+id/imgReadMore"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/txtDesc"
-            style="@style/Body1MediumWhiteLeft"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginBottom="@dimen/margin_medium"
-            android:text="This is Description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imgReadMore"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/imgReadMore"
-            android:layout_width="@dimen/image_size"
-            android:layout_height="@dimen/image_size"
-            android:layout_marginEnd="@dimen/margin_medium"
-            android:src="@drawable/read_more"
-            android:tint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/txtDesc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txtTitle" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/txtTrending"
-        style="@style/Body3BoldWhiteCenter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_semi_medium"
-        android:text="Latest Feed"
-        app:layout_constraintStart_toEndOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@id/clDaily" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="@dimen/match_constraints"
-        android:layout_height="@dimen/match_constraints"
-        android:layout_marginTop="@dimen/margin_medium"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-        app:layout_constraintStart_toEndOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/txtTrending"
-        tools:listitem="@layout/item_daily_feed" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</layout>

@@ -5,10 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kunal.tnt.common.data.Resource
-import com.kunal.tnt.common.uils.Utilities
 import com.kunal.tnt.createfeed.data.CreateFeedResponse
+import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.repository.HomeRepository
-import com.kunal.tnt.feed.data.FeedResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -22,24 +21,19 @@ class HomeViewModel @Inject constructor(
     @Named("MAIN") private val mainDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private val feedLiveData = MutableLiveData<Resource<FeedResponse>>()
-    private val createFeedData = MutableLiveData<Resource<CreateFeedResponse>>()
+    private val feedLiveData = MutableLiveData<Resource<List<Feed>>>()
 
-    fun getFeedLiveData(): LiveData<Resource<FeedResponse>> {
+    fun getFeedLiveData(): LiveData<Resource<List<Feed>>> {
         return feedLiveData
-    }
-
-    fun getCreateFeedLiveData(): LiveData<Resource<CreateFeedResponse>> {
-        return createFeedData
     }
 
     fun getFeed() {
         feedLiveData.value = Resource.loading(null)
-        var feedResponse: Resource<FeedResponse>? = null
+        var feedResponse: Resource<List<Feed>>? = null
 
         viewModelScope.launch {
             withContext(ioDispatcher) {
-                //feedResponse = homeRepository.getFeed()
+                feedResponse = homeRepository.getFeed()
             }
             withContext(mainDispatcher) {
                 feedResponse?.let {
@@ -49,18 +43,5 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun createFeed(title: String, keywords: String, description: String, file: File?) {
-        createFeedData.value = Resource.loading(null)
-        var createFeedResponse: Resource<CreateFeedResponse>? = null
-        viewModelScope.launch {
-            withContext(ioDispatcher) {
-                createFeedResponse = homeRepository.createFeed(title, keywords, description, file)
-            }
-            withContext(mainDispatcher) {
-                createFeedResponse?.let {
-                    createFeedData.value = it
-                }
-            }
-        }
-    }
+
 }

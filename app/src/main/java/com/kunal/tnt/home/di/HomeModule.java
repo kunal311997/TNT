@@ -1,13 +1,13 @@
 package com.kunal.tnt.home.di;
 
+import com.kunal.tnt.createfeed.network.CreateFeedApi;
+import com.kunal.tnt.home.adapter.FeedsAdapter;
 import com.kunal.tnt.home.network.HomeApi;
 
-import javax.inject.Named;
+import java.util.Collections;
 
 import dagger.Module;
 import dagger.Provides;
-import kotlinx.coroutines.CoroutineDispatcher;
-import kotlinx.coroutines.Dispatchers;
 import retrofit2.Retrofit;
 
 @Module
@@ -18,18 +18,9 @@ public class HomeModule {
         return retrofit.create(HomeApi.class);
     }
 
-
     @Provides
-    @Named("IO")
-    static public CoroutineDispatcher provideIOCoroutineDispatcher() {
-        return Dispatchers.getIO();
+    static FeedsAdapter getFeedsAdapter() {
+        return new FeedsAdapter(Collections.emptyList());
     }
-
-    @Provides
-    @Named("MAIN")
-    static public CoroutineDispatcher provideMainCoroutineDispatcher() {
-        return Dispatchers.getMain();
-    }
-
 
 }

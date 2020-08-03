@@ -5,88 +5,93 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.PermissionChecker
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.kunal.tnt.R
 import com.kunal.tnt.common.data.Resource
+import com.kunal.tnt.common.uils.Utilities
+import com.kunal.tnt.common.uils.Utilities.hideProgressBar
+import com.kunal.tnt.common.uils.Utilities.showProgressbar
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.adapter.KeywordsAdapter
+import com.kunal.tnt.createfeed.data.Keywords
+import com.kunal.tnt.createfeed.utils.FeedConstants
+import com.kunal.tnt.createfeed.viewmodel.CreateFeedViewModel
 import com.kunal.tnt.databinding.ActivityCreateFeedBinding
-import com.kunal.tnt.feed.data.FeedType
-import com.kunal.tnt.home.viewmodel.HomeViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_create_feed.*
 import java.io.File
-import java.io.InputStream
 import javax.inject.Inject
 
 
 class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
-
-    val GALLERY_REQUEST_CODE = 1001
 
     private var file: File? = null
 
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProvidersFactory
 
-    val viewmodel: HomeViewModel by lazy {
-        ViewModelProvider(this, viewModelProviderFactory)[HomeViewModel::class.java]
+    @Inject
+    lateinit var adapter: KeywordsAdapter
+
+    lateinit var binding: ActivityCreateFeedBinding
+
+    private val viewModel: CreateFeedViewModel by lazy {
+        ViewModelProvider(this, viewModelProviderFactory)[CreateFeedViewModel::class.java]
     }
 
-    private var feedType: FeedType = FeedType.TEXT
-
     private val keywordsList = arrayListOf(
-        "Sports",
-        "Fitness",
-        "Education",
-        "Technology",
-        "Love",
-        "Relationship",
-        "Coaching",
-        "Food",
-        "Automobile"
+        Keywords("Sports"),
+        Keywords("Fitness"),
+        Keywords("Education"),
+        Keywords("Technology"),
+        Keywords("Love"),
+        Keywords("Relationship"),
+        Keywords("Coaching"),
+        Keywords("Food"),
+        Keywords("Automobile")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_create_feed)
 
-        val binding: ActivityCreateFeedBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_create_feed)
-
-        //feedType = intent?.getSerializableExtra("Feed_Type") as FeedType
         addOnclickListeners()
         setObservers()
+        setAdapter()
 
-
-        val staggeredGridLayoutManager = FlexboxLayoutManager(this)
-        binding.rvKeywords.layoutManager = staggeredGridLayoutManager
-        val adapter = KeywordsAdapter(keywordsList)
-        binding.rvKeywords.adapter = adapter
-
-        if (feedType == FeedType.VIDEO)
-            addTextChangeListener()
     }
 
-    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (!AccountManager.isUserLoggedIn(this) ){
-            val intent = Intent(this, OnBoardingActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-            return
+    private fun setAdapter() {
+        val staggeredGridLayoutManager = FlexboxLayoutManager(this)
+        binding.rvKeywords.layoutManager = staggeredGridLayoutManager
+        binding.rvKeywords.adapter = adapter
+        adapter.addItems(keywordsList)
+
+
+        adapter.listener = { view, _, pos ->
+
+            if (keywordsList[pos].isSelected) {
+                keywordsList[pos].isSelected = false
+                view.background =
+                    ContextCompat.getDrawable(this, R.drawable.bg_white_rounded_transparent)
+
+            } else {
+                keywordsList[pos].isSelected = true
+                view.background =
+                    ContextCompat.getDrawable(this, R.drawable.bg_accent_rounded)
+            }
         }
-    }*/
+    }
+
 
     private fun addOnclickListeners() {
         imgFeed.setOnClickListener(this)
@@ -96,53 +101,36 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0) {
             imgFeed -> {
-                /*    val intent = Intent(Intent.ACTION_GET_CONTENT)
-                    intent.type = "image/*"
-                    startActivityForResult(intent, FILE_PICK)*/
-
-                 */
-                if (checkGalleryPermissions(this)) {
+                if (Utilities.checkGalleryPermissions(this)) {
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
                     requestPermissions(
                         permissions,
-                        1001
+                        FeedConstants.GALLERY_PERMISSION_CODE
                     )
                 } else {
                     choosePhotoFromGallery()
                 }
-
             }
             btnSave -> {
 
-                viewmodel.createFeed(
-                    edtTitle.text.toString(),
-                    "fghsdf,dgfdfd",
-                    edtDesc.text.toString(),
-                     file
+                var keywords = ""
+                keywordsList.forEach {
+                    keywords += it.name + ", "
+                }
+                viewModel.createFeed(
+                    edtTitle.text.toString(), keywords, edtDesc.text.toString(), file
                 )
-
-
             }
         }
     }
 
-    private fun checkGalleryPermissions(context: FragmentActivity): Boolean {
-        if (PermissionChecker.checkSelfPermission(
-                context,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) == PermissionChecker.PERMISSION_DENIED
-        ) {
-            return false
-        }
-        return true
-    }
 
     private fun choosePhotoFromGallery() {
         val pickPhoto = Intent(
             Intent.ACTION_PICK,
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         )
-        startActivityForResult(pickPhoto, GALLERY_REQUEST_CODE)
+        startActivityForResult(pickPhoto, FeedConstants.IMAGE_REQUEST_CODE)
     }
 
     override fun onRequestPermissionsResult(
@@ -153,7 +141,6 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             choosePhotoFromGallery()
-
         }
     }
 
@@ -162,10 +149,10 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                GALLERY_REQUEST_CODE -> {
+                FeedConstants.IMAGE_REQUEST_CODE -> {
                     val selectedImage: Uri? = data?.data
                     selectedImage?.let {
-                      //  file = File(selectedImage.path)
+                        //  file = File(selectedImage.path)
                         imgFeed.load(selectedImage)
                     }
                 }
@@ -174,25 +161,21 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
     }
 
     private fun setObservers() {
-        viewmodel.getCreateFeedLiveData().observe(this, Observer {
+        viewModel.getCreateFeedLiveData().observe(this, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show()
-                    //hideLoading()
+                    Toast.makeText(this, "Created Successfully", Toast.LENGTH_SHORT).show()
+                    progressBar.hideProgressBar()
+                    finish()
                 }
                 Resource.Status.LOADING -> {
-                    //showLoading()
+                    progressBar.showProgressbar()
+                }
+                Resource.Status.ERROR -> {
+                    progressBar.hideProgressBar()
                 }
             }
         })
-    }
-
-    private fun addTextChangeListener() {
-        /*edtDesc.addTextChangedListener {
-            *//*if (it?.contains("youtube")!!) {
-                imgFeed.loadImage(Utilities.getThumbnailUrl(it.toString()))
-            }*//*
-        }*/
     }
 
 }

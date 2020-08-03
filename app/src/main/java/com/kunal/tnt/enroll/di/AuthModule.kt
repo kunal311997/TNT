@@ -17,16 +17,4 @@ class AuthModule {
     fun provideAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
     }
-
-    @Provides
-    @Named("IO")
-    fun provideIOCoroutineDispatcher(): CoroutineDispatcher {
-        return IO
-    }
-
-    @Provides
-    @Named("MAIN")
-    fun provideMainCoroutineDispatcher(): CoroutineDispatcher {
-        return Main
-    }
 }

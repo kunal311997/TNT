@@ -1,13 +1,14 @@
 package com.kunal.tnt.createfeed.network
 
 import com.kunal.tnt.createfeed.data.CreateFeedResponse
+import com.kunal.tnt.createfeed.utils.FeedConstants
 import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface CreateFeedApi {
 
     @Multipart
-    @POST("feed/createFeed")
+    @POST(FeedConstants.FEED_BASE_URL)
     suspend fun createFeed(
         @PartMap map: HashMap<String, RequestBody>
     ): CreateFeedResponse

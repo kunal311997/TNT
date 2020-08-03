@@ -1,4 +1,4 @@
-package com.kunal.tnt.enroll
+package com.kunal.tnt.enroll.repository
 
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.common.repository.BaseRepository

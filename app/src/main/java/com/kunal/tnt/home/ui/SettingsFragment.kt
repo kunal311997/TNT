@@ -1,4 +1,4 @@
-package com.kunal.tnt.home
+package com.kunal.tnt.home.ui
 
 
 import android.os.Bundle

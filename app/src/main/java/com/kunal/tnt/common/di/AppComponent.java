@@ -4,6 +4,7 @@ import android.app.Application;
 
 
 import com.kunal.tnt.BaseApplication;
+import com.kunal.tnt.home.di.HomeActivityBuilder;
 
 import javax.inject.Singleton;
 
@@ -16,6 +17,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         AndroidSupportInjectionModule.class,
         ActivityBuildersModule.class,
+        HomeActivityBuilder.class,
         AppModule.class,
         ViewModelFactoryModule.class})
 

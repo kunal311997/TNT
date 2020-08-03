@@ -1,9 +1,12 @@
 package com.kunal.tnt.common.uils
 
+import android.Manifest
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.core.content.PermissionChecker
+import androidx.fragment.app.FragmentActivity
 import coil.api.load
 import com.kunal.tnt.R
 import okhttp3.MediaType
@@ -54,4 +57,16 @@ object Utilities {
             file?.asRequestBody("image/*".toMediaTypeOrNull())
         )
     }
+
+    fun checkGalleryPermissions(context: FragmentActivity): Boolean {
+        if (PermissionChecker.checkSelfPermission(
+                context,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PermissionChecker.PERMISSION_DENIED
+        ) {
+            return false
+        }
+        return true
+    }
+
 }
