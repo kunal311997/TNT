@@ -49,7 +49,7 @@ class FeedsAdapter(
             pos: Int
         ) {
 
-           // binding.data = feedsList[pos].name
+            binding.feed = feedsList[pos]
             binding.root.setOnClickListener {
                 listener?.invoke(binding.root, feedsList[pos], pos)
             }

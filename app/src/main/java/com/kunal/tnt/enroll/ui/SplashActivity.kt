@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.kunal.tnt.R
 import com.kunal.tnt.common.uils.Constant
+import com.kunal.tnt.home.ui.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -14,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            val i = Intent(this@SplashActivity, LoginActivity::class.java)
+            val i = Intent(this@SplashActivity, HomeActivity::class.java)
             startActivity(i)
             finish()
         }, Constant.SPLASH_SCREEN_TIMEOUT)

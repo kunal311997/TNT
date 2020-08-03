@@ -2,11 +2,13 @@ package com.kunal.tnt.home.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kunal.tnt.R
 import com.kunal.tnt.createfeed.ui.CreateFeedActivity
+import com.kunal.tnt.home.utils.HomeConstants
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -25,13 +27,21 @@ class HomeActivity : DaggerAppCompatActivity(),
         //setBottomNavigation()
 
         bottom_navigation.setOnNavigationItemSelectedListener(this)
-        loadFragment(HomeFragment())
+        loadFragment(HomeFragment.getInstance())
 
         imgCreateFeed.setOnClickListener {
-            startActivity(Intent(this, CreateFeedActivity::class.java))
+            startActivityForResult(
+                Intent(this, CreateFeedActivity::class.java),
+                HomeConstants.CREATE_FEED_REQUEST_CODE
+            )
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        HomeFragment.getInstance()?.onActivityResult(requestCode, resultCode, data)
+
+    }
 
     private fun loadFragment(fragment: Fragment?): Boolean {
         //switching fragment
@@ -92,7 +102,7 @@ class HomeActivity : DaggerAppCompatActivity(),
         var fragment: Fragment? = null
         when (item.itemId) {
             R.id.navigation_home -> fragment =
-                HomeFragment()
+                HomeFragment.getInstance()
             R.id.navigation_dashboard -> fragment =
                 HomeFragment()
             R.id.navigation_notifications -> fragment =

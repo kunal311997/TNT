@@ -1,6 +1,5 @@
 package com.kunal.tnt.home.di;
 
-import com.kunal.tnt.createfeed.network.CreateFeedApi;
 import com.kunal.tnt.home.adapter.FeedsAdapter;
 import com.kunal.tnt.home.network.HomeApi;
 
@@ -22,5 +21,6 @@ public class HomeModule {
     static FeedsAdapter getFeedsAdapter() {
         return new FeedsAdapter(Collections.emptyList());
     }
+
 
 }

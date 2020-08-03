@@ -26,6 +26,7 @@ import com.kunal.tnt.createfeed.data.Keywords
 import com.kunal.tnt.createfeed.utils.FeedConstants
 import com.kunal.tnt.createfeed.viewmodel.CreateFeedViewModel
 import com.kunal.tnt.databinding.ActivityCreateFeedBinding
+import com.kunal.tnt.home.utils.HomeConstants
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_create_feed.*
 import java.io.File
@@ -115,6 +116,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
                 var keywords = ""
                 keywordsList.forEach {
+                    if (it.isSelected)
                     keywords += it.name + ", "
                 }
                 viewModel.createFeed(
@@ -166,6 +168,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 Resource.Status.SUCCESS -> {
                     Toast.makeText(this, "Created Successfully", Toast.LENGTH_SHORT).show()
                     progressBar.hideProgressBar()
+                    setResult( HomeConstants.CREATE_FEED_REQUEST_CODE)
                     finish()
                 }
                 Resource.Status.LOADING -> {

@@ -2,11 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="feed"
+            type="com.kunal.tnt.home.data.Feed" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_medium"
+        android:layout_margin="@dimen/margin_small"
         android:background="@color/dark_grey">
 
         <TextView
@@ -40,9 +45,43 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/feed_image_height"
             android:layout_marginTop="@dimen/margin_medium"
+            android:id="@+id/imgFeed"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtDate" />
+        <View
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="@dimen/match_constraints"
+            app:layout_constraintStart_toStartOf="@id/imgFeed"
+            app:layout_constraintEnd_toEndOf="@id/imgFeed"
+            app:layout_constraintTop_toTopOf="@id/imgFeed"
+            app:layout_constraintBottom_toBottomOf="@id/imgFeed"
+            android:background="@color/black_overlay" />
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/Body3MediumWhiteLeft"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="@{feed.title}"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:singleLine="true"
+            app:layout_constraintBottom_toTopOf="@+id/txtDesc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDesc"
+            style="@style/Body1MediumWhiteLeft"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="@{feed.description}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

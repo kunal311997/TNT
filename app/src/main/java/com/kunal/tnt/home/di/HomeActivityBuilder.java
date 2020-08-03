@@ -18,4 +18,6 @@ public abstract class HomeActivityBuilder {
             HomeViewModelsModule.class,
             HomeModule.class})
     abstract HomeFragment contributeHomeFragment();
+
+
 }

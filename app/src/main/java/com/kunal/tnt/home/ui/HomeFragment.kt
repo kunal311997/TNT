@@ -1,7 +1,9 @@
 package com.kunal.tnt.home.ui
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +33,10 @@ class HomeFragment : DaggerFragment() {
 
     lateinit var binding: FragmentHomeBinding
 
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelProvidersFactory)[HomeViewModel::class.java]
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         @Nullable container: ViewGroup?,
@@ -43,9 +49,6 @@ class HomeFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        val viewModel =
-            ViewModelProvider(this, viewModelProvidersFactory)[HomeViewModel::class.java]
 
         viewModel.getFeed()
 
@@ -71,4 +74,23 @@ class HomeFragment : DaggerFragment() {
             }
         })
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        viewModel.getFeed()
+    }
+
+    companion object {
+        private var fragment: HomeFragment? = null
+        fun getInstance(): HomeFragment? {
+            if (fragment == null)
+                fragment = HomeFragment()
+
+            /*val args = Bundle()
+            args.putInt("someInt", someInt)
+            fragment!!.arguments = args*/
+            return fragment
+        }
+    }
+
 }
