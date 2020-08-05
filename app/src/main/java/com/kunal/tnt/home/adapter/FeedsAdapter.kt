@@ -51,7 +51,7 @@ class FeedsAdapter(
         ) {
 
             binding.feed = feedsList[pos]
-            binding.txtDate.text = formatDate(feedsList[pos].createdAt)
+            binding.txtDate.text = feedsList[pos].createdAt.formatDate()
             binding.root.setOnClickListener {
                 listener?.invoke(binding.root, feedsList[pos], pos)
             }

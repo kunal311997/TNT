@@ -10,4 +10,7 @@ interface AuthApi {
     @POST("auth/login")
     suspend fun login(@Body hashMap: HashMap<String, String>): LoginResponse
 
+    @POST("auth/signUp")
+    suspend fun signUp(@Body hashMap: HashMap<String, String>): LoginResponse
+
 }

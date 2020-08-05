@@ -11,6 +11,9 @@
     <string name="or_connect_with">or connect with</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="register_here">Register here!</string>
+    <string name="invalid_email">Please enter a valid email</string>
+    <string name="invalid_password">Please enter a valid password</string>
+    <string name="invalid_username">Please enter a valid username</string>
 
 
     <!-- Sign up-->

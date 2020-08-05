@@ -13,6 +13,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="/fragment.kt">
           <value>
             <set />
@@ -114,6 +119,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/common/uils/Constant.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/common/uils/SharedPrefClient.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/common/uils/SharedPrefClient.kt">
           <value>
             <set />
           </value>
@@ -228,6 +243,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/enroll/repository/AuthRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/enroll/ui/LoginActivity.kt">
           <value>
             <set />
@@ -279,6 +299,41 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/feed/ui/FeedFragmentNew.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/feeddetail/Adapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/feeddetail/FeedDetailActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/feeddetail/FeedDetailActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/feeddetail/FeedDetailAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/feeddetail/FeedDetailAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/feeddetail/MainActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/feeddetail/ShadowTransformer.kt">
           <value>
             <set />
           </value>
@@ -349,6 +404,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/home/ui/HomeFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/home/ui/SettingsFragment.kt">
           <value>
             <set />
           </value>
@@ -473,6 +533,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_feed_detail.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml">
           <value>
             <set />
@@ -508,6 +573,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_category.xml">
           <value>
             <set />
@@ -523,12 +593,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_feed_detail.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_keywords.xml">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_select_interests.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_view_pager.xml">
           <value>
             <set />
           </value>
@@ -573,12 +653,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/loyalty/utils/Tools.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/main/ui/HomeFragment.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/main/ui/LandingFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/main/util/HomeEventTracker.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/myaccount/ui/vault/CardStackRecyclerAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/myaccount/ui/vault/VaultMyCardsPageFragment.kt">
           <value>
             <set />
           </value>

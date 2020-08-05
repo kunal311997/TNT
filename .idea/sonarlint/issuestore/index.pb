@@ -81,3 +81,9 @@ g
 7app/src/main/java/com/kunal/tnt/home/ui/HomeActivity.kt,5/1/5144c82cc4b6b8ab01401933ee5aae758e5ae032
 g
 7app/src/main/java/com/kunal/tnt/home/ui/HomeFragment.kt,d/7/d783d406f3f76ff16f4e0f73e4246adc46d23891
+k
+;app/src/main/java/com/kunal/tnt/enroll/ui/SplashActivity.kt,9/5/950acc05792f6982225d84d84d3ce4e7e8309eef
+^
+.app/src/main/java/com/kunal/tnt/DIYActivity.kt,3/7/37b80f4e790f0d681c036ff85e782fc96d7dfe38
+k
+;app/src/main/java/com/kunal/tnt/home/ui/SettingsFragment.kt,0/1/011002c0e54f1b6f164983ca0689440f12fb205e

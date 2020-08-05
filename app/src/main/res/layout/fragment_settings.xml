@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_grey"
+        android:padding="@dimen/padding_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtName"
+            style="@style/Body2MediumWhiteLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kunal Pandey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtEmail"
+            style="@style/Body2MediumWhiteLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_large"
+            android:text="Kunal@gmail.com"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtName" />
+
+        <ImageView
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
+            android:src="@drawable/user"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/txtNotifications"
+        style="@style/Body3MediumWhiteLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_large"
+        android:padding="@dimen/padding_large"
+        android:text="Notifications"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clProfile" />
+
+    <TextView
+        android:id="@+id/txtShareFeedback"
+        style="@style/Body3MediumWhiteLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_large"
+        android:padding="@dimen/padding_large"
+        android:text="Share Feedback"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtNotifications" />
+
+    <TextView
+        android:id="@+id/txtInviteFriends"
+        style="@style/Body3MediumWhiteLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_large"
+        android:padding="@dimen/padding_large"
+        android:text="Invite your friends"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtShareFeedback" />
+
+    <TextView
+        android:id="@+id/txtPrivacyPolicy"
+        style="@style/Body3MediumWhiteLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_large"
+        android:padding="@dimen/padding_large"
+        android:text="Privacy Policy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtInviteFriends" />
+
+    <TextView
+        android:id="@+id/txtAboutUs"
+        style="@style/Body3MediumWhiteLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_large"
+        android:padding="@dimen/padding_large"
+        android:text="About Us"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtPrivacyPolicy" />
+
+    <TextView
+        android:id="@+id/txtRateOurApp"
+        style="@style/Body3MediumWhiteLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_large"
+        android:padding="@dimen/padding_large"
+        android:text="Rate our app"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtAboutUs" />
+
+    <TextView
+        android:id="@+id/txtSignOut"
+        style="@style/Body3MediumWhiteLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_large"
+        android:padding="@dimen/padding_large"
+        android:text="Sign Out"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtRateOurApp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

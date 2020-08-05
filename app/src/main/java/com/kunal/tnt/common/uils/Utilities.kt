@@ -2,14 +2,21 @@ package com.kunal.tnt.common.uils
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.net.Uri
+import android.util.Patterns
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.FragmentActivity
 import coil.api.load
 import com.kunal.tnt.R
+import com.kunal.tnt.enroll.ui.SignUpActivity
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -21,6 +28,16 @@ import java.text.SimpleDateFormat
 
 
 object Utilities {
+
+
+    fun String.isValidEmail(): Boolean {
+        val pattern = Patterns.EMAIL_ADDRESS
+        return pattern.matcher(this).matches()
+    }
+
+    fun Context.showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
 
     fun ImageView.loadImage(url: String) {
         this.load(url) {
@@ -55,8 +72,8 @@ object Utilities {
     fun getImagePart(file: File, str: String): MultipartBody.Part {
         return MultipartBody.Part.createFormData(
             str,
-            file?.name,
-            file?.asRequestBody("image/*".toMediaTypeOrNull())
+            file.name,
+            file.asRequestBody("image/*".toMediaTypeOrNull())
         )
     }
 
@@ -72,9 +89,9 @@ object Utilities {
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun formatDate(serverDate: String): String {
+    fun String.formatDate(): String {
         val formatter = SimpleDateFormat(Constant.SERVER_FORMAT)
-        val date = formatter.parse(serverDate)
+        val date = formatter.parse(this)
         return SimpleDateFormat(Constant.DATE_FORMAT).format(date)
     }
 

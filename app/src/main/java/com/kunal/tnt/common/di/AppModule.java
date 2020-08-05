@@ -2,11 +2,18 @@ package com.kunal.tnt.common.di;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kunal.tnt.BaseApplication;
 import com.kunal.tnt.common.uils.Constant;
+import com.kunal.tnt.common.uils.SharedPrefClient;
 import com.readystatesoftware.chuck.ChuckInterceptor;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -15,7 +22,10 @@ import dagger.Module;
 import dagger.Provides;
 import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.Dispatchers;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -31,14 +41,34 @@ public class AppModule {
 
     @Singleton
     @Provides
-    static Retrofit provideRetrofitInstance(Context context) {
+    SharedPreferences provideSharedPreferences(Context context) {
+        return context.getSharedPreferences("TCPPreference", Context.MODE_PRIVATE);
+    }
+
+    @Singleton
+    @Provides
+    SharedPrefClient provideSharedPreferenceClient(SharedPreferences sharedPreferences) {
+        return new SharedPrefClient(sharedPreferences);
+    }
+
+
+    @Singleton
+    @Provides
+    static Retrofit provideRetrofitInstance(Context context, SharedPrefClient clientPref) {
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
                 .addInterceptor(
-                        new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                        new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new ChuckInterceptor(context))
+                .addInterceptor(chain -> {
+                    Request request = chain.request();
+                    Request.Builder newRequest = request.newBuilder();
 
-                )
-                .addInterceptor(new ChuckInterceptor(context));
+                    if (!clientPref.getBearerToken().isEmpty()) {
+                        newRequest.addHeader(Constant.AUTH_HEADER, Constant.BEARER_SUFFIX + clientPref.getBearerToken());
+                    }
+                    return chain.proceed(newRequest.build());
+                });
 
         Gson gson = new GsonBuilder().setLenient().create();
         return new Retrofit.Builder()

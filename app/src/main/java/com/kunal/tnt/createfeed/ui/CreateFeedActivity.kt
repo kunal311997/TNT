@@ -117,7 +117,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 var keywords = ""
                 keywordsList.forEach {
                     if (it.isSelected)
-                    keywords += it.name + ", "
+                        keywords += it.name + ", "
                 }
                 viewModel.createFeed(
                     edtTitle.text.toString(), keywords, edtDesc.text.toString(), file
@@ -168,7 +168,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 Resource.Status.SUCCESS -> {
                     Toast.makeText(this, "Created Successfully", Toast.LENGTH_SHORT).show()
                     progressBar.hideProgressBar()
-                    setResult( HomeConstants.CREATE_FEED_REQUEST_CODE)
+                    setResult(HomeConstants.CREATE_FEED_REQUEST_CODE)
                     finish()
                 }
                 Resource.Status.LOADING -> {

@@ -43,4 +43,20 @@ class AuthViewModel @Inject constructor(
             }
         }
     }
+
+    fun signUp(username: String, email: String, password: String) {
+        loginResLiveData.value = Resource.loading(null)
+        var feedResponse: Resource<LoginResponse>? = null
+
+        viewModelScope.launch {
+            withContext(ioDispatcher) {
+                feedResponse = authRepository.signUp(username, email, password)
+            }
+            withContext(mainDispatcher) {
+                feedResponse?.let {
+                    loginResLiveData.value = it
+                }
+            }
+        }
+    }
 }

@@ -16,16 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DIYActivity"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
-        <activity android:name=".home.ui.HomeActivity">
+        <activity android:name=".feeddetail.FeedDetailActivity">
 
         </activity>
+        <activity android:name=".DIYActivity" />
+        <activity android:name=".home.ui.HomeActivity"></activity>
         <activity android:name=".enroll.ui.SelectInterestsActivity" />
-        <activity android:name=".enroll.ui.SplashActivity"></activity>
+        <activity android:name=".enroll.ui.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".enroll.ui.LoginActivity"
             android:launchMode="singleTask"
@@ -40,7 +43,7 @@
             android:name=".createfeed.ui.CreateFeedActivity"
             android:launchMode="singleTask"
             android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>

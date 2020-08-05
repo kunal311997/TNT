@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DIYActivity">
-<com.google.android.youtube.player.YouTubePlayerView
-    android:layout_width="match_parent"
-    android:id="@+id/yPlayer"
-    android:layout_height="match_parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/yPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+ </androidx.constraintlayout.widget.ConstraintLayout>

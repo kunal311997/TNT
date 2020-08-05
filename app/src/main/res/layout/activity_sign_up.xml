@@ -113,6 +113,7 @@
         android:layout_marginTop="@dimen/margin_semi_medium"
         android:background="@drawable/bg_login_white_rounded"
         android:padding="@dimen/padding_medium_10"
+        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
         app:layout_constraintTop_toBottomOf="@+id/clEmail">

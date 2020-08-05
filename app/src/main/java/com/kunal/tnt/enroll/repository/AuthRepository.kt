@@ -22,4 +22,13 @@ class AuthRepository @Inject constructor(
         )
         return safeApiCall(ioDispatcher) { authApi.login(hashMap) }
     }
+
+    suspend fun signUp(username: String, email: String, password: String): Resource<LoginResponse> {
+        val hashMap = hashMapOf(
+            AuthConstants.USERNAME to username,
+            AuthConstants.EMAIL to email,
+            AuthConstants.PASSWORD to password
+        )
+        return safeApiCall(ioDispatcher) { authApi.signUp(hashMap) }
+    }
 }

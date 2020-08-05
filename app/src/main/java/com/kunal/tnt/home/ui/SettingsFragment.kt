@@ -21,6 +21,6 @@ class SettingsFragment : Fragment() {
         //with the fragment you want to inflate
         //like if the class is HomeFragment it should have R.layout.home_fragment
         //if it is DashboardFragment it should have R.layout.fragment_dashboard
-        return inflater.inflate(R.layout.fragment_home, null)
+        return inflater.inflate(R.layout.fragment_settings, null)
     }
 }
