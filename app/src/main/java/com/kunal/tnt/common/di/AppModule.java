@@ -14,6 +14,7 @@ import com.readystatesoftware.chuck.ChuckInterceptor;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -32,6 +33,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class AppModule {
+
+    private static Long connectTimeUnit = 10L;
+    private static Long readTimeUnit = 40L;
+    private static Long writeTimeUnit = 10L;
 
     @Provides
     @Singleton
@@ -57,6 +62,9 @@ public class AppModule {
     static Retrofit provideRetrofitInstance(Context context, SharedPrefClient clientPref) {
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .connectTimeout(connectTimeUnit, TimeUnit.SECONDS)
+                .readTimeout(readTimeUnit, TimeUnit.SECONDS)
+                .writeTimeout(writeTimeUnit, TimeUnit.SECONDS)
                 .addInterceptor(
                         new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(new ChuckInterceptor(context))
@@ -64,7 +72,7 @@ public class AppModule {
                     Request request = chain.request();
                     Request.Builder newRequest = request.newBuilder();
 
-                    if (!clientPref.getBearerToken().isEmpty()) {
+                    if (!clientPref.getBearerToken().equals("")) {
                         newRequest.addHeader(Constant.AUTH_HEADER, Constant.BEARER_SUFFIX + clientPref.getBearerToken());
                     }
                     return chain.proceed(newRequest.build());

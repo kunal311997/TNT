@@ -61,6 +61,7 @@ class SignUpActivity : DaggerAppCompatActivity(), View.OnClickListener {
                     progressBar.hideProgressBar()
                     preference.updateEmail(response.data?.email.toString())
                     preference.updateUsername(response.data?.username.toString())
+                    preference.updateBearerToken(response.data?.token.toString())
                     preference.updateIsUserLoggedIn(true)
 
                     val intent = Intent(this, HomeActivity::class.java)

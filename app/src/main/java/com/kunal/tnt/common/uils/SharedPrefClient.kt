@@ -7,15 +7,21 @@ import javax.inject.Inject
 class SharedPrefClient @Inject constructor(private val sharedPreferences: SharedPreferences) {
 
 
+    fun clearLoginSession() {
+        sharedPreferences.edit(commit = true) {
+            this.clear().apply()
+        }
+    }
+
     private val USER_LOGGED_IN = "user_logged_in"
 
     fun isUserLoggedIn(): Boolean {
-        return sharedPreferences.getBoolean(KEY_BEARER_TOKEN, false)
+        return sharedPreferences.getBoolean(USER_LOGGED_IN, false)
     }
 
     fun updateIsUserLoggedIn(data: Boolean) {
         sharedPreferences.edit(commit = true) {
-            putBoolean(KEY_BEARER_TOKEN, data)
+            putBoolean(USER_LOGGED_IN, data)
         }
     }
 
