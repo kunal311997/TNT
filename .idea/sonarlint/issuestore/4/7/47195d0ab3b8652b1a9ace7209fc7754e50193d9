@@ -1,0 +1,13 @@
+
+
+java:S1450"]Remove the "layoutInflater" field and declare it as a local variable in the relevant methods.(†üªŞûÿÿÿÿ8òÀÍí».
+D
+java:S1659.""Declare "desc" on a separate line.(”Ìæ„øÿÿÿÿ8òÀÍí».
+X	java:S1254"<This block of commented-out lines of code should be removed.(…¬õÍ8†ÎÏí».
+]	java:S125;"<This block of commented-out lines of code should be removed.(ÛÔèÍşÿÿÿÿ8òÀÍí».
+K
+java:S1481-".Remove this unused "imageView" local variable.(÷õ’Æ8†ÎÏí».
+Z
+java:S18540"=Remove this useless assignment to local variable "imageView".(ÄìÚì8†ÎÏí».
+J
+java:S16048"(Make this anonymous inner class a lambda(÷¼¬âùÿÿÿÿ8òÀÍí».

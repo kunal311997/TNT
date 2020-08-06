@@ -1,8 +1,16 @@
 
+R
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8ÀÖºö».
 b
-java:S1124D"EReorder the modifiers to comply with the Java Language Specification.(…ÅÎş8°Œ–».
-P	java:S1255"<This block of commented-out lines of code should be removed.(ƒÃ¾_
+java:S1124p"EReorder the modifiers to comply with the Java Language Specification.(–î·Ë8°Œ–».
+O
+java:S1128"-Remove this unused import 'okhttp3.Response'.(Ï‚ñ—øÿÿÿÿ8ÀÖºö».
+W
+java:S1128	":Remove this unused import 'com.kunal.tnt.BaseApplication'.(ü÷¦Ç8ö«×ó».
+P	java:S125["<This block of commented-out lines of code should be removed.(ƒÃ¾_
+`
+java:S1128">Remove this unused import 'org.jetbrains.annotations.NotNull'.(éš®ïøÿÿÿÿ8ÀÖºö».
+M
+java:S1128"0Remove this unused import 'okhttp3.Interceptor'.(ËÖ‹ã8ÀÖºö».
 b
-java:S1124J"EReorder the modifiers to comply with the Java Language Specification.(–î·Ë8°Œ–».
-U
-java:S1118":Add a private constructor to hide the implicit public one.(æÅÇÚüÿÿÿÿ
+java:S1124j"EReorder the modifiers to comply with the Java Language Specification.(…ÅÎş8°Œ–».

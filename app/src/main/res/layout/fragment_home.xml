@@ -81,10 +81,10 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clDaily"
-                android:visibility="gone"
                 android:layout_width="@dimen/match_constraints"
                 android:layout_height="200dp"
                 android:layout_marginTop="@dimen/margin_semi_medium"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
                 app:layout_constraintStart_toEndOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@+id/clHeader">
@@ -150,15 +150,14 @@
                 android:id="@+id/rvFeeds"
                 android:layout_width="@dimen/match_constraints"
                 android:layout_height="@dimen/match_constraints"
+                android:layout_marginStart="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_medium"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:layout_marginEnd="@dimen/margin_small"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/margin_small"
-                android:layout_marginEnd="@dimen/margin_small"
                 app:layout_constraintTop_toBottomOf="@+id/txtTrending"
-                app:spanCount="2"
                 tools:listitem="@layout/item_daily_feed" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

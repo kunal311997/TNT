@@ -15,15 +15,46 @@
         android:layout_margin="@dimen/margin_small"
         android:background="@color/dark_grey">
 
+        <TextView
+            android:id="@+id/txtName"
+            style="@style/Body1MediumWhiteLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:text="Kunal Pandey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:src="@drawable/ic_book"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            style="@style/Body1MediumGreyLeft"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
         <ImageView
             android:id="@+id/imgFeed"
             android:layout_width="match_parent"
             android:layout_height="@dimen/feed_image_height"
+            android:layout_marginTop="@dimen/margin_medium_large"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
         <View
             android:layout_width="@dimen/match_constraints"
@@ -34,6 +65,16 @@
             app:layout_constraintStart_toStartOf="@id/imgFeed"
             app:layout_constraintTop_toTopOf="@id/imgFeed" />
 
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@color/grey_text_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgFeed" />
+
         <TextView
             android:id="@+id/txtTitle"
             style="@style/Body3MediumWhiteLeft"
@@ -42,10 +83,12 @@
             android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginTop="@dimen/margin_medium"
             android:singleLine="true"
+            android:layout_marginEnd="@dimen/margin_small"
+            app:layout_constraintEnd_toStartOf="@id/imgThreeDots"
             android:text="@{feed.title}"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgFeed" />
+            app:layout_constraintTop_toBottomOf="@+id/viewLine" />
+
 
         <TextView
             android:id="@+id/txtDesc"
@@ -54,24 +97,23 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_medium"
             android:text="@{feed.description}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgThreeDots"
             app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
-        <TextView
-            android:id="@+id/txtDate"
-            style="@style/Body1MediumGreyLeft"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:layout_marginBottom="@dimen/margin_medium"
-             app:layout_constraintBottom_toBottomOf="parent"
+        <ImageView
+            android:id="@+id/imgThreeDots"
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
+            android:src="@drawable/ic_three_dots"
+            android:layout_marginEnd="@dimen/margin_medium"
+            app:layout_constraintBottom_toBottomOf="@+id/txtDesc"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
-
+            app:layout_constraintTop_toTopOf="@+id/txtTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

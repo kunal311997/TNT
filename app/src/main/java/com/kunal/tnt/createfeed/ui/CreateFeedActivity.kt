@@ -96,7 +96,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
     private fun addOnclickListeners() {
         imgFeed.setOnClickListener(this)
-        btnSave.setOnClickListener(this)
+        btnDone.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -112,7 +112,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                     choosePhotoFromGallery()
                 }
             }
-            btnSave -> {
+            btnDone -> {
 
                 var keywords = ""
                 keywordsList.forEach {

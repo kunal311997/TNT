@@ -87,3 +87,15 @@ k
 .app/src/main/java/com/kunal/tnt/DIYActivity.kt,3/7/37b80f4e790f0d681c036ff85e782fc96d7dfe38
 k
 ;app/src/main/java/com/kunal/tnt/home/ui/SettingsFragment.kt,0/1/011002c0e54f1b6f164983ca0689440f12fb205e
+e
+5app/src/main/java/com/kunal/tnt/feeddetail/Model.java,7/3/73a67f38d5d7acba0fd82ae66ee340fd088e1d1c
+q
+Aapp/src/main/java/com/kunal/tnt/feeddetail/FeedDetailAdapter.java,4/7/47195d0ab3b8652b1a9ace7209fc7754e50193d9
+r
+Bapp/src/main/java/com/kunal/tnt/feeddetail/FeedDetailActivity.java,3/3/33b21dc9defdeac5210b6643703cf4052660d6f8
+l
+<app/src/main/java/com/kunal/tnt/enroll/util/AuthConstants.kt,0/a/0a0bf4d0d7b356784e604d2644b408a7b08a7774
+q
+Aapp/src/main/java/com/kunal/tnt/enroll/di/AuthViewModelsModule.kt,6/a/6a3e7c9022332876d6afa92ec877d2bb4bc471d3
+o
+?app/src/main/java/com/kunal/tnt/common/uils/SharedPrefClient.kt,4/9/49ca084e5971232afbd59b66df20640d4b5c8b6b
