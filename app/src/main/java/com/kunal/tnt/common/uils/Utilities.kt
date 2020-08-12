@@ -24,6 +24,7 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
+import java.io.IOException
 import java.text.SimpleDateFormat
 
 
@@ -46,11 +47,15 @@ object Utilities {
         }
     }
 
-    fun ProgressBar.showProgressbar() {
+    fun View.visible() {
         this.visibility = View.VISIBLE
     }
 
-    fun ProgressBar.hideProgressBar() {
+    fun View.invisible() {
+        this.visibility = View.INVISIBLE
+    }
+
+    fun View.gone() {
         this.visibility = View.GONE
     }
 
@@ -78,10 +83,16 @@ object Utilities {
     }
 
     fun checkGalleryPermissions(context: FragmentActivity): Boolean {
-        if (PermissionChecker.checkSelfPermission(
+        if (
+            PermissionChecker.checkSelfPermission(
                 context,
                 Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PermissionChecker.PERMISSION_DENIED ||
+            PermissionChecker.checkSelfPermission(
+                context,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
             ) == PermissionChecker.PERMISSION_DENIED
+
         ) {
             return false
         }
@@ -93,6 +104,22 @@ object Utilities {
         val formatter = SimpleDateFormat(Constant.SERVER_FORMAT)
         val date = formatter.parse(this)
         return SimpleDateFormat(Constant.DATE_FORMAT).format(date)
+    }
+
+    fun loadJSONFromAsset(context: Context, fileName: String): String? {
+        var json: String?
+        try {
+            val inputStream = context.getAssets().open(fileName)
+            val size = inputStream.available()
+            val buffer = ByteArray(size)
+            inputStream.read(buffer)
+            inputStream.close()
+            json = String(buffer)
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return null
+        }
+        return json
     }
 
 }

@@ -26,12 +26,12 @@ class CreateFeedViewModel @Inject constructor(
         return createFeedData
     }
 
-    fun createFeed(title: String, keywords: String, description: String, file: File?) {
+    fun createFeed(title: String, category: String, description: String,source:String,createdBy:String, file: File?) {
         createFeedData.value = Resource.loading(null)
         var createFeedResponse: Resource<CreateFeedResponse>? = null
         viewModelScope.launch {
             withContext(ioDispatcher) {
-                createFeedResponse = createFeedRepository.createFeed(title, keywords, description, file)
+                createFeedResponse = createFeedRepository.createFeed(title, category, description,source,createdBy, file)
             }
             withContext(mainDispatcher) {
                 createFeedResponse?.let {

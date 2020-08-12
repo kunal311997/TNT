@@ -21,21 +21,25 @@ class CreateFeedRepository @Inject constructor(
 
     suspend fun createFeed(
         title: String,
-        keywords: String,
+        category: String,
         description: String,
+        source: String,
+        createdBy: String,
         file: File?
     ): Resource<CreateFeedResponse> {
 
         val hashMap = HashMap<String, RequestBody>()
         hashMap[FeedConstants.KEY_TITLE] = Utilities.getTextPart(title)
-        hashMap[FeedConstants.KEY_KEYWORDS] = Utilities.getTextPart(keywords)
+        hashMap[FeedConstants.KEY_CATEGORY] = Utilities.getTextPart(category)
         hashMap[FeedConstants.KEY_DESCRIPTION] = Utilities.getTextPart(description)
+        hashMap[FeedConstants.KEY_SOURCE] = Utilities.getTextPart(source)
+        hashMap[FeedConstants.KEY_CREATED_BY] = Utilities.getTextPart(createdBy)
 
         val imageFile: MultipartBody.Part? =
             file?.let { Utilities.getImagePart(it, FeedConstants.KEY_IMAGE) }
 
         return safeApiCall(ioDispatcher) {
-            createFeedApi.createFeed(hashMap)
+            createFeedApi.createFeed(hashMap,imageFile)
         }
     }
 }

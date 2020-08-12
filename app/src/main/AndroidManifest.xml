@@ -43,7 +43,9 @@
             android:name=".createfeed.ui.CreateFeedActivity"
             android:launchMode="singleTask"
             android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustPan" >
+
+        </activity>
     </application>
 
 </manifest>

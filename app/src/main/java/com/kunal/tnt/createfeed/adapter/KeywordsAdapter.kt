@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kunal.tnt.R
 import com.kunal.tnt.createfeed.data.Keywords
 import com.kunal.tnt.databinding.ItemKeywordsBinding
-import java.math.MathContext
 
 class KeywordsAdapter(
-    private var keywordsList: List<Keywords>
+     var keywordsList: List<Keywords>
 ) :
     RecyclerView.Adapter<KeywordsAdapter.ViewHolder>() {
 
@@ -21,6 +20,7 @@ class KeywordsAdapter(
 
     var listener: ((view: View, item: Keywords, position: Int) -> Unit)? = null
 
+    var selectedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = DataBindingUtil.inflate(
@@ -52,12 +52,22 @@ class KeywordsAdapter(
         ) {
 
             binding.keyword = keywordsList[pos].name
-            binding.root.setOnClickListener {
-                listener?.invoke(binding.root, keywordsList[pos], pos)
+            if (selectedPosition == pos) {
+                binding.root.background =
+                    ContextCompat.getDrawable(context, R.drawable.bg_accent_rounded)
+            } else {
+                binding.root.background =
+                    ContextCompat.getDrawable(context, R.drawable.bg_white_rounded_transparent)
             }
 
+            binding.root.setOnClickListener {
+                if (adapterPosition == RecyclerView.NO_POSITION) return@setOnClickListener
+                notifyItemChanged(selectedPosition)
+                selectedPosition = adapterPosition
+                notifyItemChanged(selectedPosition)
+                //listener?.invoke(binding.root, keywordsList[pos], pos)
+            }
         }
     }
-
 
 }

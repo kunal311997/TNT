@@ -11,6 +11,7 @@ import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.ui.CreateFeedActivity
 import com.kunal.tnt.home.utils.HomeConstants
 import com.kunal.tnt.home.viewmodel.HomeViewModel
+import com.kunal.tnt.videos.VideosFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
@@ -66,7 +67,7 @@ class HomeActivity : DaggerAppCompatActivity(),
         var fragment: Fragment? = null
         when (item.itemId) {
             R.id.navigation_home -> fragment = HomeFragment()
-            R.id.navigation_dashboard -> fragment = HomeFragment()
+            R.id.navigation_dashboard -> fragment = VideosFragment()
             R.id.navigation_notifications -> fragment = HomeFragment()
             R.id.navigation_profile -> fragment = SettingsFragment()
         }

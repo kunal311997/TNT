@@ -152,7 +152,6 @@
                         android:layout_marginTop="@dimen/margin_medium_large"
                         app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                         app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
-                        app:layout_constraintHeight_max="100dp"
                         app:layout_constraintStart_toEndOf="@id/guidelineStart"
                         app:layout_constraintTop_toBottomOf="@+id/lblSelectCategory"
                         tools:listitem="@layout/item_keywords" />
@@ -189,12 +188,14 @@
                         app:layout_constraintTop_toBottomOf="@+id/lblAddLinks" />
 
                     <EditText
-                        android:id="@+id/edtLink"
+                        android:id="@+id/edtSource"
                         style="@style/Body3MediumWhiteLeft"
                         android:layout_width="@dimen/match_constraints"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_medium"
                         android:backgroundTint="@color/white"
+                        android:drawableEnd="@drawable/ic_paste_source"
+                        android:drawablePadding="@dimen/padding_small"
                         android:ems="10"
                         android:gravity="top"
                         android:hint="Enter your link here"
@@ -210,14 +211,15 @@
                         style="@style/Body4BoldWhiteCenter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Select Background Image"
+                        android:layout_marginTop="@dimen/margin_medium"
+                        android:text="Selected Image"
                         android:visibility="gone"
                         app:layout_constraintStart_toEndOf="@+id/guidelineStart"
-                        app:layout_constraintTop_toBottomOf="@+id/rvKeywords" />
+                        app:layout_constraintTop_toBottomOf="@+id/edtSource" />
 
                     <ImageView
                         android:id="@+id/imgFeed"
-                        android:layout_width="@dimen/feed_image_width"
+                        android:layout_width="@dimen/match_constraints"
                         android:layout_height="@dimen/feed_image_height"
                         android:layout_marginTop="@dimen/margin_medium_large"
                         android:layout_marginBottom="@dimen/margin_semi_medium"
@@ -245,6 +247,7 @@
                     android:layout_width="@dimen/image_size"
                     android:layout_height="@dimen/image_size"
                     android:layout_marginStart="@dimen/margin_medium"
+                    android:padding="@dimen/padding_small"
                     android:src="@drawable/ic_camera"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -256,16 +259,17 @@
                     android:layout_width="@dimen/image_size"
                     android:layout_height="@dimen/image_size"
                     android:layout_marginStart="@dimen/margin_medium_large_16"
+                    android:padding="@dimen/padding_small"
                     android:src="@drawable/ic_gallery"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imgCamera"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/txtName"
                     style="@style/Body1MediumWhiteCenter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="By Kunal Pandey"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

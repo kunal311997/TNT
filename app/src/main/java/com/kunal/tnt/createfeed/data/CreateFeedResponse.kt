@@ -9,6 +9,9 @@ data class CreateFeedResponse(
 data class Data(
     val id: String,
     val title: String,
-    val keywords: String,
+    val category: String,
+    val source: String,
+    val createdBy: String,
+    val createdAt: String,
     val backgroundImage: String
 )

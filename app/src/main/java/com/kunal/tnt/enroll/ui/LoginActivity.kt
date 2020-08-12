@@ -3,15 +3,14 @@ package com.kunal.tnt.enroll.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.kunal.tnt.R
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.common.uils.SharedPrefClient
-import com.kunal.tnt.common.uils.Utilities.hideProgressBar
+import com.kunal.tnt.common.uils.Utilities.gone
 import com.kunal.tnt.common.uils.Utilities.isValidEmail
-import com.kunal.tnt.common.uils.Utilities.showProgressbar
+import com.kunal.tnt.common.uils.Utilities.visible
 import com.kunal.tnt.common.uils.Utilities.showToast
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.enroll.viewmodel.AuthViewModel
@@ -55,15 +54,15 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
         authViewModel.getLoginResLiveData().observe(this, Observer { response ->
             when (response.status) {
 
-                Resource.Status.LOADING -> progressBar.showProgressbar()
+                Resource.Status.LOADING -> progressBar.visible()
 
                 Resource.Status.ERROR -> {
-                    progressBar.hideProgressBar()
+                    progressBar.gone()
                     this.showToast(response.data?.message.toString())
                 }
 
                 Resource.Status.SUCCESS -> {
-                    progressBar.hideProgressBar()
+                    progressBar.gone()
                     preference.updateEmail(response.data?.email.toString())
                     preference.updateUsername(response.data?.username.toString())
                     preference.updateBearerToken(response.data?.token.toString())

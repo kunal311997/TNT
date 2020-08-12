@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -22,12 +23,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_medium"
             android:text="@{feed.createdBy}"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView3"
             android:layout_width="@dimen/image_size"
             android:layout_height="@dimen/image_size"
             android:layout_marginEnd="@dimen/margin_medium"
@@ -45,39 +46,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
-        <ImageView
-            android:id="@+id/imgFeed"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/feed_image_height"
-            android:layout_marginTop="@dimen/margin_medium_large"
-            android:scaleType="centerCrop"
-            android:src="@drawable/placeholder"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtDate" />
-
-        <View
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="@dimen/match_constraints"
-            android:background="@color/black_overlay"
-            app:layout_constraintBottom_toBottomOf="@id/imgFeed"
-            app:layout_constraintEnd_toEndOf="@id/imgFeed"
-            app:layout_constraintStart_toStartOf="@id/imgFeed"
-            app:layout_constraintTop_toTopOf="@id/imgFeed" />
-
-
         <TextView
             android:id="@+id/txtTitle"
-            style="@style/Body3MediumWhiteLeft"
+            style="@style/Body3MediumWhiteCenter"
             android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_medium"
-            android:singleLine="true"
+            android:layout_height="@dimen/feed_image_height"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/padding_medium"
             android:text="@{feed.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgFeed" />
-
+            app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
         <TextView
             android:id="@+id/txtDesc"

@@ -26,7 +26,8 @@ public class FeedDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feed_detail);
 
         models = new ArrayList<>();
-        models.add(new Feed("1", "wertyu", "", "dsncashk ggahdsg", "", ""));
+        models.add(new Feed("1", "wertyu", "", "dsncashk ggahdsg", "", "", "", ""));
+        models.add(new Feed("1", "wertyu", "", "dsncashk \nggahdsg", "", "", "", ""));
         adapter = new FeedDetailAdapter(models, this);
 
         viewPager = findViewById(R.id.viewPager);
