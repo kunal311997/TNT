@@ -81,5 +81,6 @@
     <dimen name="image_size">30dp</dimen>
     <dimen name="border_keywords">1dp</dimen>
     <dimen name="edit_text_dec_height">100dp</dimen>
+    <dimen name="icon_size">40dp</dimen>
 
 </resources>

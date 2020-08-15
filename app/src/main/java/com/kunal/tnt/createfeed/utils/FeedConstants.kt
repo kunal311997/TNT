@@ -14,4 +14,8 @@ object FeedConstants {
     const val KEY_CREATED_BY="createdBy"
     const val KEY_IMAGE="image"
 
+    // Intent
+    const val FEEDS_LIST="feedsList"
+    const val POSITION="position"
+
 }

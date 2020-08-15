@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kunal.tnt.common.data.Resource
+import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.repository.HomeRepository
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -20,6 +22,13 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val feedLiveData = MutableLiveData<Resource<List<Feed>>>()
+
+
+    val allFavourites: LiveData<List<Favourites>>
+
+    init {
+        allFavourites = homeRepository.allFavourites
+    }
 
     fun getFeedLiveData(): LiveData<Resource<List<Feed>>> {
         return feedLiveData
@@ -51,5 +60,17 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Launching a new coroutine to insert the data in a non-blocking way
+     */
+    fun book(favourites: Favourites) = viewModelScope.launch(Dispatchers.IO) {
+        homeRepository.book(favourites)
+    }
+
+    fun unBook(userId: String) = viewModelScope.launch {
+        withContext(ioDispatcher){
+            homeRepository.unBook(userId)
+        }
+    }
 
 }

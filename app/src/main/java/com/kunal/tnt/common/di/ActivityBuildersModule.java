@@ -8,6 +8,9 @@ import com.kunal.tnt.enroll.di.AuthViewModelsModule;
 import com.kunal.tnt.enroll.ui.LoginActivity;
 import com.kunal.tnt.enroll.ui.SignUpActivity;
 import com.kunal.tnt.enroll.ui.SplashActivity;
+import com.kunal.tnt.favourites.di.FavouritesModule;
+import com.kunal.tnt.favourites.ui.FavouritesActivity;
+import com.kunal.tnt.favourites.viewmodel.FavouritesViewModelsModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -35,6 +38,12 @@ public abstract class ActivityBuildersModule {
             CreateFeedViewModelsModule.class,
     })
     abstract CreateFeedActivity contributesCreateFeedActivity();
+
+    @ContributesAndroidInjector(modules = {
+            FavouritesModule.class,
+            FavouritesViewModelsModule.class
+    })
+    abstract FavouritesActivity contributesFavouritesActivity();
 
 
 }

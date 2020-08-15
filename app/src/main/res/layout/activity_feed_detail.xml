@@ -3,37 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_opaque">
+    android:background="@drawable/grey_gradient">
 
     <ImageView
+        android:id="@+id/imgBack"
         android:layout_width="@dimen/image_size"
-        android:padding="@dimen/padding_small"
         android:layout_height="@dimen/image_size"
         android:layout_margin="@dimen/margin_medium_large_16"
+        android:padding="@dimen/padding_small"
         android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/match_constraints"
+        android:layout_marginVertical="@dimen/margin_medium"
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:overScrollMode="never"
         app:layout_constraintBottom_toTopOf="@+id/imgNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgBack" />
 
     <ImageView
         android:id="@+id/imgNext"
-        android:layout_width="@dimen/image_size"
-        android:layout_height="@dimen/image_size"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
         android:layout_margin="@dimen/margin_medium_large_16"
-        android:src="@drawable/read_more"
+        android:src="@drawable/ic_next"
         android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgPrevious"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_margin="@dimen/margin_medium_large_16"
+        android:rotation="180"
+        android:src="@drawable/ic_next"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

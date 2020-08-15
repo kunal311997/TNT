@@ -3,6 +3,7 @@ package com.kunal.tnt.home.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,9 @@ import com.kunal.tnt.common.uils.Utilities
 import com.kunal.tnt.common.uils.Utilities.gone
 import com.kunal.tnt.common.uils.Utilities.visible
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
+import com.kunal.tnt.createfeed.utils.FeedConstants
 import com.kunal.tnt.databinding.FragmentHomeBinding
+import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.feeddetail.FeedDetailActivity
 import com.kunal.tnt.home.adapter.FeedsAdapter
 import com.kunal.tnt.home.data.Feed
@@ -37,6 +40,7 @@ class HomeFragment : DaggerFragment() {
     lateinit var viewModelProvidersFactory: ViewModelProvidersFactory
 
     lateinit var binding: FragmentHomeBinding
+    private val feedsList = ArrayList<Feed>()
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelProvidersFactory)[HomeViewModel::class.java]
@@ -63,8 +67,7 @@ class HomeFragment : DaggerFragment() {
 
     private fun initClickListeners() {
         imgCompare.setOnClickListener {
-            val intent = Intent(requireActivity(), FeedDetailActivity::class.java)
-            startActivity(intent)
+
         }
     }
 
@@ -79,6 +82,8 @@ class HomeFragment : DaggerFragment() {
                     binding.progressBar.gone()
                     if (it.data != null) {
                         setAdapter(it.data)
+                        feedsList.clear()
+                        feedsList.addAll(it.data)
                     }
                 }
 
@@ -87,6 +92,10 @@ class HomeFragment : DaggerFragment() {
                 }
             }
         })
+        viewModel.allFavourites.observe(requireActivity(), Observer {
+            Log.e("All", it.toString())
+        })
+
         viewModel.isRefreshFeed().observe(requireActivity(), Observer {
             if (it) {
                 viewModel.getFeed()
@@ -99,10 +108,26 @@ class HomeFragment : DaggerFragment() {
         binding.rvFeeds.adapter = feedAdapter
         feedAdapter.addItems(data)
 
-        feedAdapter.listener = { _, _, _ ->
+        feedAdapter.listener = { _, _, pos ->
             val intent = Intent(requireActivity(), FeedDetailActivity::class.java)
+            intent.putExtra(FeedConstants.FEEDS_LIST, feedsList)
+            intent.putExtra(FeedConstants.POSITION, pos)
             startActivity(intent)
         }
+
+        feedAdapter.bookmarkListener = { item ->
+            var favourites: Favourites
+            item.apply {
+                favourites = Favourites(
+                    id, title, category, description,
+                    source, createdBy, backgroundImage, createdAt
+                )
+            }
+            if (item.isBookmarked)
+                viewModel.book(favourites)
+            else viewModel.unBook(item.id)
+        }
+
     }
 
     private fun loadDummyDataForHomePage() {
@@ -111,6 +136,8 @@ class HomeFragment : DaggerFragment() {
             object : TypeToken<List<Feed?>?>() {}.type
         val feeds: List<Feed> = Gson().fromJson(data, feedList)
         setAdapter(feeds)
+        feedsList.clear()
+        feedsList.addAll(feeds)
     }
 
 

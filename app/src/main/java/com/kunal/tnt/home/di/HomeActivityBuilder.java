@@ -1,5 +1,6 @@
 package com.kunal.tnt.home.di;
 
+import com.kunal.tnt.favourites.di.FavouritesModule;
 import com.kunal.tnt.home.ui.HomeActivity;
 import com.kunal.tnt.home.ui.HomeFragment;
 import com.kunal.tnt.home.ui.SettingsFragment;

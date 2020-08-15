@@ -51,7 +51,8 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/avenirltstd_medium</item>
     </style>
-  <style name="Body1MediumGreyLeft">
+
+    <style name="Body1MediumGreyLeft">
         <item name="android:gravity">start</item>
         <item name="android:textSize">@dimen/font_size_14</item>
         <item name="android:textColor">@color/grey_text_color</item>
@@ -74,6 +75,13 @@
 
     <style name="Body2MediumWhiteCenter">
         <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/avenirltstd_medium</item>
+    </style>
+
+    <style name="Body2MediumWhiteCenterHorizontal">
+        <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">@dimen/font_size_16</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/avenirltstd_medium</item>

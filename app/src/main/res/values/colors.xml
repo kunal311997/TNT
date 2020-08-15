@@ -21,4 +21,7 @@
     <color name="red">#d63d41</color>
     <color name="orange">#ec5633</color>
     <color name="grey_opaque">#424549</color>
+    <color name="blue">#03A9F4</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="green">#4CAF50</color>
 </resources>

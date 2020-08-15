@@ -68,6 +68,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/GameActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/LoginActivity.kt">
           <value>
             <set />
@@ -289,6 +294,81 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/enroll/viewmodel/AuthViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/AppDatabase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/Favourites.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/FavouritesActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/FavouritesAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/FavouritesDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/FavouritesModule.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/FavouritesRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/FavouritesViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/adapters/FavouritesAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/db/FavouritesDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/di/FavouritesModule.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/repository/FavouritesRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/ui/FavouritesActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/viewmodel/FavouritesViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/viewmodel/FavouritesViewModelsModule.java">
           <value>
             <set />
           </value>
@@ -543,6 +623,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/grey_gradient.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_create_feed.xml">
           <value>
             <set />
@@ -553,7 +638,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_favourites.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_feed_detail.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_game.xml">
           <value>
             <set />
           </value>
@@ -648,6 +743,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/recyclerview_item.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/sub_item_videos.xml">
           <value>
             <set />
@@ -703,6 +803,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/common/components/CustomTabActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/common/di/AppModule.kt">
           <value>
             <set />
@@ -719,6 +824,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/main/ui/LandingFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/main/ui/MainViewModel.kt">
           <value>
             <set />
           </value>
@@ -748,7 +858,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/payments/upipayment/createvpa/database/AccountProvidersDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/payments/upipayment/paytovpa/data/repository/IPaymentDataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/registration/util/UiUtils.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/res/layout/item_capture_interests.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/res/layout/item_near_me_offer.xml">
           <value>
             <set />
           </value>
@@ -764,6 +894,51 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/test/java/com/tatadigital/tcp/credit_line/repository/ActivateLimitRepositoryTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/Android-Bluetooth-Scanner/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/Android-Bluetooth-Scanner/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/Android-Bluetooth-Scanner/app/src/main/java/com/nsc9012/bluetooth/GameActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/Android-Bluetooth-Scanner/app/src/main/res/layout/activity_game.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/Android-Bluetooth-Scanner/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/Android-Bluetooth-Scanner/app/src/main/res/values/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/Android-Bluetooth-Scanner/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/Android-Bluetooth-Scanner/gradle/wrapper/gradle-wrapper.properties">
           <value>
             <set />
           </value>

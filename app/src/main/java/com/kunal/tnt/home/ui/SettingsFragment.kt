@@ -10,6 +10,7 @@ import androidx.annotation.Nullable
 import com.kunal.tnt.R
 import com.kunal.tnt.common.uils.SharedPrefClient
 import com.kunal.tnt.enroll.ui.LoginActivity
+import com.kunal.tnt.favourites.ui.FavouritesActivity
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_settings.*
 import javax.inject.Inject
@@ -42,6 +43,7 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener {
 
     private fun initOnClickListeners() {
         txtSignOut.setOnClickListener(this)
+        txtFavourites.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -51,8 +53,12 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener {
                 val intent = Intent(requireActivity(), LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
+            }
 
-                // activity?.finishAffinity()
+            txtFavourites -> {
+                val intent = Intent(requireActivity(), FavouritesActivity::class.java)
+                startActivity(intent)
+
             }
         }
     }

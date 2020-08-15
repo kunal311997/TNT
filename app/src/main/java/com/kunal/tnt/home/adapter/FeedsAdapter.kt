@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.kunal.tnt.R
 import com.kunal.tnt.common.uils.Utilities.formatDate
-import com.kunal.tnt.common.uils.Utilities.loadImage
 import com.kunal.tnt.databinding.ItemDailyFeedBinding
 import com.kunal.tnt.databinding.ItemDailyFeedTextBinding
 import com.kunal.tnt.home.data.Feed
@@ -26,11 +25,11 @@ class FeedsAdapter(
     lateinit var itemDailyFeedTextBinding: ItemDailyFeedTextBinding
 
     var listener: ((view: View, item: Feed, position: Int) -> Unit)? = null
+    var bookmarkListener: ((item: Feed) -> Unit)? = null
     private val TYPE_TEXT = 1
     private val TYPE_IMAGE = 2
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
 
         if (viewType == TYPE_TEXT) {
             itemDailyFeedTextBinding = DataBindingUtil.inflate(
@@ -80,6 +79,14 @@ class FeedsAdapter(
             binding.root.setOnClickListener {
                 listener?.invoke(binding.root, feedsList[pos], pos)
             }
+            if (feedsList[pos].isBookmarked) binding.imgBookmark.setBackgroundResource(R.drawable.ic_book)
+            else binding.imgBookmark.setBackgroundResource(R.drawable.ic_unbook)
+
+            binding.imgBookmark.setOnClickListener {
+                feedsList[pos].isBookmarked = !feedsList[pos].isBookmarked
+                notifyItemChanged(pos)
+                bookmarkListener?.invoke(feedsList[pos])
+            }
 
         }
     }
@@ -95,6 +102,14 @@ class FeedsAdapter(
             binding.txtDate.text = feedsList[pos].createdAt.formatDate()
             binding.root.setOnClickListener {
                 listener?.invoke(binding.root, feedsList[pos], pos)
+            }
+            if (feedsList[pos].isBookmarked) binding.imgBookmark.setBackgroundResource(R.drawable.ic_book)
+            else binding.imgBookmark.setBackgroundResource(R.drawable.ic_unbook)
+
+            binding.imgBookmark.setOnClickListener {
+                feedsList[pos].isBookmarked = !feedsList[pos].isBookmarked
+                notifyItemChanged(pos)
+                bookmarkListener?.invoke(feedsList[pos])
             }
 
         }

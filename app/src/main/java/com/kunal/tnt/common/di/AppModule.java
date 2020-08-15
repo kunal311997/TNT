@@ -6,14 +6,10 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.kunal.tnt.BaseApplication;
 import com.kunal.tnt.common.uils.Constant;
 import com.kunal.tnt.common.uils.SharedPrefClient;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Named;
@@ -23,10 +19,8 @@ import dagger.Module;
 import dagger.Provides;
 import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.Dispatchers;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

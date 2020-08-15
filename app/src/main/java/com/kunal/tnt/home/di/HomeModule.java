@@ -1,5 +1,9 @@
 package com.kunal.tnt.home.di;
 
+import android.app.Application;
+
+import com.kunal.tnt.common.db.AppDatabase;
+import com.kunal.tnt.favourites.db.FavouritesDao;
 import com.kunal.tnt.home.adapter.FeedsAdapter;
 import com.kunal.tnt.home.network.HomeApi;
 
@@ -22,5 +26,8 @@ public class HomeModule {
         return new FeedsAdapter(Collections.emptyList());
     }
 
-
+    @Provides
+    static FavouritesDao provideFavouritesDao(Application application) {
+        return AppDatabase.Companion.getDatabase(application).favouritesDao();
+    }
 }
