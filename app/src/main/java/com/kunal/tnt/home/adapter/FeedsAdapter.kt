@@ -15,7 +15,6 @@ import com.kunal.tnt.databinding.ItemDailyFeedBinding
 import com.kunal.tnt.databinding.ItemDailyFeedTextBinding
 import com.kunal.tnt.home.data.Feed
 
-
 class FeedsAdapter(
     private var feedsList: List<Feed>
 ) :
@@ -26,12 +25,12 @@ class FeedsAdapter(
 
     var listener: ((view: View, item: Feed, position: Int) -> Unit)? = null
     var bookmarkListener: ((item: Feed) -> Unit)? = null
-    private val TYPE_TEXT = 1
-    private val TYPE_IMAGE = 2
+    private val TEXT = 1
+    private val IMAGE = 2
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        if (viewType == TYPE_TEXT) {
+        if (viewType == TEXT) {
             itemDailyFeedTextBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 R.layout.item_daily_feed_text,
@@ -56,7 +55,7 @@ class FeedsAdapter(
     }
 
     override fun onBindViewHolder(@NonNull holder: RecyclerView.ViewHolder, position: Int) {
-        if (getItemViewType(position) == TYPE_TEXT) {
+        if (getItemViewType(position) == TEXT) {
             (holder as TextViewHolder).bindData(position)
         } else {
             (holder as ImageViewHolder).bindData(position)
@@ -117,9 +116,9 @@ class FeedsAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return if (TextUtils.isEmpty(feedsList[position].backgroundImage) || feedsList[position].backgroundImage == null) {
-            TYPE_TEXT
+            TEXT
         } else {
-            TYPE_IMAGE
+            IMAGE
         }
     }
 

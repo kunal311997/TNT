@@ -80,21 +80,6 @@ public class AppModule {
                 .build();
     }
 
-    /*@Singleton
-    @Provides
-    static Picasso providePicassoInstance(Application application, OkHttp3Downloader okHttp3Downloader) {
-        return new Picasso.Builder(application.getApplicationContext())
-                .downloader(okHttp3Downloader)
-                .indicatorsEnabled(true)
-                .build();
-    }
-
-    @Singleton
-    @Provides
-    static OkHttp3Downloader getOkHttp3Downloader(OkHttpClient okHttpClient) {
-        return new OkHttp3Downloader(okHttpClient);
-    }*/
-
     @Provides
     @Named("IO")
     static public CoroutineDispatcher provideIOCoroutineDispatcher() {

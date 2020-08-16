@@ -1,7 +1,6 @@
 package com.kunal.tnt.enroll.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -12,7 +11,7 @@ import com.kunal.tnt.databinding.ItemSelectInterestsBinding
 
 class SelectInterestsAdapter(
     private val context: Context,
-    private val rentalsList: ArrayList<String>
+    private val interestsList: ArrayList<String>
 ) :
     RecyclerView.Adapter<SelectInterestsAdapter.ViewHolder>() {
 
@@ -25,7 +24,7 @@ class SelectInterestsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return rentalsList.size
+        return interestsList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -35,9 +34,7 @@ class SelectInterestsAdapter(
     inner class ViewHolder(val binding: ItemSelectInterestsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(pos: Int) {
-
-            binding.data = rentalsList[pos]
-
+            binding.data = interestsList[pos]
         }
     }
 

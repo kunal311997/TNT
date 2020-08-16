@@ -7,6 +7,7 @@ import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.favourites.db.FavouritesDao
 import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.network.HomeApi
+import com.kunal.tnt.videos.models.VideosResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 import javax.inject.Named
@@ -20,6 +21,10 @@ class HomeRepository @Inject constructor(
 
     suspend fun getFeed(): Resource<List<Feed>> {
         return safeApiCall(ioDispatcher) { homeApi.callFeedApi() }
+    }
+
+    suspend fun getVideos(): Resource<List<VideosResponse>> {
+        return safeApiCall(ioDispatcher) { homeApi.callVideosApi() }
     }
 
     suspend fun book(favourite: Favourites) {

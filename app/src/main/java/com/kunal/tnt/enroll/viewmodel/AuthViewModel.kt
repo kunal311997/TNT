@@ -19,19 +19,15 @@ class AuthViewModel @Inject constructor(
     @Named("MAIN") private val mainDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-
     private val loginResLiveData = MutableLiveData<Resource<LoginResponse>>()
-
 
     fun getLoginResLiveData(): LiveData<Resource<LoginResponse>> {
         return loginResLiveData
     }
 
-
     fun login(email: String, password: String) {
         loginResLiveData.value = Resource.loading(null)
         var feedResponse: Resource<LoginResponse>? = null
-
         viewModelScope.launch {
             withContext(ioDispatcher) {
                 feedResponse = authRepository.login(email, password)
@@ -47,7 +43,6 @@ class AuthViewModel @Inject constructor(
     fun signUp(username: String, email: String, password: String) {
         loginResLiveData.value = Resource.loading(null)
         var feedResponse: Resource<LoginResponse>? = null
-
         viewModelScope.launch {
             withContext(ioDispatcher) {
                 feedResponse = authRepository.signUp(username, email, password)

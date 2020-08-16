@@ -56,16 +56,14 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="@dimen/margin_medium_large" />
 
-
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvFeeds"
+                android:id="@+id/rvVideos"
                 android:layout_width="@dimen/match_constraints"
                 android:layout_height="@dimen/match_constraints"
                 android:layout_marginStart="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_medium"
                 android:layout_marginEnd="@dimen/margin_small"
-                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

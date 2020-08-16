@@ -18,7 +18,6 @@ import javax.inject.Inject
 
 class SettingsFragment : DaggerFragment(), View.OnClickListener {
 
-
     @Inject
     lateinit var preference: SharedPrefClient
 

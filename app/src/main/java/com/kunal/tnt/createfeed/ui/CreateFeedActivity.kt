@@ -1,7 +1,6 @@
 package com.kunal.tnt.createfeed.ui
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,9 +8,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +19,8 @@ import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.common.uils.SharedPrefClient
 import com.kunal.tnt.common.uils.Utilities
 import com.kunal.tnt.common.uils.Utilities.gone
+import com.kunal.tnt.common.uils.Utilities.isValidUrl
+import com.kunal.tnt.common.uils.Utilities.showToast
 import com.kunal.tnt.common.uils.Utilities.visible
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.adapter.KeywordsAdapter
@@ -69,7 +68,6 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
         Keywords("Automobile")
     )
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_feed)
@@ -77,7 +75,11 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
         addOnclickListeners()
         setObservers()
         setAdapter()
-        txtName.text = "By ${preference.getUsername()}"
+        setName()
+    }
+
+    private fun setName() {
+        txtName.text = resources.getString(R.string.by_name, preference.getUsername())
     }
 
     private fun setAdapter() {
@@ -110,33 +112,60 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 }
             }
             btnDone -> {
-                setResult(HomeConstants.CREATE_FEED_REQUEST_CODE)
-                finish()
-                /*var category = ""
+                var category = ""
                 if (adapter.selectedPosition != -1) {
                     category = keywordsList[adapter.selectedPosition].name
                 }
+                val title = edtTitle.text.toString()
+                val description = edtDesc.text.toString()
+                val source = edtSource.text.toString()
 
-                viewModel.createFeed(
-                    edtTitle.text.toString(),
-                    category,
-                    edtDesc.text.toString(),
-                    edtSource.text.toString(),
-                    preference.getUsername(),
-                    file
-                )*/
+                if (checkInputValidations(title, description, category, source)) {
+                    viewModel.createFeed(
+                        title, category, description,
+                        source, preference.getUsername(), file
+                    )
+                }
             }
         }
+    }
+
+    private fun checkInputValidations(
+        title: String?, description: String?,
+        category: String, source: String
+    ): Boolean {
+        if (title.isNullOrEmpty()) {
+            this.showToast(resources.getString(R.string.empty_title))
+            return false
+        }
+
+        if (description.isNullOrEmpty()) {
+            this.showToast(resources.getString(R.string.empty_description))
+            return false
+        }
+
+        if (category == "") {
+            this.showToast(resources.getString(R.string.empty_category))
+            return false
+        }
+
+        if (source.isNotEmpty() && !source.isValidUrl()) {
+            this.showToast(resources.getString(R.string.invalid_url))
+            return false
+        }
+        return true
     }
 
 
     private fun choosePhotoFromGallery() {
         val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT //
+        intent.apply {
+            type = FeedConstants.INTENT_TYPE_IMAGE
+            action = Intent.ACTION_GET_CONTENT
+        }
 
         startActivityForResult(
-            Intent.createChooser(intent, "Select File"),
+            Intent.createChooser(intent, FeedConstants.SELECT_FILE),
             FeedConstants.IMAGE_REQUEST_CODE
         )
     }
@@ -160,51 +189,42 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 FeedConstants.IMAGE_REQUEST_CODE -> {
                     val selectedImage: Uri? = data?.data
                     selectedImage?.let {
-
-
-                        var bm: Bitmap? = null
-                        if (data != null) {
-                            try {
-                                bm = MediaStore.Images.Media.getBitmap(
-                                    applicationContext.contentResolver,
-                                    data.data
-                                )
-                            } catch (e: IOException) {
-                                e.printStackTrace()
-                            }
-                        }
-                        if (bm != null) { // sanity check
-                            val outputDir: File = cacheDir // Activity context
-                            val outputFile = File.createTempFile(
-                                "image",
-                                ".jpg",
-                                outputDir
-                            ) // follow the API for createTempFile
-                            Log.e("file", outputFile.toString())
-                            file = outputFile
-                            val stream = FileOutputStream(
-                                outputFile,
-                                false
-                            ) // Add false here so we don't append an image to another image. That would be weird.
-                            // This line actually writes a bitmap to the stream. If you use a ByteArrayOutputStream, you end up with a byte array. If you use a FileOutputStream, you end up with a file.
-                            bm.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-                            stream.close() // cleanup
-                        }
-
-                        imgFeed.visible()
-                        txtImage.visible()
-                        imgFeed.load(selectedImage)
+                        getAndSetImage(it)
                     }
+
                 }
             }
         }
+    }
+
+    private fun getAndSetImage(uri: Uri) {
+        var bitmap: Bitmap? = null
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, uri)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        if (bitmap != null) {
+            val outputDir: File = cacheDir
+            val outputFile = File.createTempFile("image", ".jpg", outputDir)
+            file = outputFile
+            val stream = FileOutputStream(outputFile, false)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+            stream.close()
+        }
+
+        imgFeed.visible()
+        txtImage.visible()
+        imgFeed.load(uri)
+
     }
 
     private fun setObservers() {
         viewModel.getCreateFeedLiveData().observe(this, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    Toast.makeText(this, "Created Successfully", Toast.LENGTH_SHORT).show()
+                    this.showToast(resources.getString(R.string.hack_created))
                     progressBar.gone()
                     setResult(HomeConstants.CREATE_FEED_REQUEST_CODE)
                     finish()

@@ -33,11 +33,9 @@ class SignUpActivity : DaggerAppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-
         initViewModel()
         initObservers()
         initOnClickListeners()
-
     }
 
     private fun initViewModel() {

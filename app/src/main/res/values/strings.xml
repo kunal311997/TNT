@@ -31,4 +31,11 @@
     <string name="title_search">Search</string>
     <string name="title_categories">Categories</string>
     <string name="title_settings">Settings</string>
+    <string name="by_name">By %s</string>
+    <string name="empty_title">Please enter a title.</string>
+    <string name="empty_description">Please enter a description.</string>
+    <string name="empty_category">Please select a category.</string>
+    <string name="invalid_url">Please enter a valid URL.</string>
+    <string name="hack_created">Hack created successfully !!</string>
+
 </resources>

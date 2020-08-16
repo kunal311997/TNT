@@ -65,7 +65,6 @@ class KeywordsAdapter(
                 notifyItemChanged(selectedPosition)
                 selectedPosition = adapterPosition
                 notifyItemChanged(selectedPosition)
-                //listener?.invoke(binding.root, keywordsList[pos], pos)
             }
         }
     }

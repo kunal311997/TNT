@@ -6,6 +6,7 @@ import com.kunal.tnt.common.db.AppDatabase;
 import com.kunal.tnt.favourites.db.FavouritesDao;
 import com.kunal.tnt.home.adapter.FeedsAdapter;
 import com.kunal.tnt.home.network.HomeApi;
+import com.kunal.tnt.videos.adapters.VideosAdapter;
 
 import java.util.Collections;
 
@@ -24,6 +25,11 @@ public class HomeModule {
     @Provides
     static FeedsAdapter getFeedsAdapter() {
         return new FeedsAdapter(Collections.emptyList());
+    }
+
+    @Provides
+    static VideosAdapter getVideosAdapter() {
+        return new VideosAdapter(Collections.emptyList());
     }
 
     @Provides

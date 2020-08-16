@@ -8,15 +8,12 @@ import com.kunal.tnt.R
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.databinding.FragmentHomeBinding
 import com.kunal.tnt.favourites.adapters.FavouritesAdapter
-import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.favourites.viewmodel.FavouritesViewModel
-import com.kunal.tnt.home.data.Feed
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_favourites.*
 import javax.inject.Inject
 
 class FavouritesActivity : DaggerAppCompatActivity() {
-
 
     @Inject
     lateinit var favouritesAdapter: FavouritesAdapter
@@ -25,7 +22,7 @@ class FavouritesActivity : DaggerAppCompatActivity() {
     lateinit var viewModelProvidersFactory: ViewModelProvidersFactory
 
     lateinit var binding: FragmentHomeBinding
- 
+
     private val favouritesViewModel by lazy {
         ViewModelProvider(this, viewModelProvidersFactory)[FavouritesViewModel::class.java]
     }
@@ -35,14 +32,12 @@ class FavouritesActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_favourites)
 
         rvFavourites.adapter = favouritesAdapter
-        rvFavourites.layoutManager = LinearLayoutManager(this)
 
         favouritesViewModel.allFavourites.observe(this, Observer { allFavourites ->
-            // Update the cached copy of the words in the adapter.
             allFavourites?.let { favouritesAdapter.addItems(it) }
         })
 
-        favouritesAdapter.bookmarkListener = { item,pos ->
+        favouritesAdapter.bookmarkListener = { item, pos ->
             favouritesViewModel.unBook(item.id)
             favouritesAdapter.notifyItemChanged(pos)
         }

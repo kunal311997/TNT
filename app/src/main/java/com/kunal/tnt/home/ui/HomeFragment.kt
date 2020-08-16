@@ -51,7 +51,6 @@ class HomeFragment : DaggerFragment() {
         @Nullable container: ViewGroup?,
         @Nullable savedInstanceState: Bundle?
     ): View {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return binding.root
     }
@@ -66,9 +65,7 @@ class HomeFragment : DaggerFragment() {
     }
 
     private fun initClickListeners() {
-        imgCompare.setOnClickListener {
 
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -98,8 +95,6 @@ class HomeFragment : DaggerFragment() {
             }
         })
         viewModel.allFavourites.observe(requireActivity(), Observer {
-            Log.e("All", it.toString())
-
             feedsList.forEach { feed ->
                 it.forEach { x ->
                     if (x.id == feed.id) {
@@ -108,7 +103,6 @@ class HomeFragment : DaggerFragment() {
                 }
             }
             setAdapter(feedsList)
-
         })
 
         viewModel.isRefreshFeed().observe(requireActivity(), Observer {
@@ -152,19 +146,6 @@ class HomeFragment : DaggerFragment() {
         setAdapter(feeds)
         feedsList.clear()
         feedsList.addAll(feeds)
-    }
-
-
-    companion object {
-        private var fragment: HomeFragment? = null
-        fun getInstance(): HomeFragment? {
-            if (fragment == null)
-                fragment = HomeFragment()
-            /*val args = Bundle()
-            args.putInt("someInt", someInt)
-            fragment!!.arguments = args*/
-            return fragment
-        }
     }
 
 }

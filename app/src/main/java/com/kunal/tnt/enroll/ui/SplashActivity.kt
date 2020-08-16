@@ -13,7 +13,6 @@ import javax.inject.Inject
 
 class SplashActivity : DaggerAppCompatActivity() {
 
-
     @Inject
     lateinit var prefClient: SharedPrefClient
 
@@ -22,7 +21,6 @@ class SplashActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-
             if (prefClient.isUserLoggedIn()) {
                 val i = Intent(this@SplashActivity, HomeActivity::class.java)
                 startActivity(i)
@@ -32,8 +30,6 @@ class SplashActivity : DaggerAppCompatActivity() {
                 startActivity(i)
                 finish()
             }
-
-
         }, Constant.SPLASH_SCREEN_TIMEOUT)
     }
 }

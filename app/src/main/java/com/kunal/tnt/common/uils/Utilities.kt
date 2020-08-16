@@ -2,22 +2,16 @@ package com.kunal.tnt.common.uils
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.util.Patterns
 import android.view.View
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.FragmentActivity
 import coil.api.load
 import com.kunal.tnt.R
-import com.kunal.tnt.enroll.ui.SignUpActivity
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -26,9 +20,27 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 
 object Utilities {
+
+
+    private const val URL_REGEX =
+        "^((((https?|ftps?|gopher|telnet|nntp)://)|(mailto:|news:))" +
+                "(%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@&=+$,A-Za-z0-9])+)" +
+                "([).!';/?:,][[:blank:]])?$"
+
+    private val URL_PATTERN: Pattern = Pattern.compile(URL_REGEX)
+
+    fun String?.isValidUrl(): Boolean {
+        if (this == null) {
+            return false
+        }
+        val matcher: Matcher = URL_PATTERN.matcher(this)
+        return matcher.matches()
+    }
 
 
     fun String.isValidEmail(): Boolean {
@@ -109,7 +121,7 @@ object Utilities {
     fun loadJSONFromAsset(context: Context, fileName: String): String? {
         var json: String?
         try {
-            val inputStream = context.getAssets().open(fileName)
+            val inputStream = context.assets.open(fileName)
             val size = inputStream.available()
             val buffer = ByteArray(size)
             inputStream.read(buffer)

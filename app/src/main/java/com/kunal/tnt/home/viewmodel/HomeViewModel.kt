@@ -8,6 +8,7 @@ import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.repository.HomeRepository
+import com.kunal.tnt.videos.models.VideosResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,16 +23,17 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val feedLiveData = MutableLiveData<Resource<List<Feed>>>()
+    private val videosLiveData = MutableLiveData<Resource<List<VideosResponse>>>()
 
 
-    val allFavourites: LiveData<List<Favourites>>
-
-    init {
-        allFavourites = homeRepository.allFavourites
-    }
+    val allFavourites: LiveData<List<Favourites>> = homeRepository.allFavourites
 
     fun getFeedLiveData(): LiveData<Resource<List<Feed>>> {
         return feedLiveData
+    }
+
+    fun getVideosLiveData(): LiveData<Resource<List<VideosResponse>>> {
+        return videosLiveData
     }
 
     private val refreshFeed = MutableLiveData<Boolean>(false)
@@ -60,15 +62,28 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    /**
-     * Launching a new coroutine to insert the data in a non-blocking way
-     */
+    fun getVideos() {
+        videosLiveData.value = Resource.loading(null)
+        var feedResponse: Resource<List<VideosResponse>>? = null
+
+        viewModelScope.launch {
+            withContext(ioDispatcher) {
+                feedResponse = homeRepository.getVideos()
+            }
+            withContext(mainDispatcher) {
+                feedResponse?.let {
+                    videosLiveData.value = it
+                }
+            }
+        }
+    }
+
     fun book(favourites: Favourites) = viewModelScope.launch(Dispatchers.IO) {
         homeRepository.book(favourites)
     }
 
     fun unBook(userId: String) = viewModelScope.launch {
-        withContext(ioDispatcher){
+        withContext(ioDispatcher) {
             homeRepository.unBook(userId)
         }
     }

@@ -14,7 +14,6 @@ class AuthRepository @Inject constructor(
     private val authApi: AuthApi
 ) : BaseRepository() {
 
-
     suspend fun login(email: String, password: String): Resource<LoginResponse> {
         val hashMap = hashMapOf(
             AuthConstants.EMAIL to email,

@@ -14,33 +14,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun favouritesDao(): FavouritesDao
 
 
-    /*private class WordDatabaseCallback(
-        private val scope: CoroutineScope
-    ) : RoomDatabase.Callback() {
-
-        override fun onOpen(db: SupportSQLiteDatabase) {
-            super.onOpen(db)
-            INSTANCE?.let { database ->
-                scope.launch {
-                    var wordDao = database.wordDao()
-
-                    // Delete all content here.
-                    wordDao.deleteAll()
-
-                    // Add sample words.
-                    var word = Favourites("Hello", "1", "", "", "", "", "", "")
-                    wordDao.insert(word)
-                    word = Favourites("Hello0", "2", "", "", "", "", "", "")
-                    wordDao.insert(word)
-
-                    *//* // TODO: Add your own words!
-                     word = Favourites("TODO!")
-                     wordDao.insert(word)*//*
-                }
-            }
-        }
-    }*/
-
     companion object {
         // Singleton prevents multiple instances of database opening at the
         // same time.
@@ -62,7 +35,6 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "word_database"
                 )
-                    //.addCallback(WordDatabaseCallback(scope))
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance

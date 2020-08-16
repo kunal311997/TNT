@@ -19,7 +19,10 @@ class FeedDetailActivity : AppCompatActivity() {
 
         getIntentData()
         setAdapter()
+        initClickListeners()
+    }
 
+    private fun initClickListeners() {
         imgNext.setOnClickListener {
             viewPager.currentItem = viewPager.currentItem + 1
         }
@@ -41,5 +44,4 @@ class FeedDetailActivity : AppCompatActivity() {
         adapter?.notifyDataSetChanged()
 
     }
-
 }

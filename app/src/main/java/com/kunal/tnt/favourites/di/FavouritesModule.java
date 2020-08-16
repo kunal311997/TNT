@@ -20,8 +20,4 @@ public class FavouritesModule {
         return new FavouritesAdapter(Collections.emptyList());
     }
 
-    /*@Provides
-    static FavouritesDao provideFavouritesDao(Application application) {
-        return AppDatabase.Companion.getDatabase(application).favouritesDao();
-    }*/
 }

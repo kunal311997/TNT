@@ -2,25 +2,20 @@ package com.kunal.tnt.home.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.get
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kunal.tnt.R
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.ui.CreateFeedActivity
 import com.kunal.tnt.home.utils.HomeConstants
 import com.kunal.tnt.home.viewmodel.HomeViewModel
-import com.kunal.tnt.videos.VideosFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
 
-class HomeActivity : DaggerAppCompatActivity(){
+class HomeActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelProvidersFactory: ViewModelProvidersFactory
@@ -33,11 +28,8 @@ class HomeActivity : DaggerAppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val navigation=Navigation.findNavController(this,R.id.fragment)
+        val navigation = Navigation.findNavController(this, R.id.fragment)
         bottom_navigation.setupWithNavController(navigation)
-
-       // bottom_navigation.setOnNavigationItemSelectedListener(this)
-      //  loadFragment(HomeFragment())
 
         imgCreateFeed.setOnClickListener {
             startActivityForResult(
@@ -63,9 +55,8 @@ class HomeActivity : DaggerAppCompatActivity(){
             return true
         }
         return false
-    }*/
-
-    /*override fun onNavigationItemSelected(item: MenuItem): Boolean {
+    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment: Fragment? = null
         when (item.itemId) {
             R.id.navigation_home -> fragment = HomeFragment()

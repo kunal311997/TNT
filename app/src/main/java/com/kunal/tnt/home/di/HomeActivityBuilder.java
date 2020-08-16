@@ -1,10 +1,10 @@
 package com.kunal.tnt.home.di;
 
-import com.kunal.tnt.favourites.di.FavouritesModule;
+import com.kunal.tnt.categories.CategoriesFragment;
 import com.kunal.tnt.home.ui.HomeActivity;
 import com.kunal.tnt.home.ui.HomeFragment;
 import com.kunal.tnt.home.ui.SettingsFragment;
-import com.kunal.tnt.videos.VideosFragment;
+import com.kunal.tnt.videos.ui.VideosFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -31,6 +31,11 @@ public abstract class HomeActivityBuilder {
             HomeViewModelsModule.class,
             HomeModule.class})
     abstract VideosFragment contributeVideosFragment();
+
+    @ContributesAndroidInjector(modules = {
+            HomeViewModelsModule.class,
+            HomeModule.class})
+    abstract CategoriesFragment contributeCategoriesFragment();
 
 
 }

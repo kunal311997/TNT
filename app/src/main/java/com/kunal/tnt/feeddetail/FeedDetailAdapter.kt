@@ -4,7 +4,6 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.PagerAdapter
@@ -18,9 +17,10 @@ import com.kunal.tnt.home.data.Feed
 import kotlin.math.roundToInt
 
 
-class FeedDetailAdapter(private val models: List<Feed>) : PagerAdapter() {
+class FeedDetailAdapter(private val feedsList: List<Feed>) : PagerAdapter() {
+
     override fun getCount(): Int {
-        return models.size
+        return feedsList.size
     }
 
     override fun isViewFromObject(
@@ -34,16 +34,18 @@ class FeedDetailAdapter(private val models: List<Feed>) : PagerAdapter() {
         val layoutInflater = LayoutInflater.from(container.context)
         val binding: ItemFeedDetailBinding =
             DataBindingUtil.inflate(layoutInflater, R.layout.item_feed_detail, container, false)
-        binding.title.text = models[position].title
-        binding.desc.text = models[position].description
-        binding.txtCategory.text = models[position].category
-        binding.txtName.text = models[position].createdBy
-        binding.image.load(models[position].backgroundImage.toString())
-        binding.txtDate.text = models[position].createdAt.formatDate()
-        if (models[position].isBookmarked) binding.imgBookmark.setBackgroundResource(R.drawable.ic_book)
+
+        binding.feed = feedsList[position]
+        binding.txtName.text =
+            container.context.resources.getString(R.string.by_name, feedsList[position].createdBy)
+
+        binding.image.load(feedsList[position].backgroundImage.toString())
+        binding.txtDate.text = feedsList[position].createdAt.formatDate()
+
+        if (feedsList[position].isBookmarked) binding.imgBookmark.setBackgroundResource(R.drawable.ic_book)
         else binding.imgBookmark.setBackgroundResource(R.drawable.ic_unbook)
 
-        if (TextUtils.isEmpty(models[position].backgroundImage) || models[position].backgroundImage == null) {
+        if (TextUtils.isEmpty(feedsList[position].backgroundImage) || feedsList[position].backgroundImage == null) {
             binding.title.height =
                 container.context.resources.getDimension(R.dimen.feed_image_height).roundToInt()
             binding.title.setBackgroundColor(

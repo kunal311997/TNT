@@ -82,5 +82,6 @@
     <dimen name="border_keywords">1dp</dimen>
     <dimen name="edit_text_dec_height">100dp</dimen>
     <dimen name="icon_size">40dp</dimen>
+    <dimen name="play_video_icon_size">50dp</dimen>
 
 </resources>

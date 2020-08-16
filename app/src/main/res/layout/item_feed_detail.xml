@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="feed"
+            type="com.kunal.tnt.home.data.Feed" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,6 +49,7 @@
                         style="@style/Body2MediumWhiteLeft"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{feed.category}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imgBookmark" />
@@ -81,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/margin_medium"
                         android:layout_marginTop="@dimen/margin_semi_medium"
-                        android:text="My Title"
+                        android:text="@{feed.title}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/image" />
@@ -95,7 +99,7 @@
                         android:layout_marginTop="@dimen/margin_medium_large"
                         android:ellipsize="end"
                         android:padding="@dimen/padding_medium"
-                        android:text="My Description"
+                        android:text="@{feed.description}"
                         app:layout_constraintBottom_toTopOf="@+id/txtDate"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -124,8 +128,7 @@
                         android:layout_marginTop="@dimen/margin_semi_medium"
                         android:layout_marginEnd="@dimen/margin_medium_large"
                         android:layout_marginBottom="@dimen/margin_medium_large"
-                        android:text="By Kunal Pandey"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
