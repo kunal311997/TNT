@@ -11,4 +11,8 @@ class FavouritesRepository(private val wordDao: FavouritesDao) {
     suspend fun insert(word: Favourites) {
         wordDao.insert(word)
     }
+
+    suspend fun unBook(userId: String) {
+        wordDao.deleteByUserId(userId)
+    }
 }

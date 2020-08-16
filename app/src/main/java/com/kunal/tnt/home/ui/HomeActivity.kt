@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.get
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kunal.tnt.R
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
@@ -17,10 +20,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
 
-class HomeActivity : DaggerAppCompatActivity(),
-    BottomNavigationView.OnNavigationItemSelectedListener {
-
-    lateinit var headingList: List<String>
+class HomeActivity : DaggerAppCompatActivity(){
 
     @Inject
     lateinit var viewModelProvidersFactory: ViewModelProvidersFactory
@@ -33,8 +33,11 @@ class HomeActivity : DaggerAppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        bottom_navigation.setOnNavigationItemSelectedListener(this)
-        loadFragment(HomeFragment())
+        val navigation=Navigation.findNavController(this,R.id.fragment)
+        bottom_navigation.setupWithNavController(navigation)
+
+       // bottom_navigation.setOnNavigationItemSelectedListener(this)
+      //  loadFragment(HomeFragment())
 
         imgCreateFeed.setOnClickListener {
             startActivityForResult(
@@ -46,12 +49,11 @@ class HomeActivity : DaggerAppCompatActivity(),
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        viewModel.refreshFeed(true)
-        //HomeFragment()?.onActivityResult(requestCode, resultCode, data)
+        HomeFragment().onActivityResult(requestCode, resultCode, data)
 
     }
 
-    private fun loadFragment(fragment: Fragment?): Boolean {
+    /*private fun loadFragment(fragment: Fragment?): Boolean {
         //switching fragment
         if (fragment != null) {
             supportFragmentManager
@@ -61,9 +63,9 @@ class HomeActivity : DaggerAppCompatActivity(),
             return true
         }
         return false
-    }
+    }*/
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+    /*override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment: Fragment? = null
         when (item.itemId) {
             R.id.navigation_home -> fragment = HomeFragment()
@@ -72,5 +74,5 @@ class HomeActivity : DaggerAppCompatActivity(),
             R.id.navigation_profile -> fragment = SettingsFragment()
         }
         return loadFragment(fragment)
-    }
+    }*/
 }

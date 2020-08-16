@@ -9,9 +9,11 @@ import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.favourites.repository.FavouritesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class FavouritesViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
+class FavouritesViewModel @Inject constructor(application: Application) :
+    AndroidViewModel(application) {
     private val repository: FavouritesRepository
 
     val allFavourites: LiveData<List<Favourites>>
@@ -29,5 +31,10 @@ class FavouritesViewModel @Inject constructor(application: Application) : Androi
      */
     fun insert(word: Favourites) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(word)
+    }
+
+
+    fun unBook(userId: String) = viewModelScope.launch(Dispatchers.IO) {
+        repository.unBook(userId)
     }
 }

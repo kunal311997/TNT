@@ -30,6 +30,8 @@ data class Favourites(
     val backgroundImage: String?,
 
     @ColumnInfo(name = "createdAt")
-    val createdAt: String
+    val createdAt: String,
 
+    @ColumnInfo(name = "isBookmarked")
+    var isBookmarked: Boolean = false
 )

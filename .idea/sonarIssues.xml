@@ -98,6 +98,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/common/db/AppDatabase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/common/di/ActivityBuildersModule.java">
           <value>
             <set />
@@ -349,6 +354,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/di/FavouritesModule.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/favourites/models/Favourites.kt">
           <value>
             <set />
           </value>
@@ -713,6 +723,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_favourite_image.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_favourite_text.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_feed.xml">
           <value>
             <set />
@@ -754,6 +774,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/navigation/bottom_navigation.xml">
           <value>
             <set />
           </value>

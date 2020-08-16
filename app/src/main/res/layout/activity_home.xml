@@ -12,13 +12,22 @@
         android:background="@color/colorPrimary"
         tools:context=".home.ui.HomeActivity">
 
-        <FrameLayout
+        <!--<FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="@dimen/match_constraints"
             android:text="@string/title_home"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />-->
+        <fragment
+            android:id="@+id/fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/bottom_navigation" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -37,13 +46,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/imgCreateFeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/margin_xlarge"
         android:elevation="5dp"
-        android:id="@+id/imgCreateFeed"
         android:src="@drawable/icon_add"
         android:tint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

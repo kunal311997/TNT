@@ -110,8 +110,9 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 }
             }
             btnDone -> {
-
-                var category = ""
+                setResult(HomeConstants.CREATE_FEED_REQUEST_CODE)
+                finish()
+                /*var category = ""
                 if (adapter.selectedPosition != -1) {
                     category = keywordsList[adapter.selectedPosition].name
                 }
@@ -123,7 +124,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                     edtSource.text.toString(),
                     preference.getUsername(),
                     file
-                )
+                )*/
             }
         }
     }

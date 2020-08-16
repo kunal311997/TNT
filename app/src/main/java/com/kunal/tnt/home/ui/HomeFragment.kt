@@ -71,6 +71,11 @@ class HomeFragment : DaggerFragment() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        viewModel.getFeed()
+    }
+
     private fun initObservers() {
         viewModel.getFeedLiveData().observe(requireActivity(), Observer {
             when (it.status) {
@@ -94,6 +99,16 @@ class HomeFragment : DaggerFragment() {
         })
         viewModel.allFavourites.observe(requireActivity(), Observer {
             Log.e("All", it.toString())
+
+            feedsList.forEach { feed ->
+                it.forEach { x ->
+                    if (x.id == feed.id) {
+                        feed.isBookmarked = true
+                    }
+                }
+            }
+            setAdapter(feedsList)
+
         })
 
         viewModel.isRefreshFeed().observe(requireActivity(), Observer {
@@ -132,8 +147,7 @@ class HomeFragment : DaggerFragment() {
 
     private fun loadDummyDataForHomePage() {
         val data = Utilities.loadJSONFromAsset(requireActivity(), "dummy_data.json")
-        val feedList =
-            object : TypeToken<List<Feed?>?>() {}.type
+        val feedList = object : TypeToken<List<Feed?>?>() {}.type
         val feeds: List<Feed> = Gson().fromJson(data, feedList)
         setAdapter(feeds)
         feedsList.clear()

@@ -8,7 +8,7 @@ import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.favourites.db.FavouritesDao
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = [Favourites::class], version = 1, exportSchema = false)
+@Database(entities = [Favourites::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun favouritesDao(): FavouritesDao
@@ -63,6 +63,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "word_database"
                 )
                     //.addCallback(WordDatabaseCallback(scope))
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 return instance

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/dark_grey">
+
+        <TextView
+            android:id="@+id/txtName"
+            style="@style/Body1MediumWhiteLeft"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            app:layout_constraintEnd_toStartOf="@+id/imgBookmark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgBookmark"
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:src="@drawable/ic_unbook"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            style="@style/Body1MediumGreyLeft"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/Body3MediumWhiteCenter"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="@dimen/feed_image_height"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/padding_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDate" />
+
+        <TextView
+            android:id="@+id/txtDesc"
+            style="@style/Body1MediumWhiteLeft"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+        <ImageView
+            android:id="@+id/imgThreeDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:backgroundTint="@color/dark_grey"
+            android:drawableEnd="@drawable/chuck_ic_share_white_24dp"
+            android:drawablePadding="@dimen/padding_small"
+            android:padding="@dimen/padding_medium"
+            android:src="@drawable/chuck_ic_share_white_24dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
