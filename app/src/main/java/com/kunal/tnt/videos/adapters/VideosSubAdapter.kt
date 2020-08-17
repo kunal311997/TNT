@@ -11,10 +11,11 @@ import coil.api.load
 import com.kunal.tnt.R
 import com.kunal.tnt.databinding.SubItemVideosBinding
 import com.kunal.tnt.videos.models.Video
+import com.kunal.tnt.videos.models.VideoItem
 import com.kunal.tnt.videos.ui.VideoViewActivity
 
 class VideosSubAdapter(
-    var videosList: List<Video>
+    var videosList: List<VideoItem>
 ) :
     RecyclerView.Adapter<VideosSubAdapter.ViewHolder>() {
 
@@ -39,7 +40,7 @@ class VideosSubAdapter(
         holder.bindData(position)
     }
 
-    fun addItems(items: List<Video>) {
+    fun addItems(items: List<VideoItem>) {
         videosList = items
         notifyDataSetChanged()
     }
@@ -52,8 +53,7 @@ class VideosSubAdapter(
             binding.subVideo = videosList[pos]
             binding.image.load("https://i.ytimg.com/vi/${videosList[pos].videoCode}/hqdefault.jpg")
             binding.videoSubItem.setOnClickListener {
-                // listener?.invoke(it, videosList[pos], pos)
-
+ 
                 val intent = Intent(context, VideoViewActivity::class.java)
                 intent.putExtra("videoCode", videosList[pos].videoCode)
                 context.startActivity(intent)

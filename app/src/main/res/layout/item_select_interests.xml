@@ -34,7 +34,7 @@
             android:layout_width="@dimen/match_constraints"
             android:layout_height="@dimen/match_constraints"
             android:padding="@dimen/padding_mini"
-            app:layout_constraintDimensionRatio="2.5:1"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintLeft_toLeftOf="@+id/vertical_left_guideline"
             app:layout_constraintRight_toRightOf="@+id/vertical_mid_guideline"
             app:layout_constraintTop_toTopOf="parent">
@@ -67,7 +67,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-             style="@style/Body3BoldWhiteCenter"
+            style="@style/Body3BoldWhiteCenter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"

@@ -4,5 +4,7 @@ object HomeConstants {
 
     const val CREATE_FEED_REQUEST_CODE = 500
     const val GET_FEED = "feed/getFeed"
-    const val GET_VIDEOS = "feed/getVideos"
+    const val GET_VIDEOS = "videos/getVideos"
+    const val GET_CATEGORIES = "categories/getCategories"
+    const val GET_FEED_BY_CATEGORY = "feed/getFeedByCategory"
 }

@@ -13,10 +13,9 @@ class SelectInterestsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_interests)
 
-        rvInterests.adapter = SelectInterestsAdapter(
-            this,
+        /*rvInterests.adapter = SelectInterestsAdapter(
             arrayListOf("Tech", "Food", "Science", "Fitness", "Party")
-        )
+        )*/
 
         btnContinue.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)

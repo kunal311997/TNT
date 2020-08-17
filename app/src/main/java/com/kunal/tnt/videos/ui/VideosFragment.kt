@@ -32,11 +32,10 @@ class VideosFragment : DaggerFragment() {
     @Inject
     lateinit var adapter: VideosAdapter
 
-
     @Inject
     lateinit var viewModelProvidersFactory: ViewModelProvidersFactory
-    lateinit var binding: FragmentVideosBinding
 
+    lateinit var binding: FragmentVideosBinding
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelProvidersFactory)[HomeViewModel::class.java]
@@ -53,8 +52,8 @@ class VideosFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //viewModel.getVideos()
-        loadDummyDataForHomePage()
+        viewModel.getVideos()
+        //loadDummyDataForHomePage()
         initObservers()
     }
 
@@ -80,16 +79,16 @@ class VideosFragment : DaggerFragment() {
         })
     }
 
-    private fun setAdapter(videosList: List<VideosResponse>) {
+    private fun setAdapter(videosList: VideosResponse) {
         rvVideos.adapter = adapter
-        adapter.addItems(videosList)
+        adapter.addItems(videosList.data)
     }
 
-    private fun loadDummyDataForHomePage() {
-        val data = Utilities.loadJSONFromAsset(requireActivity(), "dummy_videos_data.json")
-        val videosList = object : TypeToken<List<VideosResponse?>?>() {}.type
-        val videos: List<VideosResponse> = Gson().fromJson(data, videosList)
-        Log.e("video", videos.toString())
-        setAdapter(videos)
-    }
+    /* private fun loadDummyDataForHomePage() {
+         val data = Utilities.loadJSONFromAsset(requireActivity(), "dummy_videos_data.json")
+         val videosList = object : TypeToken<List<VideosResponse?>?>() {}.type
+         val videos: List<VideosResponse> = Gson().fromJson(data, videosList)
+         Log.e("video", videos.toString())
+         setAdapter(videos)
+     }*/
 }

@@ -3,6 +3,7 @@ package com.kunal.tnt.home.di;
 import android.app.Application;
 
 import com.kunal.tnt.common.db.AppDatabase;
+import com.kunal.tnt.enroll.adapters.SelectInterestsAdapter;
 import com.kunal.tnt.favourites.db.FavouritesDao;
 import com.kunal.tnt.home.adapter.FeedsAdapter;
 import com.kunal.tnt.home.network.HomeApi;
@@ -30,6 +31,11 @@ public class HomeModule {
     @Provides
     static VideosAdapter getVideosAdapter() {
         return new VideosAdapter(Collections.emptyList());
+    }
+
+    @Provides
+    static SelectInterestsAdapter getSelectInterestsAdapter() {
+        return new SelectInterestsAdapter(Collections.emptyList());
     }
 
     @Provides

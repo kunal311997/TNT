@@ -1,6 +1,8 @@
 package com.kunal.tnt.home.repository
 
 import androidx.lifecycle.LiveData
+import com.kunal.tnt.categories.Categories
+import com.kunal.tnt.categories.CategoriesResponse
 import com.kunal.tnt.common.repository.BaseRepository
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.favourites.models.Favourites
@@ -23,8 +25,16 @@ class HomeRepository @Inject constructor(
         return safeApiCall(ioDispatcher) { homeApi.callFeedApi() }
     }
 
-    suspend fun getVideos(): Resource<List<VideosResponse>> {
+    suspend fun getVideos(): Resource<VideosResponse> {
         return safeApiCall(ioDispatcher) { homeApi.callVideosApi() }
+    }
+
+    suspend fun getCategories(): Resource<CategoriesResponse> {
+        return safeApiCall(ioDispatcher) { homeApi.callCategoriesApi() }
+    }
+
+    suspend fun getFeedByCategoryApi(category: String): Resource<List<Feed>> {
+        return safeApiCall(ioDispatcher) { homeApi.callFeedByCategoryApi(category) }
     }
 
     suspend fun book(favourite: Favourites) {

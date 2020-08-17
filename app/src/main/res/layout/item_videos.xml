@@ -7,7 +7,7 @@
 
         <variable
             name="video"
-            type="com.kunal.tnt.videos.models.VideosResponse" />
+            type="com.kunal.tnt.videos.models.Video" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

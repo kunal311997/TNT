@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kunal.tnt.R
 import com.kunal.tnt.createfeed.data.Keywords
 import com.kunal.tnt.databinding.ItemVideosBinding
+import com.kunal.tnt.videos.models.Video
 import com.kunal.tnt.videos.models.VideosResponse
 
 class VideosAdapter(
-    var videosList: List<VideosResponse>
+    var videosList: List<Video>
 ) :
     RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
 
@@ -37,7 +38,7 @@ class VideosAdapter(
         holder.bindData(position)
     }
 
-    fun addItems(items: List<VideosResponse>) {
+    fun addItems(items: List<Video>) {
         videosList = items
         notifyDataSetChanged()
     }
@@ -48,8 +49,7 @@ class VideosAdapter(
             pos: Int
         ) {
             binding.video = videosList[pos]
-            val adapter =
-                VideosSubAdapter(videosList[pos].data)
+            val adapter = VideosSubAdapter(videosList[pos].item)
             binding.rvSubVideo.adapter = adapter
         }
     }
