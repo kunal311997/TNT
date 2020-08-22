@@ -46,16 +46,6 @@ class HomeViewModel @Inject constructor(
         return feedByCategoryLiveData
     }
 
-    private val refreshFeed = MutableLiveData<Boolean>(false)
-
-    fun refreshFeed(b: Boolean) {
-        refreshFeed.value = b
-    }
-
-    fun isRefreshFeed(): LiveData<Boolean> {
-        return refreshFeed
-    }
-
     fun getFeed() {
         feedLiveData.value = Resource.loading(null)
         var feedResponse: Resource<List<Feed>>? = null

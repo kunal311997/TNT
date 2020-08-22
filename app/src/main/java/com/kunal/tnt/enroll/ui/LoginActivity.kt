@@ -2,6 +2,7 @@ package com.kunal.tnt.enroll.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +30,8 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
     @Inject
     lateinit var preference: SharedPrefClient
 
+    private var isPasswordVisible = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -42,6 +45,10 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
         txtRegister.setOnClickListener(this)
         txtNoAccount.setOnClickListener(this)
         btSubmit.setOnClickListener(this)
+        imgShowPassword.setOnClickListener(this)
+        imgFacebook.setOnClickListener(this)
+        imgGoogle.setOnClickListener(this)
+        txtForgotPassword.setOnClickListener(this)
     }
 
     private fun initViewModel() {
@@ -63,14 +70,17 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
                 Resource.Status.SUCCESS -> {
                     progressBar.gone()
-                    preference.updateEmail(response.data?.email.toString())
-                    preference.updateUsername(response.data?.username.toString())
-                    preference.updateBearerToken(response.data?.token.toString())
-                    preference.updateIsUserLoggedIn(true)
+                    if (response.data?.code == 200) {
+                        preference.updateEmail(response.data.email.toString())
+                        preference.updateUsername(response.data.username.toString())
+                        preference.updateBearerToken(response.data.token.toString())
+                        preference.updateIsUserLoggedIn(true)
 
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else
+                        this.showToast(response.data?.message ?: "")
                 }
             }
         })
@@ -79,6 +89,18 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
 
         when (v) {
+            imgShowPassword -> {
+                if (!isPasswordVisible) {
+                    isPasswordVisible = true
+                    imgShowPassword.setImageResource(R.drawable.show_password)
+                    edtPassword.transformationMethod = null
+                } else {
+                    isPasswordVisible = false
+                    imgShowPassword.setImageResource(R.drawable.hide_password)
+                    edtPassword.transformationMethod = PasswordTransformationMethod()
+                }
+                edtPassword.setSelection(edtPassword.text.length)
+            }
 
             txtRegister, txtNoAccount -> {
                 val intent = Intent(this, SignUpActivity::class.java)
@@ -97,6 +119,9 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
                         authViewModel.login(email, password)
                 }
 
+            }
+            imgFacebook, imgGoogle, txtForgotPassword -> {
+                this.showToast(resources.getString(R.string.in_development))
             }
 
         }

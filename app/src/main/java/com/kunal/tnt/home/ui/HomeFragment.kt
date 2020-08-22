@@ -17,6 +17,7 @@ import com.kunal.tnt.R
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.common.uils.Utilities
 import com.kunal.tnt.common.uils.Utilities.gone
+import com.kunal.tnt.common.uils.Utilities.showToast
 import com.kunal.tnt.common.uils.Utilities.visible
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.utils.FeedConstants
@@ -27,7 +28,6 @@ import com.kunal.tnt.home.adapter.FeedsAdapter
 import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.viewmodel.HomeViewModel
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
 
@@ -57,15 +57,9 @@ class HomeFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        //viewModel.getFeed()
-        loadDummyDataForHomePage()
+        viewModel.getFeed()
         initObservers()
-        initClickListeners()
-    }
-
-    private fun initClickListeners() {
-
+        setAdapter()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -83,9 +77,9 @@ class HomeFragment : DaggerFragment() {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.gone()
                     if (it.data != null) {
-                        setAdapter(it.data)
                         feedsList.clear()
                         feedsList.addAll(it.data)
+                        feedAdapter.notifyDataSetChanged()
                     }
                 }
 
@@ -102,20 +96,14 @@ class HomeFragment : DaggerFragment() {
                     }
                 }
             }
-            setAdapter(feedsList)
+            feedAdapter.notifyDataSetChanged()
         })
 
-        viewModel.isRefreshFeed().observe(requireActivity(), Observer {
-            if (it) {
-                viewModel.getFeed()
-                viewModel.refreshFeed(false)
-            }
-        })
     }
 
-    private fun setAdapter(data: List<Feed>) {
+    private fun setAdapter() {
         binding.rvFeeds.adapter = feedAdapter
-        feedAdapter.addItems(data)
+        feedAdapter.addItems(feedsList)
 
         feedAdapter.listener = { _, _, pos ->
             val intent = Intent(requireActivity(), FeedDetailActivity::class.java)
@@ -132,9 +120,20 @@ class HomeFragment : DaggerFragment() {
                     source, createdBy, backgroundImage, createdAt
                 )
             }
-            if (item.isBookmarked)
+            if (item.isBookmarked) {
                 viewModel.book(favourites)
-            else viewModel.unBook(item.id)
+                requireActivity().showToast(resources.getString(R.string.added_to_favourites))
+            } else {
+                viewModel.unBook(item.id)
+                requireActivity().showToast(resources.getString(R.string.removed_favourites))
+            }
+        }
+
+        feedAdapter.shareListener = {
+            val message =
+                "Hey !! Please check this amazing post - \n\n" +
+                        "${it.title} \n ${it.description} \n ${it.source} \n ${it.backgroundImage}"
+            Utilities.showChooserForLinkShare(requireActivity(), message)
         }
 
     }
@@ -143,9 +142,9 @@ class HomeFragment : DaggerFragment() {
         val data = Utilities.loadJSONFromAsset(requireActivity(), "dummy_data.json")
         val feedList = object : TypeToken<List<Feed?>?>() {}.type
         val feeds: List<Feed> = Gson().fromJson(data, feedList)
-        setAdapter(feeds)
         feedsList.clear()
         feedsList.addAll(feeds)
+        feedAdapter.notifyDataSetChanged()
     }
 
 }

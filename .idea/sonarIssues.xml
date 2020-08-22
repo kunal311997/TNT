@@ -33,6 +33,106 @@
             <set />
           </value>
         </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/scratches/scratch_15.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/ApiClient.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/ApiInterface.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/AppDatabase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/Constants.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/CriticsAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/CriticsDB.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/CriticsDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/CriticsResponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/CriticssAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/MainRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/MainViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/java/com/mansi/assignment/ViewModelFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/res/layout/activity_main.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/res/layout/item_list.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Assignment/app/src/main/res/values/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../Real Deal/app/src/main/res/layout/activity_home.xml">
           <value>
             <set />
@@ -209,6 +309,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/createfeed/data/CreateFeedResponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/createfeed/data/ImageUploadResponse.kt">
           <value>
             <set />
           </value>
@@ -658,6 +763,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/videos/ui/VideoViewActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/videos/ui/VideosFragment.kt">
           <value>
             <set />
@@ -989,6 +1099,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/registration/util/UiUtils.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/res/layout/add_new_address_layout.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/res/layout/fragment_change_password.xml">
           <value>
             <set />
           </value>

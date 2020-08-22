@@ -80,6 +80,33 @@ public class AppModule {
                 .build();
     }
 
+    @Singleton
+    @Provides
+    @Named("imgur_instance")
+    static Retrofit provideImgurRetrofitInstance(Context context, SharedPrefClient clientPref) {
+
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .connectTimeout(connectTimeUnit, TimeUnit.SECONDS)
+                .readTimeout(readTimeUnit, TimeUnit.SECONDS)
+                .writeTimeout(writeTimeUnit, TimeUnit.SECONDS)
+                .addInterceptor(
+                        new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new ChuckInterceptor(context))
+                .addInterceptor(chain -> {
+                    Request request = chain.request();
+                    Request.Builder newRequest = request.newBuilder();
+                    newRequest.addHeader(Constant.AUTH_HEADER, Constant.BEARER_SUFFIX + Constant.IMGUR_ACCESS_TOKEN);
+                    return chain.proceed(newRequest.build());
+                });
+
+        Gson gson = new GsonBuilder().setLenient().create();
+        return new Retrofit.Builder()
+                .baseUrl(Constant.IMGUR_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(httpClient.build())
+                .build();
+    }
+
     @Provides
     @Named("IO")
     static public CoroutineDispatcher provideIOCoroutineDispatcher() {

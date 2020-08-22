@@ -122,11 +122,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_small"
-            android:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/hide_password" />
+            app:srcCompat="@drawable/hide_password"
+            app:tint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -150,7 +150,7 @@
         android:gravity="center"
         android:text="@string/submit"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="@dimen/font_size_18"
         app:layout_constraintBottom_toTopOf="@+id/txtOrConnect"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"

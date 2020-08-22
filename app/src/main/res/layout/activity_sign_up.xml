@@ -193,11 +193,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_small"
-            android:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/hide_password" />
+            app:srcCompat="@drawable/hide_password"
+            app:tint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -210,6 +210,7 @@
         android:text="@string/i_agree_to_the_terms_and_conditions"
         android:textColor="@color/white"
         android:textSize="@dimen/font_size_16"
+        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toEndOf="@+id/imgCheck"
         app:layout_constraintTop_toBottomOf="@+id/clPassword" />
@@ -218,13 +219,13 @@
         android:id="@+id/btSubmit"
         android:layout_width="0dp"
         android:layout_height="@dimen/button_height"
-        android:layout_marginTop="@dimen/margin_semi_medium"
+        android:layout_marginTop="@dimen/margin_large_medium"
         android:background="@drawable/bg_login_purple_rounded"
         android:fontFamily="@font/avenirltstd_medium"
         android:gravity="center"
         android:text="@string/submit"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="@dimen/font_size_18"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
@@ -268,6 +269,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_medium_large"
         android:padding="@dimen/padding_small"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/txtAgree"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
         app:layout_constraintTop_toTopOf="@+id/txtAgree"

@@ -2,8 +2,12 @@ package com.kunal.tnt.home.ui
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.get
 import androidx.navigation.ui.setupWithNavController
 import com.kunal.tnt.R
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
@@ -24,11 +28,13 @@ class HomeActivity : DaggerAppCompatActivity() {
         ViewModelProvider(this, viewModelProvidersFactory)[HomeViewModel::class.java]
     }
 
+    lateinit var navigation: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val navigation = Navigation.findNavController(this, R.id.fragment)
+        navigation = Navigation.findNavController(this, R.id.fragment)
         bottom_navigation.setupWithNavController(navigation)
 
         imgCreateFeed.setOnClickListener {
@@ -41,8 +47,8 @@ class HomeActivity : DaggerAppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        HomeFragment().onActivityResult(requestCode, resultCode, data)
-
+        val args = Bundle()
+        navigation.setGraph(R.navigation.bottom_navigation, args)
     }
 
     /*private fun loadFragment(fragment: Fragment?): Boolean {

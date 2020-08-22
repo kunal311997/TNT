@@ -3,7 +3,10 @@ package com.kunal.tnt.common.uils
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
+import android.util.Base64
 import android.util.Patterns
 import android.view.View
 import android.widget.ImageView
@@ -17,6 +20,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -134,4 +138,28 @@ object Utilities {
         return json
     }
 
+     fun Bitmap.convertBitmapTobase64(): String {
+        val baos = ByteArrayOutputStream()
+        val bitmap = Bitmap.createScaledBitmap(this, this.width, this.height, false)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val imageBytes: ByteArray = baos.toByteArray()
+        val encoded: String = Base64.encodeToString(imageBytes, Base64.NO_WRAP)
+        return encoded
+    }
+
+    fun showChooserForLinkShare(context: Context, message: String) {
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(
+            Intent.EXTRA_SUBJECT,
+            context.getString(R.string.app_name) + " " + context.getString(R.string.share)
+        )
+        shareIntent.putExtra(Intent.EXTRA_TEXT, message)
+        context.startActivity(
+            Intent.createChooser(
+                shareIntent,
+                context.getString(R.string.share)
+            )
+        )
+    }
 }

@@ -14,6 +14,7 @@ import com.kunal.tnt.common.uils.Utilities.formatDate
 import com.kunal.tnt.databinding.ItemFavouriteImageBinding
 import com.kunal.tnt.databinding.ItemFavouriteTextBinding
 import com.kunal.tnt.favourites.models.Favourites
+import com.kunal.tnt.home.data.Feed
 
 class FavouritesAdapter(
     private var feedsList: List<Favourites>
@@ -25,6 +26,8 @@ class FavouritesAdapter(
 
     var listener: ((view: View, item: Favourites, position: Int) -> Unit)? = null
     var bookmarkListener: ((item: Favourites, pos: Int) -> Unit)? = null
+    var shareListener: ((item: Favourites) -> Unit)? = null
+
     private val TEXT = 1
     private val IMAGE = 2
 
@@ -80,6 +83,9 @@ class FavouritesAdapter(
                 notifyItemChanged(pos)
                 bookmarkListener?.invoke(feedsList[pos], pos)
             }
+            binding.imgShare.setOnClickListener {
+                shareListener?.invoke(feedsList[pos])
+            }
         }
     }
 
@@ -102,6 +108,9 @@ class FavouritesAdapter(
                 feedsList[pos].isBookmarked = !feedsList[pos].isBookmarked
                 notifyItemChanged(pos)
                 bookmarkListener?.invoke(feedsList[pos], pos)
+            }
+            binding.imgShare.setOnClickListener {
+                shareListener?.invoke(feedsList[pos])
             }
 
         }

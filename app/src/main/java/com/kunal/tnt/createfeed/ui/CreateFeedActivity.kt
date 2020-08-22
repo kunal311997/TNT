@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -18,6 +19,7 @@ import com.kunal.tnt.R
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.common.uils.SharedPrefClient
 import com.kunal.tnt.common.uils.Utilities
+import com.kunal.tnt.common.uils.Utilities.convertBitmapTobase64
 import com.kunal.tnt.common.uils.Utilities.gone
 import com.kunal.tnt.common.uils.Utilities.isValidUrl
 import com.kunal.tnt.common.uils.Utilities.showToast
@@ -31,6 +33,7 @@ import com.kunal.tnt.databinding.ActivityCreateFeedBinding
 import com.kunal.tnt.home.utils.HomeConstants
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_create_feed.*
+import kotlinx.coroutines.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -52,9 +55,16 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
     lateinit var binding: ActivityCreateFeedBinding
 
+    var bitmap: Bitmap? = null
+
     private val viewModel: CreateFeedViewModel by lazy {
         ViewModelProvider(this, viewModelProviderFactory)[CreateFeedViewModel::class.java]
     }
+
+    var title = ""
+    var description = ""
+    var source = ""
+    var category = ""
 
     private val keywordsList = arrayListOf(
         Keywords("Sports"),
@@ -112,22 +122,56 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 }
             }
             btnDone -> {
-                var category = ""
+
+                title = edtTitle.text.toString()
+                description = edtDesc.text.toString()
+                source = edtSource.text.toString()
                 if (adapter.selectedPosition != -1) {
                     category = keywordsList[adapter.selectedPosition].name
                 }
-                val title = edtTitle.text.toString()
-                val description = edtDesc.text.toString()
-                val source = edtSource.text.toString()
 
                 if (checkInputValidations(title, description, category, source)) {
-                    viewModel.createFeed(
-                        title, category, description,
-                        source, preference.getUsername(), file
-                    )
+                    if (bitmap != null)
+                        uploadImageToImgur()
+                    else
+                        uploadDataToServer(title, description, category, source, "")
                 }
+
             }
         }
+    }
+
+    private fun uploadImageToImgur() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val encodedString = async(Dispatchers.IO) {
+                var encoded = ""
+                try {
+                    encoded = bitmap!!.convertBitmapTobase64()
+                } catch (e: Exception) {
+                    Log.e("Image Exception", e.toString())
+                }
+                encoded
+            }.await()
+            withContext(Dispatchers.Main) {
+                viewModel.uploadImage(encodedString)
+            }
+        }
+
+
+    }
+
+
+    private fun uploadDataToServer(
+        title: String,
+        description: String,
+        category: String,
+        source: String,
+        imageUrl: String
+    ) {
+        viewModel.createFeed(
+            title, category, description,
+            source, preference.getUsername(), imageUrl
+        )
     }
 
     private fun checkInputValidations(
@@ -198,7 +242,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
     }
 
     private fun getAndSetImage(uri: Uri) {
-        var bitmap: Bitmap? = null
+
         try {
             bitmap = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, uri)
         } catch (e: IOException) {
@@ -210,7 +254,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
             val outputFile = File.createTempFile("image", ".jpg", outputDir)
             file = outputFile
             val stream = FileOutputStream(outputFile, false)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+            bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, stream)
             stream.close()
         }
 
@@ -228,6 +272,28 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                     progressBar.gone()
                     setResult(HomeConstants.CREATE_FEED_REQUEST_CODE)
                     finish()
+                }
+                Resource.Status.LOADING -> {
+                    progressBar.visible()
+                }
+                Resource.Status.ERROR -> {
+                    progressBar.gone()
+                }
+            }
+        })
+
+        viewModel.getImageUploadLiveData().observe(this, Observer {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    progressBar.gone()
+                    this.showToast("Image Uploaded")
+                    uploadDataToServer(
+                        title,
+                        description,
+                        category,
+                        source,
+                        it?.data?.data?.link ?: ""
+                    )
                 }
                 Resource.Status.LOADING -> {
                     progressBar.visible()

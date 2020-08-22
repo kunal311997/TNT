@@ -40,29 +40,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/imgFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/margin_medium_large"
-                    android:padding="@dimen/padding_small"
-                    android:tint="@color/white"
-                    app:layout_constraintBottom_toBottomOf="@+id/imgCompare"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imgCompare"
-                    app:srcCompat="@drawable/filter" />
 
-                <ImageView
-                    android:id="@+id/imgCompare"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/margin_medium_large"
-                    android:padding="@dimen/padding_small"
-                    android:tint="@color/white"
-                    app:layout_constraintBottom_toBottomOf="@+id/txtHeading"
-                    app:layout_constraintEnd_toStartOf="@+id/imgFilter"
-                    app:layout_constraintTop_toTopOf="@+id/txtHeading"
-                    app:srcCompat="@drawable/campare" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.Guideline

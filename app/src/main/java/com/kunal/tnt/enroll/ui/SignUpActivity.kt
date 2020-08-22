@@ -2,6 +2,7 @@ package com.kunal.tnt.enroll.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,8 +11,8 @@ import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.common.uils.SharedPrefClient
 import com.kunal.tnt.common.uils.Utilities.gone
 import com.kunal.tnt.common.uils.Utilities.isValidEmail
-import com.kunal.tnt.common.uils.Utilities.visible
 import com.kunal.tnt.common.uils.Utilities.showToast
+import com.kunal.tnt.common.uils.Utilities.visible
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.enroll.viewmodel.AuthViewModel
 import com.kunal.tnt.home.ui.HomeActivity
@@ -28,6 +29,9 @@ class SignUpActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
     @Inject
     lateinit var preference: SharedPrefClient
+
+    private var isPasswordVisible = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,10 +78,24 @@ class SignUpActivity : DaggerAppCompatActivity(), View.OnClickListener {
         txtLogin.setOnClickListener(this)
         txtNoAccount.setOnClickListener(this)
         btSubmit.setOnClickListener(this)
+        imgShowPassword.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v) {
+
+            imgShowPassword -> {
+                if (!isPasswordVisible) {
+                    isPasswordVisible = true
+                    imgShowPassword.setImageResource(R.drawable.show_password)
+                    edtPassword.transformationMethod = null
+                } else {
+                    isPasswordVisible = false
+                    imgShowPassword.setImageResource(R.drawable.hide_password)
+                    edtPassword.transformationMethod = PasswordTransformationMethod()
+                }
+                edtPassword.setSelection(edtPassword.text.length)
+            }
             txtLogin, txtNoAccount -> {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)

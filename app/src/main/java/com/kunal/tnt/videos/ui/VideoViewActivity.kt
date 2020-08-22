@@ -30,9 +30,9 @@ class VideoViewActivity : YouTubeBaseActivity() {
                 p2: Boolean
             ) {
                 if (!p2) {
-                    p1?.setFullscreen(true)
                     p1?.loadVideo(videoCode)
                     p1?.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT)
+                    //p1?.setFullscreen(true)
                 }
             }
 

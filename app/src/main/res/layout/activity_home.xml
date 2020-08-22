@@ -54,7 +54,7 @@
         android:layout_marginBottom="@dimen/margin_xlarge"
         android:elevation="5dp"
         android:src="@drawable/icon_add"
-        android:tint="@color/white"
+        android:tint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </RelativeLayout>

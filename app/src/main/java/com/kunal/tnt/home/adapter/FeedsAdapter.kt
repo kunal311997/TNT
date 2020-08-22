@@ -25,6 +25,7 @@ class FeedsAdapter(
 
     var listener: ((view: View, item: Feed, position: Int) -> Unit)? = null
     var bookmarkListener: ((item: Feed) -> Unit)? = null
+    var shareListener: ((item: Feed) -> Unit)? = null
     private val TEXT = 1
     private val IMAGE = 2
 
@@ -86,6 +87,9 @@ class FeedsAdapter(
                 notifyItemChanged(pos)
                 bookmarkListener?.invoke(feedsList[pos])
             }
+            binding.imgShare.setOnClickListener {
+                shareListener?.invoke(feedsList[pos])
+            }
 
         }
     }
@@ -109,6 +113,10 @@ class FeedsAdapter(
                 feedsList[pos].isBookmarked = !feedsList[pos].isBookmarked
                 notifyItemChanged(pos)
                 bookmarkListener?.invoke(feedsList[pos])
+            }
+
+            binding.imgShare.setOnClickListener {
+                shareListener?.invoke(feedsList[pos])
             }
 
         }

@@ -38,4 +38,10 @@
     <string name="invalid_url">Please enter a valid URL.</string>
     <string name="hack_created">Hack created successfully !!</string>
 
+
+    <string name="in_development">Work in Progress !!</string>
+    <string name="share">Share</string>
+    <string name="added_to_favourites">Added to favourites</string>
+    <string name="removed_favourites">Removed from favourites</string>
+
 </resources>
