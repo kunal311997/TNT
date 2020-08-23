@@ -98,7 +98,7 @@ object Utilities {
         )
     }
 
-    fun checkGalleryPermissions(context: FragmentActivity): Boolean {
+    fun checkGalleryPermissions(context: Context): Boolean {
         if (
             PermissionChecker.checkSelfPermission(
                 context,
@@ -109,6 +109,23 @@ object Utilities {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             ) == PermissionChecker.PERMISSION_DENIED
 
+        ) {
+            return false
+        }
+        return true
+    }
+
+    fun checkCameraPermissions(context: Context): Boolean {
+        if (PermissionChecker.checkSelfPermission(
+                context,
+                Manifest.permission.CAMERA
+            )
+            == PermissionChecker.PERMISSION_DENIED ||
+            PermissionChecker.checkSelfPermission(
+                context,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            == PermissionChecker.PERMISSION_DENIED
         ) {
             return false
         }
@@ -138,7 +155,7 @@ object Utilities {
         return json
     }
 
-     fun Bitmap.convertBitmapTobase64(): String {
+    fun Bitmap.convertBitmapTobase64(): String {
         val baos = ByteArrayOutputStream()
         val bitmap = Bitmap.createScaledBitmap(this, this.width, this.height, false)
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kunal.tnt.R
@@ -12,7 +13,7 @@ import com.kunal.tnt.createfeed.data.Keywords
 import com.kunal.tnt.databinding.ItemKeywordsBinding
 
 class KeywordsAdapter(
-     var keywordsList: List<Keywords>
+    var keywordsList: List<Keywords>
 ) :
     RecyclerView.Adapter<KeywordsAdapter.ViewHolder>() {
 
@@ -55,9 +56,11 @@ class KeywordsAdapter(
             if (selectedPosition == pos) {
                 binding.root.background =
                     ContextCompat.getDrawable(context, R.drawable.bg_accent_rounded)
+                binding.txtKeyword.setTextColor(ContextCompat.getColor(context, R.color.black))
             } else {
                 binding.root.background =
                     ContextCompat.getDrawable(context, R.drawable.bg_white_rounded_transparent)
+                binding.txtKeyword.setTextColor(ContextCompat.getColor(context, R.color.white))
             }
 
             binding.root.setOnClickListener {

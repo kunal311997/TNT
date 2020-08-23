@@ -194,8 +194,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_medium"
                         android:backgroundTint="@color/white"
-                        android:drawableEnd="@drawable/ic_paste_source"
-                        android:drawablePadding="@dimen/padding_small"
                         android:ems="10"
                         android:gravity="top"
                         android:hint="Enter your link here"

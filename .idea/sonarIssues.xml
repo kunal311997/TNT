@@ -883,6 +883,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/feed_fragment.xml">
           <value>
             <set />
@@ -1039,6 +1044,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/common/di/AppModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/insurance/Constants.kt">
           <value>
             <set />
           </value>

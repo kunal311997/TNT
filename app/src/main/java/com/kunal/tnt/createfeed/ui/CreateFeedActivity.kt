@@ -5,8 +5,11 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.StrictMode
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -66,6 +69,8 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
     var source = ""
     var category = ""
 
+    var cameraOutPutFileUri: Uri? = null
+
     private val keywordsList = arrayListOf(
         Keywords("Sports"),
         Keywords("Fitness"),
@@ -101,6 +106,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
     private fun addOnclickListeners() {
         imgGallery.setOnClickListener(this)
+        imgCamera.setOnClickListener(this)
         btnDone.setOnClickListener(this)
     }
 
@@ -121,8 +127,23 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                     choosePhotoFromGallery()
                 }
             }
-            btnDone -> {
 
+            imgCamera -> {
+                if (Utilities.checkCameraPermissions(this)) {
+                    val permission = arrayOf(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    )
+                    requestPermissions(
+                        permission,
+                        FeedConstants.CAMERA_PERMISSION_CODE
+                    )
+                } else {
+                    takePhotoFromCamera()
+                }
+            }
+
+            btnDone -> {
                 title = edtTitle.text.toString()
                 description = edtDesc.text.toString()
                 source = edtSource.text.toString()
@@ -156,8 +177,6 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 viewModel.uploadImage(encodedString)
             }
         }
-
-
     }
 
 
@@ -200,7 +219,6 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
         return true
     }
 
-
     private fun choosePhotoFromGallery() {
         val intent = Intent()
         intent.apply {
@@ -210,8 +228,20 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
         startActivityForResult(
             Intent.createChooser(intent, FeedConstants.SELECT_FILE),
-            FeedConstants.IMAGE_REQUEST_CODE
+            FeedConstants.GALLERY_REQUEST_CODE
         )
+    }
+
+
+    private fun takePhotoFromCamera() {
+        val builder: StrictMode.VmPolicy.Builder = StrictMode.VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
+
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val file = File(getExternalFilesDir(null), "MyPhoto.jpg")
+        cameraOutPutFileUri = Uri.fromFile(file)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraOutPutFileUri)
+        startActivityForResult(intent, FeedConstants.CAMERA_REQUEST_CODE)
     }
 
     override fun onRequestPermissionsResult(
@@ -220,9 +250,14 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            choosePhotoFromGallery()
+
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            when (requestCode) {
+                FeedConstants.GALLERY_PERMISSION_CODE -> choosePhotoFromGallery()
+                FeedConstants.CAMERA_PERMISSION_CODE -> takePhotoFromCamera()
+            }
         }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -230,19 +265,34 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                FeedConstants.IMAGE_REQUEST_CODE -> {
+
+                FeedConstants.GALLERY_REQUEST_CODE -> {
                     val selectedImage: Uri? = data?.data
                     selectedImage?.let {
                         getAndSetImage(it)
                     }
+                }
+                FeedConstants.CAMERA_REQUEST_CODE -> {
+                    imgFeed.visible()
+                    txtImage.visible()
+                    val uri: String = cameraOutPutFileUri.toString()
 
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(
+                            this.contentResolver, cameraOutPutFileUri
+                        )
+                        val d: Drawable = BitmapDrawable(resources, bitmap)
+                        imgFeed.setImageDrawable(d)
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                    /* val photo = data!!.extras!!["data"] as Bitmap?*/
                 }
             }
         }
     }
 
     private fun getAndSetImage(uri: Uri) {
-
         try {
             bitmap = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, uri)
         } catch (e: IOException) {
@@ -257,7 +307,6 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
             bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, stream)
             stream.close()
         }
-
         imgFeed.visible()
         txtImage.visible()
         imgFeed.load(uri)
