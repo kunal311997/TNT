@@ -2,19 +2,18 @@ package com.kunal.tnt.home.ui
 
 
 import android.app.AlertDialog
-import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.kunal.tnt.R
 import com.kunal.tnt.common.uils.SharedPrefClient
+import com.kunal.tnt.common.uils.Utilities
+import com.kunal.tnt.common.uils.Utilities.showToast
 import com.kunal.tnt.enroll.ui.LoginActivity
 import com.kunal.tnt.favourites.ui.FavouritesActivity
 import dagger.android.support.DaggerFragment
@@ -39,12 +38,11 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener {
         super.onActivityCreated(savedInstanceState)
         setProfileData()
         initOnClickListeners()
-
     }
 
     private fun openSignoutDialog() {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
-        alertDialogBuilder.setMessage("Are you sure, You want to sign out ?")
+        alertDialogBuilder.setMessage("Are you sure, you want to sign out ?")
         alertDialogBuilder.setPositiveButton(
             "Yes"
         ) { _, _ ->
@@ -74,6 +72,11 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener {
     private fun initOnClickListeners() {
         txtSignOut.setOnClickListener(this)
         txtFavourites.setOnClickListener(this)
+        txtNotifications.setOnClickListener(this)
+        txtShareFeedback.setOnClickListener(this)
+        txtInviteFriends.setOnClickListener(this)
+        txtRateOurApp.setOnClickListener(this)
+        txtAboutUs.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -85,7 +88,27 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener {
             txtFavourites -> {
                 val intent = Intent(requireActivity(), FavouritesActivity::class.java)
                 startActivity(intent)
+            }
 
+            txtNotifications, txtShareFeedback, txtRateOurApp, txtAboutUs -> {
+                requireActivity().showToast(resources.getString(R.string.in_development))
+            }
+            txtInviteFriends -> Utilities.showChooserForLinkShare(
+                requireContext(),
+                "Hey, Please download this amazing app."
+            )
+        }
+    }
+
+    fun openInAppReviewDialog() {
+        val manager = ReviewManagerFactory.create(requireActivity())
+        val request = manager.requestReviewFlow()
+        request.addOnCompleteListener { request ->
+            if (request.isSuccessful) {
+                // We got the ReviewInfo object
+                val reviewInfo = request.result
+            } else {
+                // There was some problem, continue regardless of the result.
             }
         }
     }

@@ -78,5 +78,9 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="gone" />
+        <include
+            android:id="@+id/layoutError"
+            layout="@layout/layout_error_page"
+            android:visibility="gone" />
     </RelativeLayout>
 </layout>

@@ -28,6 +28,8 @@ import com.kunal.tnt.home.adapter.FeedsAdapter
 import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.viewmodel.HomeViewModel
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.layout_error_page.view.*
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 
@@ -60,6 +62,13 @@ class HomeFragment : DaggerFragment() {
         viewModel.getFeed()
         initObservers()
         setAdapter()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.layoutError.btRetry.setOnClickListener {
+            viewModel.getFeed()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -76,6 +85,7 @@ class HomeFragment : DaggerFragment() {
                 }
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.gone()
+                    binding.layoutError.gone()
                     if (it.data != null) {
                         feedsList.clear()
                         feedsList.addAll(it.data)
@@ -84,7 +94,13 @@ class HomeFragment : DaggerFragment() {
                 }
 
                 Resource.Status.ERROR -> {
+                    when (it.throwable) {
+                        is UnknownHostException -> {
+                            binding.layoutError.txtError.text = "No Internet Connection !!"
+                        }
+                    }
                     binding.progressBar.gone()
+                    binding.layoutError.visible()
                 }
             }
         })

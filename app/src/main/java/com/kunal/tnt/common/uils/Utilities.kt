@@ -12,7 +12,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.PermissionChecker
-import androidx.fragment.app.FragmentActivity
 import coil.api.load
 import com.kunal.tnt.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

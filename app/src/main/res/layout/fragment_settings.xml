@@ -94,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium_large"
         android:padding="@dimen/padding_large"
+        android:visibility="gone"
         android:text="Privacy Policy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtInviteFriends" />

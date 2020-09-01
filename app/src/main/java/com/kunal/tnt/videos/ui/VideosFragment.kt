@@ -24,6 +24,8 @@ import com.kunal.tnt.videos.adapters.VideosAdapter
 import com.kunal.tnt.videos.models.VideosResponse
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_videos.*
+import kotlinx.android.synthetic.main.layout_error_page.view.*
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 //https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=2xsKNjCJWgE&format=json
@@ -55,6 +57,13 @@ class VideosFragment : DaggerFragment() {
         viewModel.getVideos()
         //loadDummyDataForHomePage()
         initObservers()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.layoutError.btRetry.setOnClickListener {
+            viewModel.getVideos()
+        }
     }
 
     private fun initObservers() {
@@ -67,13 +76,20 @@ class VideosFragment : DaggerFragment() {
                 }
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.gone()
+                    binding.layoutError.gone()
                     if (it.data != null) {
                         setAdapter(it.data)
                     }
                 }
 
                 Resource.Status.ERROR -> {
+                    when (it.throwable) {
+                        is UnknownHostException -> {
+                            binding.layoutError.txtError.text = "No Internet Connection !!"
+                        }
+                    }
                     binding.progressBar.gone()
+                    binding.layoutError.visible()
                 }
             }
         })

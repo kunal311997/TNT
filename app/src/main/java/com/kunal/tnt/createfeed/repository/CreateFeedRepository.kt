@@ -1,5 +1,6 @@
 package com.kunal.tnt.createfeed.repository
 
+import com.kunal.tnt.categories.CategoriesResponse
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.common.repository.BaseRepository
 import com.kunal.tnt.common.uils.Utilities
@@ -7,6 +8,7 @@ import com.kunal.tnt.createfeed.data.CreateFeedResponse
 import com.kunal.tnt.createfeed.data.ImageUploadResponse
 import com.kunal.tnt.createfeed.network.CreateFeedApi
 import com.kunal.tnt.createfeed.utils.FeedConstants
+import com.kunal.tnt.home.network.HomeApi
 import kotlinx.coroutines.CoroutineDispatcher
 import okhttp3.RequestBody
 import javax.inject.Inject
@@ -15,6 +17,7 @@ import javax.inject.Named
 class CreateFeedRepository @Inject constructor(
     @Named("IO") private val ioDispatcher: CoroutineDispatcher,
     private val createFeedApi: CreateFeedApi,
+    private val homeApi: HomeApi,
     @Named("imgur_instance") private val imageApi: CreateFeedApi
 ) : BaseRepository() {
 
@@ -49,6 +52,9 @@ class CreateFeedRepository @Inject constructor(
         return safeApiCall(ioDispatcher) {
             imageApi.uploadImage(file)
         }
+    }
 
+    suspend fun getCategories(): Resource<CategoriesResponse> {
+        return safeApiCall(ioDispatcher) { homeApi.callCategoriesApi() }
     }
 }

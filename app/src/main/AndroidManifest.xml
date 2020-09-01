@@ -18,17 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".favourites.ui.FavouritesActivity">
 
-        </activity>
-        <activity android:name=".feeddetail.FeedDetailActivity" />
-        <activity android:name=".videos.ui.VideoViewActivity">
 
-        </activity>
-        <activity android:name=".home.ui.HomeActivity">
-
-        </activity>
-        <activity android:name=".enroll.ui.SelectInterestsActivity" />
         <activity android:name=".enroll.ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,19 +27,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".enroll.ui.LoginActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".enroll.ui.SignUpActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".createfeed.ui.CreateFeedActivity"
             android:launchMode="singleTask"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".favourites.ui.FavouritesActivity"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+        </activity>
+        <activity
+            android:name=".feeddetail.FeedDetailActivity"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".videos.ui.VideoViewActivity"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+        </activity>
+        <activity
+            android:name=".home.ui.HomeActivity"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+        </activity>
+        <activity
+            android:name=".enroll.ui.SelectInterestsActivity"
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>

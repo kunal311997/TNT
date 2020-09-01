@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kunal.tnt.categories.CategoriesResponse
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.createfeed.repository.CreateFeedRepository
 import com.kunal.tnt.createfeed.data.CreateFeedResponse
@@ -22,6 +23,7 @@ class CreateFeedViewModel @Inject constructor(
 
     private val createFeedData = MutableLiveData<Resource<CreateFeedResponse>>()
     private val imageUploadLiveData = MutableLiveData<Resource<ImageUploadResponse>>()
+    private val categoriesLiveData = MutableLiveData<Resource<CategoriesResponse>>()
 
     fun getCreateFeedLiveData(): LiveData<Resource<CreateFeedResponse>> {
         return createFeedData
@@ -29,6 +31,10 @@ class CreateFeedViewModel @Inject constructor(
 
     fun getImageUploadLiveData(): LiveData<Resource<ImageUploadResponse>> {
         return imageUploadLiveData
+    }
+
+    fun getCategoriesLiveData(): LiveData<Resource<CategoriesResponse>> {
+        return categoriesLiveData
     }
 
     fun createFeed(
@@ -70,6 +76,22 @@ class CreateFeedViewModel @Inject constructor(
             withContext(mainDispatcher) {
                 imageUploadResponse?.let {
                     imageUploadLiveData.value = it
+                }
+            }
+        }
+    }
+
+    fun getCategories() {
+        categoriesLiveData.value = Resource.loading(null)
+        var feedResponse: Resource<CategoriesResponse>? = null
+
+        viewModelScope.launch {
+            withContext(ioDispatcher) {
+                feedResponse = createFeedRepository.getCategories()
+            }
+            withContext(mainDispatcher) {
+                feedResponse?.let {
+                    categoriesLiveData.value = it
                 }
             }
         }

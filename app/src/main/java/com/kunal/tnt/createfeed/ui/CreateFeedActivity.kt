@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import coil.api.load
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.kunal.tnt.R
+import com.kunal.tnt.categories.Categories
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.common.uils.SharedPrefClient
 import com.kunal.tnt.common.uils.Utilities
@@ -29,17 +30,18 @@ import com.kunal.tnt.common.uils.Utilities.showToast
 import com.kunal.tnt.common.uils.Utilities.visible
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.adapter.KeywordsAdapter
-import com.kunal.tnt.createfeed.data.Keywords
 import com.kunal.tnt.createfeed.utils.FeedConstants
 import com.kunal.tnt.createfeed.viewmodel.CreateFeedViewModel
 import com.kunal.tnt.databinding.ActivityCreateFeedBinding
 import com.kunal.tnt.home.utils.HomeConstants
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_create_feed.*
+import kotlinx.android.synthetic.main.layout_error_page.view.*
 import kotlinx.coroutines.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 
@@ -58,38 +60,27 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
     lateinit var binding: ActivityCreateFeedBinding
 
-    var bitmap: Bitmap? = null
-
     private val viewModel: CreateFeedViewModel by lazy {
         ViewModelProvider(this, viewModelProviderFactory)[CreateFeedViewModel::class.java]
     }
 
     var title = ""
+
     var description = ""
     var source = ""
     var category = ""
-
     var cameraOutPutFileUri: Uri? = null
 
-    private val keywordsList = arrayListOf(
-        Keywords("Sports"),
-        Keywords("Fitness"),
-        Keywords("Education"),
-        Keywords("Technology"),
-        Keywords("Love"),
-        Keywords("Relationship"),
-        Keywords("Coaching"),
-        Keywords("Food"),
-        Keywords("Automobile")
-    )
+    var bitmap: Bitmap? = null
 
+    private val keywordsList = ArrayList<Categories>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_feed)
 
         addOnclickListeners()
         setObservers()
-        setAdapter()
+        viewModel.getCategories()
         setName()
     }
 
@@ -148,7 +139,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 description = edtDesc.text.toString()
                 source = edtSource.text.toString()
                 if (adapter.selectedPosition != -1) {
-                    category = keywordsList[adapter.selectedPosition].name
+                    category = keywordsList[adapter.selectedPosition].categoryName
                 }
 
                 if (checkInputValidations(title, description, category, source)) {
@@ -349,6 +340,35 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 }
                 Resource.Status.ERROR -> {
                     progressBar.gone()
+                }
+            }
+        })
+
+        viewModel.getCategoriesLiveData().observe(this, Observer
+        {
+            when (it.status) {
+
+                Resource.Status.LOADING -> {
+                    binding.progressBar.visible()
+                }
+                Resource.Status.SUCCESS -> {
+                    binding.progressBar.gone()
+                    binding.layoutError.gone()
+                    if (it.data != null) {
+                        keywordsList.clear()
+                        keywordsList.addAll(it.data.data)
+                        setAdapter()
+                    }
+                }
+
+                Resource.Status.ERROR -> {
+                    when (it.throwable) {
+                        is UnknownHostException -> {
+                            binding.layoutError.txtError.text = "No Internet Connection !!"
+                        }
+                    }
+                    binding.progressBar.gone()
+                    binding.layoutError.visible()
                 }
             }
         })

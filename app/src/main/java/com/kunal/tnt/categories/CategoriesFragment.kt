@@ -21,6 +21,8 @@ import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.viewmodel.HomeViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_categories.*
+import kotlinx.android.synthetic.main.layout_error_page.view.*
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class CategoriesFragment : DaggerFragment() {
@@ -52,6 +54,14 @@ class CategoriesFragment : DaggerFragment() {
         viewModel.getCategories()
         //loadDummyDataForHomePage()
         initObservers()
+        initListeners()
+    }
+
+
+    private fun initListeners() {
+        binding.layoutError.btRetry.setOnClickListener {
+            viewModel.getCategories()
+        }
     }
 
     private fun initObservers() {
@@ -64,13 +74,20 @@ class CategoriesFragment : DaggerFragment() {
                 }
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.gone()
+                    binding.layoutError.gone()
                     if (it.data != null) {
                         setAdapter(it.data.data)
                     }
                 }
 
                 Resource.Status.ERROR -> {
+                    when (it.throwable) {
+                        is UnknownHostException -> {
+                            binding.layoutError.txtError.text = "No Internet Connection !!"
+                        }
+                    }
                     binding.progressBar.gone()
+                    binding.layoutError.visible()
                 }
             }
         })
@@ -84,6 +101,7 @@ class CategoriesFragment : DaggerFragment() {
                 }
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.gone()
+                    binding.layoutError.gone()
                     if (it.data != null) {
                         val feedsList = ArrayList<Feed>()
                         feedsList.addAll(it.data)
@@ -94,7 +112,13 @@ class CategoriesFragment : DaggerFragment() {
                 }
 
                 Resource.Status.ERROR -> {
+                    when (it.throwable) {
+                        is UnknownHostException -> {
+                            binding.layoutError.txtError.text = "No Internet Connection !!"
+                        }
+                    }
                     binding.progressBar.gone()
+                    binding.layoutError.visible()
                 }
             }
         })

@@ -2,6 +2,7 @@ package com.kunal.tnt.createfeed.di
 
 import com.kunal.tnt.createfeed.adapter.KeywordsAdapter
 import com.kunal.tnt.createfeed.network.CreateFeedApi
+import com.kunal.tnt.home.network.HomeApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -18,6 +19,11 @@ class CreateFeedModule {
     @Provides
     fun provideCreateFeedApi(retrofit: Retrofit): CreateFeedApi {
         return retrofit.create(CreateFeedApi::class.java)
+    }
+
+    @Provides
+    fun provideHomeApi(retrofit: Retrofit): HomeApi {
+        return retrofit.create(HomeApi::class.java)
     }
 
     @Provides
