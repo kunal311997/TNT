@@ -4,15 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.kunal.tnt.categories.Categories
 import com.kunal.tnt.categories.CategoriesResponse
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.home.data.Feed
+import com.kunal.tnt.home.network.HomeApi
+import com.kunal.tnt.home.paging.FeedPagingSource
 import com.kunal.tnt.home.repository.HomeRepository
 import com.kunal.tnt.videos.models.VideosResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -21,7 +28,8 @@ import javax.inject.Named
 class HomeViewModel @Inject constructor(
     private val homeRepository: HomeRepository,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher,
-    @Named("MAIN") private val mainDispatcher: CoroutineDispatcher
+    @Named("MAIN") private val mainDispatcher: CoroutineDispatcher,
+    private val homeApi: HomeApi
 ) : ViewModel() {
 
     private val feedLiveData = MutableLiveData<Resource<List<Feed>>>()
@@ -46,7 +54,7 @@ class HomeViewModel @Inject constructor(
         return feedByCategoryLiveData
     }
 
-    fun getFeed() {
+   /* fun getFeed() {
         feedLiveData.value = Resource.loading(null)
         var feedResponse: Resource<List<Feed>>? = null
 
@@ -60,7 +68,7 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
-    }
+    }*/
 
     fun getVideos() {
         videosLiveData.value = Resource.loading(null)
@@ -119,5 +127,9 @@ class HomeViewModel @Inject constructor(
             homeRepository.unBook(userId)
         }
     }
+
+    val listData = Pager(PagingConfig(pageSize = 10)) {
+        FeedPagingSource(homeApi)
+    }.flow.cachedIn(viewModelScope)
 
 }

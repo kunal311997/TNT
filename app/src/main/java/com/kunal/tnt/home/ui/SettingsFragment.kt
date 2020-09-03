@@ -40,7 +40,7 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener {
         initOnClickListeners()
     }
 
-    private fun openSignoutDialog() {
+    private fun openSignOutDialog() {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
         alertDialogBuilder.setMessage("Are you sure, you want to sign out ?")
         alertDialogBuilder.setPositiveButton(
@@ -82,7 +82,7 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v) {
             txtSignOut -> {
-                openSignoutDialog()
+                openSignOutDialog()
             }
 
             txtFavourites -> {

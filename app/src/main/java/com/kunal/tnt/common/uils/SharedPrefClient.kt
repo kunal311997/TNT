@@ -19,6 +19,18 @@ class SharedPrefClient @Inject constructor(private val sharedPreferences: Shared
         return sharedPreferences.getBoolean(USER_LOGGED_IN, false)
     }
 
+    private val WALK_THROUGH_DONE = "walk_through_done"
+
+    fun updateWalkThroughDone(data: Boolean) {
+        sharedPreferences.edit(commit = true) {
+            putBoolean(WALK_THROUGH_DONE, data)
+        }
+    }
+
+    fun isWalkThroughDone(): Boolean {
+        return sharedPreferences.getBoolean(WALK_THROUGH_DONE, false)
+    }
+
     fun updateIsUserLoggedIn(data: Boolean) {
         sharedPreferences.edit(commit = true) {
             putBoolean(USER_LOGGED_IN, data)

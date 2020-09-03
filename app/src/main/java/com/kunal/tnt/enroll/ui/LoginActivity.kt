@@ -105,7 +105,6 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
             txtRegister, txtNoAccount -> {
                 val intent = Intent(this, SignUpActivity::class.java)
                 startActivity(intent)
-                finish()
             }
 
             btSubmit -> {

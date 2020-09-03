@@ -127,7 +127,7 @@
                         android:ems="10"
                         android:gravity="top"
                         android:hint="Enter your description here"
-                        android:inputType="textCapWords"
+                        android:inputType="textCapSentences"
                         android:minHeight="@dimen/edit_text_dec_height"
                         android:textColor="@color/grey_text_color"
                         android:textColorHint="@color/grey_text_color"

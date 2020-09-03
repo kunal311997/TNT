@@ -21,9 +21,9 @@ class HomeRepository @Inject constructor(
 ) : BaseRepository() {
 
 
-    suspend fun getFeed(): Resource<List<Feed>> {
+    /*suspend fun getFeed(): Resource<List<Feed>> {
         return safeApiCall(ioDispatcher) { homeApi.callFeedApi() }
-    }
+    }*/
 
     suspend fun getVideos(): Resource<VideosResponse> {
         return safeApiCall(ioDispatcher) { homeApi.callVideosApi() }

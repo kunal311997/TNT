@@ -44,4 +44,10 @@
     <string name="added_to_favourites">Added to favourites</string>
     <string name="removed_favourites">Removed from favourites</string>
 
+    <string name="done">Done</string>
+    <string name="next">Next</string>
+    <string name="create_your_own_hack_and_let_the_community_know">Create Your own hack and let the community know.</string>
+    <string name="fetch_all_latest_hacks_and_save_them_for_later">Fetch all latest hacks and save them for later.</string>
+    <string name="no_data_found">No Data Found</string>
+
 </resources>

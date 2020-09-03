@@ -7,6 +7,7 @@ import android.os.Handler
 import com.kunal.tnt.R
 import com.kunal.tnt.common.uils.Constant
 import com.kunal.tnt.common.uils.SharedPrefClient
+import com.kunal.tnt.common.uils.Utilities
 import com.kunal.tnt.home.ui.HomeActivity
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -21,7 +22,7 @@ class SplashActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            if (prefClient.isUserLoggedIn()) {
+            /*if (prefClient.isUserLoggedIn()) {
                 val i = Intent(this@SplashActivity, HomeActivity::class.java)
                 startActivity(i)
                 finish()
@@ -29,7 +30,8 @@ class SplashActivity : DaggerAppCompatActivity() {
                 val i = Intent(this@SplashActivity, LoginActivity::class.java)
                 startActivity(i)
                 finish()
-            }
+            }*/
+            Utilities.processEnrollFlow(this,prefClient)
         }, Constant.SPLASH_SCREEN_TIMEOUT)
     }
 }

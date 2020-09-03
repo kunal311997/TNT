@@ -61,14 +61,16 @@ class SignUpActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
                 Resource.Status.SUCCESS -> {
                     progressBar.gone()
-                    preference.updateEmail(response.data?.email.toString())
-                    preference.updateUsername(response.data?.username.toString())
-                    preference.updateBearerToken(response.data?.token.toString())
-                    preference.updateIsUserLoggedIn(true)
+                    if (response.data?.code == 200) {
+                        preference.updateEmail(response.data.email.toString())
+                        preference.updateUsername(response.data.username.toString())
+                        preference.updateBearerToken(response.data.token.toString())
+                        preference.updateIsUserLoggedIn(true)
 
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                        val intent = Intent(this, WalkThroughActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else this.showToast(response.data?.message.toString())
                 }
             }
         })
@@ -97,14 +99,12 @@ class SignUpActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 edtPassword.setSelection(edtPassword.text.length)
             }
             txtLogin, txtNoAccount -> {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
                 finish()
             }
             btSubmit -> {
-                val username = edtName.text.toString()
-                val email = edtEmail.text.toString()
-                val password = edtPassword.text.toString()
+                val username = edtName.text.toString().trim()
+                val email = edtEmail.text.toString().trim()
+                val password = edtPassword.text.toString().trim()
 
                 when {
                     username.isEmpty() -> this.showToast(resources.getString(R.string.invalid_username))
@@ -113,8 +113,6 @@ class SignUpActivity : DaggerAppCompatActivity(), View.OnClickListener {
                     email.isValidEmail() && password.isNotEmpty() && username.isNotEmpty() ->
                         authViewModel.signUp(username, email, password)
                 }
-
-
             }
         }
     }

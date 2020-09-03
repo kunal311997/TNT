@@ -25,7 +25,7 @@ public class HomeModule {
 
     @Provides
     static FeedsAdapter getFeedsAdapter() {
-        return new FeedsAdapter(Collections.emptyList());
+        return new FeedsAdapter();
     }
 
     @Provides

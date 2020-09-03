@@ -14,6 +14,9 @@ import android.widget.Toast
 import androidx.core.content.PermissionChecker
 import coil.api.load
 import com.kunal.tnt.R
+import com.kunal.tnt.enroll.ui.LoginActivity
+import com.kunal.tnt.enroll.ui.WalkThroughActivity
+import com.kunal.tnt.home.ui.HomeActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -177,5 +180,29 @@ object Utilities {
                 context.getString(R.string.share)
             )
         )
+    }
+
+    fun processEnrollFlow(context: Context, prefClient: SharedPrefClient) {
+
+        when {
+
+            !prefClient.isUserLoggedIn() -> {
+                val intent = Intent(context, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                context.startActivity(intent)
+            }
+
+            !prefClient.isWalkThroughDone() -> {
+                val intent = Intent(context, WalkThroughActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                context.startActivity(intent)
+            }
+
+            else -> {
+                val intent = Intent(context, HomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                context.startActivity(intent)
+            }
+        }
     }
 }

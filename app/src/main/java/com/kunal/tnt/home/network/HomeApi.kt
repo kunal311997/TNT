@@ -3,15 +3,17 @@ package com.kunal.tnt.home.network
 import com.kunal.tnt.categories.Categories
 import com.kunal.tnt.categories.CategoriesResponse
 import com.kunal.tnt.home.data.Feed
+import com.kunal.tnt.home.data.FeedResponse
 import com.kunal.tnt.home.utils.HomeConstants
 import com.kunal.tnt.videos.models.VideosResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface HomeApi {
 
     @GET(HomeConstants.GET_FEED)
-    suspend fun callFeedApi(): List<Feed>
+    suspend fun callFeedApi(@Query("page") pageNumber: Int): Response<FeedResponse>
 
     @GET(HomeConstants.GET_VIDEOS)
     suspend fun callVideosApi(): VideosResponse

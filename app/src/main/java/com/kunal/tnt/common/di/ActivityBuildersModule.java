@@ -8,6 +8,7 @@ import com.kunal.tnt.enroll.di.AuthViewModelsModule;
 import com.kunal.tnt.enroll.ui.LoginActivity;
 import com.kunal.tnt.enroll.ui.SignUpActivity;
 import com.kunal.tnt.enroll.ui.SplashActivity;
+import com.kunal.tnt.enroll.ui.WalkThroughActivity;
 import com.kunal.tnt.favourites.di.FavouritesModule;
 import com.kunal.tnt.favourites.ui.FavouritesActivity;
 import com.kunal.tnt.favourites.viewmodel.FavouritesViewModelsModule;
@@ -26,6 +27,9 @@ public abstract class ActivityBuildersModule {
             AuthViewModelsModule.class,
     })
     abstract LoginActivity contributesLoginActivity();
+
+    @ContributesAndroidInjector
+    abstract WalkThroughActivity contributesWalkThroughActivity();
 
     @ContributesAndroidInjector(modules = {
             AuthModule.class,

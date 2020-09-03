@@ -38,6 +38,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../14abhinav1-social_engage_android-176f9d82ce27/app/src/main/res/drawable/bg_white_circle.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../14abhinav1-social_engage_android-176f9d82ce27/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../Assignment/app/build.gradle">
           <value>
             <set />
@@ -378,6 +388,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/enroll/adapters/WalkThroughPagerAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/enroll/adapters/WalkthroughPagerAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/enroll/di/AuthModule.kt">
           <value>
             <set />
@@ -419,6 +439,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/enroll/ui/SplashActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/enroll/ui/WTFirstFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/enroll/ui/WTSecondFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/enroll/ui/WalkThroughActivity.kt">
           <value>
             <set />
           </value>
@@ -598,6 +633,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/home/data/FeedReponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/home/data/FeedResponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/home/data/FeedType.kt">
           <value>
             <set />
@@ -629,6 +674,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/home/network/HomeApi.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kunal/tnt/home/paging/FeedPagingSource.kt">
           <value>
             <set />
           </value>
@@ -808,6 +858,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/bg_white_circle.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/bg_white_circle_opaque.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/bg_white_rounded_transparent.xml">
           <value>
             <set />
@@ -824,6 +884,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/grey_gradient.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/walk_through_tab_selector.xml">
           <value>
             <set />
           </value>
@@ -883,6 +948,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_walk_through.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog.xml">
           <value>
             <set />
@@ -909,6 +979,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_videos.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_wt_first.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_wt_second.xml">
           <value>
             <set />
           </value>
@@ -1043,6 +1123,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/common/analytics/adobe/PageName.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/common/components/CustomTabActivity.kt">
           <value>
             <set />
@@ -1088,7 +1173,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/myaccount/Constants.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/myaccount/ProfileEventTracker.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/myaccount/ui/address/EnterManuallyAddressFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/myaccount/ui/profile/ProfileOptionsFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/myaccount/ui/refer/NonTcpContactsFragment.kt">
           <value>
             <set />
           </value>
@@ -1099,6 +1204,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/myaccount/ui/vault/VaultMyCardsPageFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/java/com/tatadigital/tcp/myaccount/ui/viewmodel/UserProfileViewModel.kt">
           <value>
             <set />
           </value>
@@ -1124,6 +1234,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/res/layout/fragment_change_password.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../tcp-android/app/src/main/res/layout/fragment_user_profile.xml">
           <value>
             <set />
           </value>

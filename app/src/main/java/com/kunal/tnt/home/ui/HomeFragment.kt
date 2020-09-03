@@ -3,7 +3,6 @@ package com.kunal.tnt.home.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +10,14 @@ import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.kunal.tnt.R
-import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.common.uils.Utilities
-import com.kunal.tnt.common.uils.Utilities.gone
 import com.kunal.tnt.common.uils.Utilities.showToast
-import com.kunal.tnt.common.uils.Utilities.visible
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.utils.FeedConstants
 import com.kunal.tnt.databinding.FragmentHomeBinding
@@ -29,7 +28,8 @@ import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.viewmodel.HomeViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.layout_error_page.view.*
-import java.net.UnknownHostException
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -47,6 +47,7 @@ class HomeFragment : DaggerFragment() {
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelProvidersFactory)[HomeViewModel::class.java]
     }
+    var hashMap = HashSet<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,25 +60,50 @@ class HomeFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.getFeed()
+        //viewModel.getFeed()
         initObservers()
-        setAdapter()
+        //setAdapter()
         initListeners()
+
+
+        binding.rvFeeds.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = feedAdapter
+        }
+
+        lifecycleScope.launch {
+            viewModel.listData.collectLatest {
+                feedAdapter.submitData(it)
+            }
+        }
+        initAdapterListeners()
+        feedAdapter.addLoadStateListener { loadState ->
+            if (loadState.refresh is LoadState.Loading) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+
+                // getting the error
+                val error = when {
+                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                    else -> null
+                }
+
+            }
+        }
     }
 
     private fun initListeners() {
         binding.layoutError.btRetry.setOnClickListener {
-            viewModel.getFeed()
+            //viewModel.getFeed()
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        viewModel.getFeed()
-    }
-
     private fun initObservers() {
-        viewModel.getFeedLiveData().observe(requireActivity(), Observer {
+        /*viewModel.getFeedLiveData().observe(requireActivity(), Observer {
             when (it.status) {
 
                 Resource.Status.LOADING -> {
@@ -103,14 +129,21 @@ class HomeFragment : DaggerFragment() {
                     binding.layoutError.visible()
                 }
             }
-        })
-        viewModel.allFavourites.observe(requireActivity(), Observer {
+        })*/
+        viewModel.allFavourites.observe(requireActivity(), Observer { dbList ->
+
+            dbList.forEach { list ->
+                hashMap.add(list.id)
+            }
+
+            feedAdapter.addDbHashMap(hashMap)
             feedsList.forEach { feed ->
-                it.forEach { x ->
-                    if (x.id == feed.id) {
-                        feed.isBookmarked = true
-                    }
-                }
+
+                /* dbList.forEach { x ->
+                     if (x.id == feed.id) {
+                         feed.isBookmarked = true
+                     }
+                 }*/
             }
             feedAdapter.notifyDataSetChanged()
         })
@@ -119,8 +152,11 @@ class HomeFragment : DaggerFragment() {
 
     private fun setAdapter() {
         binding.rvFeeds.adapter = feedAdapter
-        feedAdapter.addItems(feedsList)
+        //feedAdapter.addItems(feedsList)
 
+    }
+
+    private fun initAdapterListeners() {
         feedAdapter.listener = { _, _, pos ->
             val intent = Intent(requireActivity(), FeedDetailActivity::class.java)
             intent.putExtra(FeedConstants.FEEDS_LIST, feedsList)
@@ -151,7 +187,6 @@ class HomeFragment : DaggerFragment() {
                         "${it.title} \n ${it.description} \n ${it.source} \n ${it.backgroundImage}"
             Utilities.showChooserForLinkShare(requireActivity(), message)
         }
-
     }
 
     private fun loadDummyDataForHomePage() {

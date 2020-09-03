@@ -23,5 +23,5 @@ interface FavouritesDao {
     suspend fun deleteAll()
 
     @Query("DELETE FROM favourites WHERE id = :userId")
-    fun deleteByUserId(userId: String)
+   suspend fun deleteByUserId(userId: String)
 }

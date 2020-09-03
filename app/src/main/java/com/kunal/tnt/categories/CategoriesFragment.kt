@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.kunal.tnt.R
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.common.uils.Utilities.gone
+import com.kunal.tnt.common.uils.Utilities.showToast
 import com.kunal.tnt.common.uils.Utilities.visible
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.utils.FeedConstants
@@ -105,9 +106,13 @@ class CategoriesFragment : DaggerFragment() {
                     if (it.data != null) {
                         val feedsList = ArrayList<Feed>()
                         feedsList.addAll(it.data)
-                        val intent = Intent(requireActivity(), FeedDetailActivity::class.java)
-                        intent.putExtra(FeedConstants.FEEDS_LIST, feedsList)
-                        startActivity(intent)
+                        if (feedsList.isEmpty()) {
+                            requireActivity().showToast(resources.getString(R.string.no_data_found))
+                        } else {
+                            val intent = Intent(requireActivity(), FeedDetailActivity::class.java)
+                            intent.putExtra(FeedConstants.FEEDS_LIST, feedsList)
+                            startActivity(intent)
+                        }
                     }
                 }
 

@@ -34,7 +34,7 @@ class FeedDetailActivity : AppCompatActivity() {
     private fun setAdapter() {
         adapter = feedList?.let { FeedDetailAdapter(it) }
         viewPager.adapter = adapter
-        viewPager.setPadding(130, 0, 130, 0)
+        viewPager.setPadding(60, 0, 60, 0)
         viewPager.currentItem = position
     }
 
