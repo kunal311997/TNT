@@ -13,6 +13,7 @@ import android.os.StrictMode
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.webkit.URLUtil
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -203,7 +204,7 @@ class CreateFeedActivity : DaggerAppCompatActivity(), View.OnClickListener {
             return false
         }
 
-        if (source.isNotEmpty() && !source.isValidUrl()) {
+        if (source.isNotEmpty() && !URLUtil.isValidUrl(source)) {
             this.showToast(resources.getString(R.string.invalid_url))
             return false
         }

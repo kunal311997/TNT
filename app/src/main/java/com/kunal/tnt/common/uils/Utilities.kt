@@ -12,7 +12,6 @@ import android.util.Patterns
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.PermissionChecker
 import coil.api.load
 import com.kunal.tnt.R

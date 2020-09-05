@@ -21,6 +21,9 @@ class FeedPagingSource(
             val currentLoadingPageKey = params.key ?: 1
 
             var response: FeedResponse? = null
+            if (currentLoadingPageKey == 1) {
+                totalList.clear()
+            }
             if (currentLoadingPageKey <= totalPages) {
                 response = homeApi.callFeedApi(currentLoadingPageKey)
                 response.feedsList?.forEach {

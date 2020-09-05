@@ -68,8 +68,9 @@ class SignUpActivity : DaggerAppCompatActivity(), View.OnClickListener {
                         preference.updateIsUserLoggedIn(true)
 
                         val intent = Intent(this, WalkThroughActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
-                        finish()
                     } else this.showToast(response.data?.message.toString())
                 }
             }
@@ -109,7 +110,11 @@ class SignUpActivity : DaggerAppCompatActivity(), View.OnClickListener {
                 when {
                     username.isEmpty() -> this.showToast(resources.getString(R.string.invalid_username))
                     !email.isValidEmail() -> this.showToast(resources.getString(R.string.invalid_email))
-                    password.isEmpty() -> this.showToast(resources.getString(R.string.invalid_password))
+                    password.isEmpty() && password.length < 5 -> this.showToast(
+                        resources.getString(
+                            R.string.invalid_password
+                        )
+                    )
                     email.isValidEmail() && password.isNotEmpty() && username.isNotEmpty() ->
                         authViewModel.signUp(username, email, password)
                 }

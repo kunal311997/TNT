@@ -62,6 +62,7 @@
         android:layout_marginTop="@dimen/margin_medium_large"
         android:padding="@dimen/padding_large"
         android:text="Notifications"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtFavourites" />
 
@@ -73,6 +74,7 @@
         android:layout_marginTop="@dimen/margin_medium_large"
         android:padding="@dimen/padding_large"
         android:text="Share Feedback"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtNotifications" />
 
@@ -94,8 +96,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium_large"
         android:padding="@dimen/padding_large"
-        android:visibility="gone"
         android:text="Privacy Policy"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtInviteFriends" />
 
@@ -107,6 +109,7 @@
         android:layout_marginTop="@dimen/margin_medium_large"
         android:padding="@dimen/padding_large"
         android:text="About Us"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtPrivacyPolicy" />
 
