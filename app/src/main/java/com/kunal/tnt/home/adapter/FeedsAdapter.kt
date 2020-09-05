@@ -15,7 +15,6 @@ import com.kunal.tnt.R
 import com.kunal.tnt.common.uils.Utilities.formatDate
 import com.kunal.tnt.databinding.ItemDailyFeedBinding
 import com.kunal.tnt.databinding.ItemDailyFeedTextBinding
-import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.home.data.Feed
 
 class FeedsAdapter : PagingDataAdapter<Feed, RecyclerView.ViewHolder>(FeedComparator) {
@@ -26,8 +25,9 @@ class FeedsAdapter : PagingDataAdapter<Feed, RecyclerView.ViewHolder>(FeedCompar
     var hashMap: HashSet<String>? = null
 
     var listener: ((view: View, item: Feed, position: Int) -> Unit)? = null
-    var bookmarkListener: ((item: Feed) -> Unit)? = null
+    var bookmarkListener: ((item: Feed,pos:Int) -> Unit)? = null
     var shareListener: ((item: Feed) -> Unit)? = null
+    var openBrowserListener: ((item: Feed) -> Unit)? = null
 
     private val TEXT = 1
     private val IMAGE = 2
@@ -103,10 +103,14 @@ class FeedsAdapter : PagingDataAdapter<Feed, RecyclerView.ViewHolder>(FeedCompar
                     item.isBookmarked = !item.isBookmarked
                     notifyItemChanged(pos)
 
-                    bookmarkListener?.invoke(item)
+                    bookmarkListener?.invoke(item,pos)
                 }
                 binding.imgShare.setOnClickListener {
                     shareListener?.invoke(item)
+                }
+
+                binding.imgOpen.setOnClickListener {
+                    openBrowserListener?.invoke(item)
                 }
             }
 
@@ -139,11 +143,15 @@ class FeedsAdapter : PagingDataAdapter<Feed, RecyclerView.ViewHolder>(FeedCompar
 
                     item.isBookmarked = !item.isBookmarked
                     notifyItemChanged(pos)
-                    bookmarkListener?.invoke(item)
+                    bookmarkListener?.invoke(item,pos)
                 }
 
                 binding.imgShare.setOnClickListener {
                     shareListener?.invoke(item)
+                }
+
+                binding.imgOpen.setOnClickListener {
+                    openBrowserListener?.invoke(item)
                 }
             }
 

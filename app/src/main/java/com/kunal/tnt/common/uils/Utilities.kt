@@ -2,6 +2,7 @@ package com.kunal.tnt.common.uils
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -11,6 +12,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.PermissionChecker
 import coil.api.load
 import com.kunal.tnt.R
@@ -203,6 +205,21 @@ object Utilities {
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
             }
+        }
+    }
+
+    fun Context.openWebPage(url: String?) {
+        try {
+            val webpage = Uri.parse(url)
+            val myIntent = Intent(Intent.ACTION_VIEW, webpage)
+            startActivity(myIntent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(
+                this,
+                "No application can handle this request. Please install a web browser or check your URL.",
+                Toast.LENGTH_LONG
+            ).show()
+            e.printStackTrace()
         }
     }
 }

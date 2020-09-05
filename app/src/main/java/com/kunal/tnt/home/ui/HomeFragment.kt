@@ -12,22 +12,26 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.kunal.tnt.R
 import com.kunal.tnt.common.uils.Utilities
+import com.kunal.tnt.common.uils.Utilities.gone
+import com.kunal.tnt.common.uils.Utilities.openWebPage
 import com.kunal.tnt.common.uils.Utilities.showToast
+import com.kunal.tnt.common.uils.Utilities.visible
 import com.kunal.tnt.common.viewmodels.ViewModelProvidersFactory
 import com.kunal.tnt.createfeed.utils.FeedConstants
 import com.kunal.tnt.databinding.FragmentHomeBinding
 import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.feeddetail.FeedDetailActivity
 import com.kunal.tnt.home.adapter.FeedsAdapter
+import com.kunal.tnt.home.adapter.ReposLoadStateAdapter
 import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.viewmodel.HomeViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.layout_error_page.view.*
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -42,11 +46,12 @@ class HomeFragment : DaggerFragment() {
     lateinit var viewModelProvidersFactory: ViewModelProvidersFactory
 
     lateinit var binding: FragmentHomeBinding
-    private val feedsList = ArrayList<Feed>()
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelProvidersFactory)[HomeViewModel::class.java]
     }
+    private var searchJob: Job? = null
+
     var hashMap = HashSet<String>()
 
     override fun onCreateView(
@@ -60,111 +65,83 @@ class HomeFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //viewModel.getFeed()
+
         initObservers()
-        //setAdapter()
         initListeners()
-
-
-        binding.rvFeeds.apply {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = feedAdapter
-        }
-
-        lifecycleScope.launch {
-            viewModel.listData.collectLatest {
-                feedAdapter.submitData(it)
-            }
-        }
+        setAdapter()
+        callFeedApi()
         initAdapterListeners()
+        setLoadStateListener()
+    }
+
+
+    private fun setLoadStateListener() {
         feedAdapter.addLoadStateListener { loadState ->
             if (loadState.refresh is LoadState.Loading) {
-                binding.progressBar.visibility = View.VISIBLE
+                binding.progressBar.visible()
             } else {
-                binding.progressBar.visibility = View.GONE
+                binding.progressBar.gone()
+                binding.layoutError.gone()
 
-                // getting the error
-                val error = when {
-                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                    else -> null
+                try {
+                    if ((loadState.source.refresh as LoadState.Error).error is java.net.ConnectException) {
+                        binding.layoutError.txtError.text = getString(R.string.no_internet)
+                        binding.layoutError.visible()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
-
             }
         }
+    }
+
+    private fun callFeedApi() {
+        searchJob?.cancel()
+        searchJob = lifecycleScope.launch {
+            viewModel.getFeeds().collectLatest {
+                feedAdapter.submitData(it)
+            }
+
+        }
+    }
+
+    private fun setAdapter() {
+        binding.rvFeeds.apply {
+            adapter = feedAdapter
+        }
+        binding.rvFeeds.adapter = feedAdapter.withLoadStateHeaderAndFooter(
+            header = ReposLoadStateAdapter { feedAdapter.retry() },
+            footer = ReposLoadStateAdapter { feedAdapter.retry() }
+        )
+
     }
 
     private fun initListeners() {
         binding.layoutError.btRetry.setOnClickListener {
-            //viewModel.getFeed()
+            feedAdapter.retry()
         }
     }
 
     private fun initObservers() {
-        /*viewModel.getFeedLiveData().observe(requireActivity(), Observer {
-            when (it.status) {
-
-                Resource.Status.LOADING -> {
-                    binding.progressBar.visible()
-                }
-                Resource.Status.SUCCESS -> {
-                    binding.progressBar.gone()
-                    binding.layoutError.gone()
-                    if (it.data != null) {
-                        feedsList.clear()
-                        feedsList.addAll(it.data)
-                        feedAdapter.notifyDataSetChanged()
-                    }
-                }
-
-                Resource.Status.ERROR -> {
-                    when (it.throwable) {
-                        is UnknownHostException -> {
-                            binding.layoutError.txtError.text = "No Internet Connection !!"
-                        }
-                    }
-                    binding.progressBar.gone()
-                    binding.layoutError.visible()
-                }
-            }
-        })*/
         viewModel.allFavourites.observe(requireActivity(), Observer { dbList ->
 
             dbList.forEach { list ->
                 hashMap.add(list.id)
             }
-
             feedAdapter.addDbHashMap(hashMap)
-            feedsList.forEach { feed ->
-
-                /* dbList.forEach { x ->
-                     if (x.id == feed.id) {
-                         feed.isBookmarked = true
-                     }
-                 }*/
-            }
             feedAdapter.notifyDataSetChanged()
         })
-
-    }
-
-    private fun setAdapter() {
-        binding.rvFeeds.adapter = feedAdapter
-        //feedAdapter.addItems(feedsList)
-
     }
 
     private fun initAdapterListeners() {
         feedAdapter.listener = { _, _, pos ->
             val intent = Intent(requireActivity(), FeedDetailActivity::class.java)
-            intent.putExtra(FeedConstants.FEEDS_LIST, feedsList)
+            intent.putExtra(FeedConstants.FEEDS_LIST, viewModel.getTotalList())
             intent.putExtra(FeedConstants.POSITION, pos)
             startActivity(intent)
         }
 
-        feedAdapter.bookmarkListener = { item ->
+        feedAdapter.bookmarkListener = { item, pos ->
             var favourites: Favourites
             item.apply {
                 favourites = Favourites(
@@ -174,9 +151,11 @@ class HomeFragment : DaggerFragment() {
             }
             if (item.isBookmarked) {
                 viewModel.book(favourites)
+                viewModel.getTotalList()[pos].isBookmarked = true
                 requireActivity().showToast(resources.getString(R.string.added_to_favourites))
             } else {
                 viewModel.unBook(item.id)
+                viewModel.getTotalList()[pos].isBookmarked = true
                 requireActivity().showToast(resources.getString(R.string.removed_favourites))
             }
         }
@@ -187,15 +166,16 @@ class HomeFragment : DaggerFragment() {
                         "${it.title} \n ${it.description} \n ${it.source} \n ${it.backgroundImage}"
             Utilities.showChooserForLinkShare(requireActivity(), message)
         }
+
+        feedAdapter.openBrowserListener = {
+            requireActivity().openWebPage(it.source)
+        }
     }
 
     private fun loadDummyDataForHomePage() {
         val data = Utilities.loadJSONFromAsset(requireActivity(), "dummy_data.json")
         val feedList = object : TypeToken<List<Feed?>?>() {}.type
         val feeds: List<Feed> = Gson().fromJson(data, feedList)
-        feedsList.clear()
-        feedsList.addAll(feeds)
-        feedAdapter.notifyDataSetChanged()
     }
 
 }

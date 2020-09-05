@@ -4,7 +4,6 @@ import androidx.paging.PagingSource
 import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.data.FeedResponse
 import com.kunal.tnt.home.network.HomeApi
-import retrofit2.Response
 
 class FeedPagingSource(
     private val homeApi: HomeApi
@@ -12,18 +11,25 @@ class FeedPagingSource(
 
     var totalPages = 1
 
+    companion object {
+        var totalList = ArrayList<Feed>()
+    }
+
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Feed> {
         try {
 
             val currentLoadingPageKey = params.key ?: 1
 
-            var response: Response<FeedResponse>? = null
+            var response: FeedResponse? = null
             if (currentLoadingPageKey <= totalPages) {
                 response = homeApi.callFeedApi(currentLoadingPageKey)
+                response.feedsList?.forEach {
+                    totalList.add(it)
+                }
             }
-            totalPages = response?.body()?.totalPages!!
+            totalPages = response?.totalPages!!
             val responseData = mutableListOf<Feed>()
-            val data = response.body()?.feedsList ?: emptyList()
+            val data = response.feedsList ?: emptyList()
             responseData.addAll(data)
 
             val prevKey = if (currentLoadingPageKey == 1) null else currentLoadingPageKey - 1

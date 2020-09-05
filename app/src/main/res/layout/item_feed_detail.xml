@@ -4,6 +4,9 @@
 
     <data>
 
+        <import type="android.text.TextUtils" />
+        <import type="android.view.View"/>
+
         <variable
             name="feed"
             type="com.kunal.tnt.home.data.Feed" />
@@ -19,7 +22,6 @@
             android:gravity="center_vertical"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1.9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -97,43 +99,52 @@
                         android:layout_height="@dimen/match_constraints"
                         android:layout_marginHorizontal="@dimen/margin_medium"
                         android:layout_marginTop="@dimen/margin_medium_large"
+                        android:layout_marginBottom="@dimen/margin_medium"
                         android:ellipsize="end"
                         android:padding="@dimen/padding_medium"
                         android:text="@{feed.description}"
-                        app:layout_constraintBottom_toTopOf="@+id/txtDate"
+                        app:layout_constraintBottom_toTopOf="@+id/imgShare"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/title" />
-
-                    <TextView
-                        android:id="@+id/txtDate"
-                        style="@style/Body1MediumGreyLeft"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_medium_large"
-                        android:layout_marginTop="@dimen/margin_semi_medium"
-                        android:layout_marginBottom="@dimen/margin_medium_large"
-                        android:text="7 Aug"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/txtName"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/txtName"
                         style="@style/Body1MediumWhiteCenter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_semi_medium"
-                        android:layout_marginEnd="@dimen/margin_medium_large"
-                        android:layout_marginBottom="@dimen/margin_medium_large"
-                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toEndOf="@+id/txtDate" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/desc" />
 
+                    <ImageView
+                        android:id="@+id/imgShare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:padding="@dimen/padding_medium"
+                        android:src="@drawable/chuck_ic_share_white_24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/desc" />
+
+                    <ImageView
+                        android:id="@+id/imgOpen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:backgroundTint="@color/dark_grey"
+                        android:padding="@dimen/padding_medium"
+                        android:src="@drawable/ic_open_in_browser"
+                        android:visibility='@{TextUtils.isEmpty(feed.source) ? View.GONE : View.VISIBLE }'
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imgShare"
+                        app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

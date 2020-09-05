@@ -1,16 +1,20 @@
 package com.kunal.tnt.home.repository
 
 import androidx.lifecycle.LiveData
-import com.kunal.tnt.categories.Categories
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.kunal.tnt.categories.CategoriesResponse
-import com.kunal.tnt.common.repository.BaseRepository
 import com.kunal.tnt.common.data.Resource
-import com.kunal.tnt.favourites.models.Favourites
+import com.kunal.tnt.common.repository.BaseRepository
 import com.kunal.tnt.favourites.db.FavouritesDao
+import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.home.data.Feed
 import com.kunal.tnt.home.network.HomeApi
+import com.kunal.tnt.home.paging.FeedPagingSource
 import com.kunal.tnt.videos.models.VideosResponse
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -46,5 +50,23 @@ class HomeRepository @Inject constructor(
     }
 
     val allFavourites: LiveData<List<Favourites>> = favouritesDao.getAllFavourites()
+
+    fun getSearchResultStream(): Flow<PagingData<Feed>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { FeedPagingSource(homeApi) }
+        ).flow
+    }
+
+    fun getTotalList(): ArrayList<Feed> {
+        return FeedPagingSource.totalList
+    }
+
+    companion object {
+        private const val NETWORK_PAGE_SIZE = 10
+    }
 
 }

@@ -85,7 +85,7 @@ class VideosFragment : DaggerFragment() {
                 Resource.Status.ERROR -> {
                     when (it.throwable) {
                         is UnknownHostException -> {
-                            binding.layoutError.txtError.text = "No Internet Connection !!"
+                            binding.layoutError.txtError.text = getString(R.string.no_internet)
                         }
                     }
                     binding.progressBar.gone()

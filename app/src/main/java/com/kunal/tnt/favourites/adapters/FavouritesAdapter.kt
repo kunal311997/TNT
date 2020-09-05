@@ -64,11 +64,14 @@ class FavouritesAdapter(
         notifyDataSetChanged()
     }
 
-    inner class TextViewHolder(val binding: ItemFavouriteTextBinding, val context: Context) :
+    inner class TextViewHolder(
+        val binding: ItemFavouriteTextBinding, val context: Context
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(
             pos: Int
         ) {
+            binding.feed = feedsList[pos]
             binding.txtName.text = feedsList[pos].createdBy
             binding.txtTitle.text = feedsList[pos].title
             binding.txtDesc.text = feedsList[pos].description
@@ -94,6 +97,7 @@ class FavouritesAdapter(
         fun bindData(
             pos: Int
         ) {
+            binding.feed = feedsList[pos]
             binding.txtName.text = feedsList[pos].createdBy
             binding.txtTitle.text = feedsList[pos].title
             binding.txtDesc.text = feedsList[pos].description

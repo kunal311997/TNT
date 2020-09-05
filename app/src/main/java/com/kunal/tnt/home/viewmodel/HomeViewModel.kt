@@ -4,17 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.kunal.tnt.categories.Categories
 import com.kunal.tnt.categories.CategoriesResponse
 import com.kunal.tnt.common.data.Resource
 import com.kunal.tnt.favourites.models.Favourites
 import com.kunal.tnt.home.data.Feed
-import com.kunal.tnt.home.network.HomeApi
-import com.kunal.tnt.home.paging.FeedPagingSource
 import com.kunal.tnt.home.repository.HomeRepository
 import com.kunal.tnt.videos.models.VideosResponse
 import kotlinx.coroutines.CoroutineDispatcher
@@ -28,15 +23,14 @@ import javax.inject.Named
 class HomeViewModel @Inject constructor(
     private val homeRepository: HomeRepository,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher,
-    @Named("MAIN") private val mainDispatcher: CoroutineDispatcher,
-    private val homeApi: HomeApi
-) : ViewModel() {
+    @Named("MAIN") private val mainDispatcher: CoroutineDispatcher) : ViewModel() {
 
     private val feedLiveData = MutableLiveData<Resource<List<Feed>>>()
     private val videosLiveData = MutableLiveData<Resource<VideosResponse>>()
     private val categoriesLiveData = MutableLiveData<Resource<CategoriesResponse>>()
     private val feedByCategoryLiveData = MutableLiveData<Resource<List<Feed>>>()
     val allFavourites: LiveData<List<Favourites>> = homeRepository.allFavourites
+    var currentSearchResult: Flow<PagingData<Feed>>? = null
 
     fun getFeedLiveData(): LiveData<Resource<List<Feed>>> {
         return feedLiveData
@@ -128,8 +122,18 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    val listData = Pager(PagingConfig(pageSize = 10)) {
-        FeedPagingSource(homeApi)
-    }.flow.cachedIn(viewModelScope)
+    fun getFeeds(): Flow<PagingData<Feed>> {
+        val lastResult = currentSearchResult
+        if ( lastResult != null) {
+            return lastResult
+        }
+         val newResult: Flow<PagingData<Feed>> = homeRepository.getSearchResultStream()
+            .cachedIn(viewModelScope)
+        currentSearchResult = newResult
+        return newResult
+    }
 
+    fun getTotalList(): ArrayList<Feed> {
+        return homeRepository.getTotalList()
+    }
 }

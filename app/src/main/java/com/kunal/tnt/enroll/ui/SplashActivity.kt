@@ -22,15 +22,6 @@ class SplashActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            /*if (prefClient.isUserLoggedIn()) {
-                val i = Intent(this@SplashActivity, HomeActivity::class.java)
-                startActivity(i)
-                finish()
-            } else {
-                val i = Intent(this@SplashActivity, LoginActivity::class.java)
-                startActivity(i)
-                finish()
-            }*/
             Utilities.processEnrollFlow(this,prefClient)
         }, Constant.SPLASH_SCREEN_TIMEOUT)
     }

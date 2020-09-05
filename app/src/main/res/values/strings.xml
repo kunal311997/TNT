@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">TNT</string>
+    <string name="app_name">Hacky</string>
+    <string name="app_tag_line">Boost your daily life</string>
 
 
     <string name="login">Login</string>
@@ -46,8 +47,9 @@
 
     <string name="done">Done</string>
     <string name="next">Next</string>
-    <string name="create_your_own_hack_and_let_the_community_know">Create Your own hack and let the community know.</string>
-    <string name="fetch_all_latest_hacks_and_save_them_for_later">Fetch all latest hacks and save them for later.</string>
+    <string name="create_your_own_hack_and_let_the_community_know">Create Your own unique hacks/tips and let the community know.</string>
+    <string name="fetch_all_latest_hacks_and_save_them_for_later">Fetch all latest hacks and tips and save them for later use.</string>
     <string name="no_data_found">No Data Found</string>
+    <string name="no_internet">No Internet Connection !!</string>
 
 </resources>

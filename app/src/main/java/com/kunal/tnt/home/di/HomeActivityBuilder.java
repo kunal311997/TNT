@@ -1,6 +1,7 @@
 package com.kunal.tnt.home.di;
 
 import com.kunal.tnt.categories.CategoriesFragment;
+import com.kunal.tnt.feeddetail.FeedDetailActivity;
 import com.kunal.tnt.home.ui.HomeActivity;
 import com.kunal.tnt.home.ui.HomeFragment;
 import com.kunal.tnt.home.ui.SettingsFragment;
@@ -16,6 +17,11 @@ public abstract class HomeActivityBuilder {
             HomeViewModelsModule.class,
             HomeModule.class})
     abstract HomeActivity contributesHomeActivity();
+
+    @ContributesAndroidInjector(modules = {
+            HomeViewModelsModule.class,
+            HomeModule.class})
+    abstract FeedDetailActivity contributesFeedDetailActivity();
 
     @ContributesAndroidInjector(modules = {
             HomeViewModelsModule.class,
