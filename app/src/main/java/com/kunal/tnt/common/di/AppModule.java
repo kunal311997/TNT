@@ -61,7 +61,7 @@ public class AppModule {
                 .writeTimeout(writeTimeUnit, TimeUnit.SECONDS)
                 .addInterceptor(
                         new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .addInterceptor(new ChuckInterceptor(context))
+                //.addInterceptor(new ChuckInterceptor(context))
                 .addInterceptor(chain -> {
                     Request request = chain.request();
                     Request.Builder newRequest = request.newBuilder();

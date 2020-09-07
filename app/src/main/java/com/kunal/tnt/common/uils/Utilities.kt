@@ -193,18 +193,22 @@ object Utilities {
                 context.startActivity(intent)
             }
 
-            !prefClient.isWalkThroughDone() -> {
+            prefClient.isUserLoggedIn() && !prefClient.isWalkThroughDone() -> {
                 val intent = Intent(context, WalkThroughActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
             }
 
             else -> {
-                val intent = Intent(context, HomeActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                context.startActivity(intent)
+                openHomeActivity(context)
             }
         }
+    }
+
+    private fun openHomeActivity(context: Context) {
+        val intent = Intent(context, HomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
     }
 
     fun Context.openWebPage(url: String?) {

@@ -5,7 +5,8 @@
     <data>
 
         <import type="android.text.TextUtils" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="feed"
@@ -92,21 +93,34 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/image" />
 
-                    <TextView
-                        android:id="@+id/desc"
-                        style="@style/Body2MediumWhiteCenterHorizontal"
+                    <ScrollView
+                        android:id="@+id/svDesc"
                         android:layout_width="@dimen/match_constraints"
                         android:layout_height="@dimen/match_constraints"
-                        android:layout_marginHorizontal="@dimen/margin_medium"
-                        android:layout_marginTop="@dimen/margin_medium_large"
-                        android:layout_marginBottom="@dimen/margin_medium"
-                        android:ellipsize="end"
-                        android:padding="@dimen/padding_medium"
-                        android:text="@{feed.description}"
+                        android:fillViewport="true"
                         app:layout_constraintBottom_toTopOf="@+id/imgShare"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/title" />
+                        app:layout_constraintTop_toBottomOf="@+id/title">
+
+                        <TextView
+                            android:id="@+id/desc"
+                            style="@style/Body2MediumWhiteCenterHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="@dimen/margin_medium"
+                            android:layout_marginTop="@dimen/margin_medium_large"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:ellipsize="end"
+                            android:padding="@dimen/padding_medium"
+                            android:text="@{feed.description}"
+                            app:layout_constraintBottom_toTopOf="@+id/imgShare"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+                    </ScrollView>
+
 
                     <TextView
                         android:id="@+id/txtName"
@@ -117,7 +131,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/desc" />
+                        app:layout_constraintTop_toBottomOf="@+id/svDesc" />
 
                     <ImageView
                         android:id="@+id/imgShare"

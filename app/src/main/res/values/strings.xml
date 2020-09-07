@@ -47,9 +47,10 @@
 
     <string name="done">Done</string>
     <string name="next">Next</string>
-    <string name="create_your_own_hack_and_let_the_community_know">Create Your own unique hacks/tips and let the community know.</string>
-    <string name="fetch_all_latest_hacks_and_save_them_for_later">Fetch all latest hacks and tips and save them for later use.</string>
+    <string name="create_your_own_hack_and_let_the_community_know">Create your own unique hacks/tips and let the community know.</string>
+    <string name="fetch_all_latest_hacks_and_save_them_for_later">Fetch all latest hacks and tips and save them for later.</string>
     <string name="no_data_found">No Data Found</string>
     <string name="no_internet">No Internet Connection !!</string>
+    <string name="be_your_own_master_with_useful_daily_life_tips_and_some_cool_hacks">Be your own master with useful daily life tips and some cool hacks.</string>
 
 </resources>
