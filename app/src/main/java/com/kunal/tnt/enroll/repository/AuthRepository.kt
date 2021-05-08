@@ -31,3 +31,4 @@ class AuthRepository @Inject constructor(
         return safeApiCall(ioDispatcher) { authApi.signUp(hashMap) }
     }
 }
+// test
